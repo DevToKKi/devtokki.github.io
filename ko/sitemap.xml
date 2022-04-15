@@ -2,94 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://2runjenjang.github.io/</loc>
+    <loc>https://2runjenjang.github.io/ko/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://2runjenjang.github.io/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="no"
-                href="https://2runjenjang.github.io/no/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="fa"
-                href="https://2runjenjang.github.io/fa/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
                 href="https://2runjenjang.github.io/"
                 />
-  </url><url>
-    <loc>https://2runjenjang.github.io/about/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="fa"
-                href="https://2runjenjang.github.io/fa/about/"
-                />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="https://2runjenjang.github.io/about/"
+                href="https://2runjenjang.github.io/ko/"
                 />
   </url><url>
-    <loc>https://2runjenjang.github.io/blog/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="fa"
-                href="https://2runjenjang.github.io/fa/blog/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="https://2runjenjang.github.io/blog/"
-                />
-  </url><url>
-    <loc>https://2runjenjang.github.io/categories/</loc>
+    <loc>https://2runjenjang.github.io/ko/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://2runjenjang.github.io/en/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="fa"
-                href="https://2runjenjang.github.io/fa/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="no"
-                href="https://2runjenjang.github.io/no/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
                 href="https://2runjenjang.github.io/categories/"
                 />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="https://2runjenjang.github.io/ko/categories/"
+                />
   </url><url>
-    <loc>https://2runjenjang.github.io/tags/</loc>
+    <loc>https://2runjenjang.github.io/ko/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://2runjenjang.github.io/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="fa"
-                href="https://2runjenjang.github.io/fa/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="no"
-                href="https://2runjenjang.github.io/no/tags/"
+                href="https://2runjenjang.github.io/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="https://2runjenjang.github.io/tags/"
+                href="https://2runjenjang.github.io/ko/tags/"
                 />
   </url>
 </urlset>
