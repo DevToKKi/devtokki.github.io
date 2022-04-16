@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>2Runjenjang – scala</title>
-    <link>https://2runjenjang.github.io/tags/scala/</link>
-    <description>Recent content in scala on 2Runjenjang</description>
+    <title>DevToKKi – scala</title>
+    <link>https://devtokki.github.io/tags/scala/</link>
+    <description>Recent content in scala on DevToKKi</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sun, 17 Apr 2022 03:40:29 +0900</lastBuildDate>
     
-	  <atom:link href="https://2runjenjang.github.io/tags/scala/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://devtokki.github.io/tags/scala/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -16,10 +16,10 @@
     
     <item>
       <title>Programming: Scala</title>
-      <link>https://2runjenjang.github.io/programming/scala/</link>
+      <link>https://devtokki.github.io/programming/scala/</link>
       <pubDate>Sun, 17 Apr 2022 03:40:29 +0900</pubDate>
       
-      <guid>https://2runjenjang.github.io/programming/scala/</guid>
+      <guid>https://devtokki.github.io/programming/scala/</guid>
       <description>
         
         

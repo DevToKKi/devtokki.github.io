@@ -1,11 +1,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>2Runjenjang – 2Runjenjang blog</title>
-    <link>https://2runjenjang.github.io/</link>
-    <description>Recent content in 2Runjenjang blog on 2Runjenjang</description>
+    <title>DevToKKi – 2Runjenjang blog</title>
+    <link>https://devtokki.github.io/</link>
+    <description>Recent content in 2Runjenjang blog on DevToKKi</description>
     <generator>Hugo -- gohugo.io</generator>
     
-	  <atom:link href="https://2runjenjang.github.io/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://devtokki.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
       

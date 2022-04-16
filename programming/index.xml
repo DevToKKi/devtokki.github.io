@@ -1,11 +1,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>2Runjenjang – Programming</title>
-    <link>https://2runjenjang.github.io/programming/</link>
-    <description>Recent content in Programming on 2Runjenjang</description>
+    <title>DevToKKi – Programming</title>
+    <link>https://devtokki.github.io/programming/</link>
+    <description>Recent content in Programming on DevToKKi</description>
     <generator>Hugo -- gohugo.io</generator>
     
-	  <atom:link href="https://2runjenjang.github.io/programming/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://devtokki.github.io/programming/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -15,10 +15,10 @@
     
     <item>
       <title>Programming: Markdown test</title>
-      <link>https://2runjenjang.github.io/programming/scala/second-post/</link>
+      <link>https://devtokki.github.io/programming/scala/second-post/</link>
       <pubDate>Sat, 06 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://2runjenjang.github.io/programming/scala/second-post/</guid>
+      <guid>https://devtokki.github.io/programming/scala/second-post/</guid>
       <description>
         
         

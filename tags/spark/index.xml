@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>2Runjenjang – Spark</title>
-    <link>https://2runjenjang.github.io/tags/spark/</link>
-    <description>Recent content in Spark on 2Runjenjang</description>
+    <title>DevToKKi – Spark</title>
+    <link>https://devtokki.github.io/tags/spark/</link>
+    <description>Recent content in Spark on DevToKKi</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sun, 17 Apr 2022 04:18:33 +0900</lastBuildDate>
     
-	  <atom:link href="https://2runjenjang.github.io/tags/spark/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://devtokki.github.io/tags/spark/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -16,10 +16,10 @@
     
     <item>
       <title>Data_platform: Apache Spark</title>
-      <link>https://2runjenjang.github.io/data_platform/apache_spark/</link>
+      <link>https://devtokki.github.io/data_platform/apache_spark/</link>
       <pubDate>Sun, 17 Apr 2022 04:18:33 +0900</pubDate>
       
-      <guid>https://2runjenjang.github.io/data_platform/apache_spark/</guid>
+      <guid>https://devtokki.github.io/data_platform/apache_spark/</guid>
       <description>
         
         

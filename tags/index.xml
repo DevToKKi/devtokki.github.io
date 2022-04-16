@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>2Runjenjang – Tags</title>
-    <link>https://2runjenjang.github.io/tags/</link>
-    <description>Recent content in Tags on 2Runjenjang</description>
+    <title>DevToKKi – Tags</title>
+    <link>https://devtokki.github.io/tags/</link>
+    <description>Recent content in Tags on DevToKKi</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sun, 17 Apr 2022 04:18:33 +0900</lastBuildDate>
     
-	  <atom:link href="https://2runjenjang.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://devtokki.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
       
