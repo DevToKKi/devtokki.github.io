@@ -1,11 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>2Runjenjang – Data Platform</title>
-    <link>https://2runjenjang.github.io/data_platform/</link>
-    <description>Recent content in Data Platform on 2Runjenjang</description>
+    <title>2Runjenjang – basic</title>
+    <link>https://2runjenjang.github.io/tags/basic/</link>
+    <description>Recent content in basic on 2Runjenjang</description>
     <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 17 Apr 2022 03:40:29 +0900</lastBuildDate>
     
-	  <atom:link href="https://2runjenjang.github.io/data_platform/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://2runjenjang.github.io/tags/basic/index.xml" rel="self" type="application/rss+xml" />
     
     
       
