@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>DevToKKi – Apache Kafka</title>
-    <link>https://devtokki.github.io/data_platform/apache_kafka/</link>
+    <link>https://www.devtokki.com/data_platform/apache_kafka/</link>
     <description>Recent content in Apache Kafka on DevToKKi</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sun, 17 Apr 2022 03:40:29 +0900</lastBuildDate>
     
-	  <atom:link href="https://devtokki.github.io/data_platform/apache_kafka/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://www.devtokki.com/data_platform/apache_kafka/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -15,11 +15,11 @@
     
     
     <item>
-      <title>Data_platform: 기본 개념 정리</title>
-      <link>https://devtokki.github.io/data_platform/apache_kafka/basic/</link>
-      <pubDate>Sun, 17 Apr 2022 03:40:29 +0900</pubDate>
+      <title>Data_platform: 카프카 기본 개념과 구조</title>
+      <link>https://www.devtokki.com/data_platform/apache_kafka/kafka_basic_and_structure/</link>
+      <pubDate>Sun, 17 Apr 2022 22:59:37 +0900</pubDate>
       
-      <guid>https://devtokki.github.io/data_platform/apache_kafka/basic/</guid>
+      <guid>https://www.devtokki.com/data_platform/apache_kafka/kafka_basic_and_structure/</guid>
       <description>
         
         

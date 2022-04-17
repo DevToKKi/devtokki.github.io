@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>DevToKKi – Tags</title>
-    <link>https://devtokki.github.io/tags/</link>
+    <link>https://www.devtokki.com/tags/</link>
     <description>Recent content in Tags on DevToKKi</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 17 Apr 2022 04:18:33 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 17 Apr 2022 23:28:34 +0900</lastBuildDate>
     
-	  <atom:link href="https://devtokki.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://www.devtokki.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
       
