@@ -1,8 +1,8 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>DevToKKi – Data-Platform</title>
+    <title>DevToKKi – data platform</title>
     <link>https://www.devtokki.com/categories/data-platform/</link>
-    <description>Recent content in Data-Platform on DevToKKi</description>
+    <description>Recent content in data platform on DevToKKi</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sun, 17 Apr 2022 23:28:34 +0900</lastBuildDate>
     
@@ -62,7 +62,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;안정성을 높이기 위해 리플리케이션 팩터 수를 4 이상 설정 할 수 있지만 경험상 3일 경우 충분히 메시지 안정성도 보장하고 적절한 디스크 공간을 사용할 수 있었음.&lt;/li&gt;
-&lt;li&gt;리플리케이션 팩터 수를 4 이상으로 설정시 디스크 공간을 많이 사용하기 때문에 이 점을 염두해서&lt;/li&gt;
+&lt;li&gt;리플리케이션 팩터 수를 4 이상으로 설정시 디스크 공간을 많이 사용하기 때문에 이 점을 염두해서 사용 할 것.&lt;/li&gt;
 &lt;/ul&gt;
 
       </description>
