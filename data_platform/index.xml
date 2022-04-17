@@ -48,7 +48,7 @@
         
         
         &lt;p&gt;peter-overview01 토픽을 리플리케이션 팩터 수 3으로 설정하여 각 브로커에 배치된 상태를 보여줌.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.devtokki.com/data/data_platform/apache_kafka/kafka_basic_and_structure/%EB%A6%AC%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%981.png&#34; alt=&#34;peter-overview01 토픽을 리플리케이션 팩터 수 3으로 설정하여 각 브로커에 배치된 상태를 보여줌.&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.devtokki.com/data/data_platform/apache_kafka/kafka_basic_and_structure/%eb%a6%ac%ed%94%8c%eb%a6%ac%ec%bc%80%ec%9d%b4%ec%85%981.png&#34; alt=&#34;peter-overview01 토픽을 리플리케이션 팩터 수 3으로 설정하여 각 브로커에 배치된 상태를 보여줌.&#34;  /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;안전성을 목적으로 모든 토픽에 대해 각 3개의 리플리케이션으로 설정 할 수 있음.&lt;/li&gt;
 &lt;li&gt;리플리케이션 팩터수가 커지면 안정성은 높아지지만 그만큼 브로커 리소스를 많이 사용하게 됨.&lt;/li&gt;
