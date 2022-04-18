@@ -153,7 +153,7 @@
 <div class="td-content" style="">
     
 	<h1 id="pg-c72e3eb45c0dc20e7019bb30cead4183">1 - 카프카 기본 개념과 구조</h1>
-    <div class="lead">카파카의 기본 개념과 구조에 대해 기술하고 있습니다.</div>
+    <div class="lead">카프카의 기본 개념과 구조에 대해 기술하고 있습니다.</div>
 	
 </div>
 
@@ -207,7 +207,7 @@
 <div class="td-content" style="page-break-before: always">
     
 	<h1 id="pg-e2c724e61b6830292ff484fa58e33ecc">1.2 - 리플리케이션(replication)</h1>
-    <div class="lead">카프카에서 리플리케이션(replication)이란 각 메시지들을 여러 개로 복제해서 카프카 클러스터 내 브로커 들에 분산시키는 동작을 의미합니다.</div>
+    <div class="lead">카프카에서 리플리케이션(replication)이란 각 메시지들을 여러 개로 복제해서 카프카 클러스터 내 브로커 들에 분산시키는 동작을 의미.</div>
 	<p>peter-overview01 토픽을 리플리케이션 팩터 수 3으로 설정하여 각 브로커에 배치된 상태를 보여줌.</p>
 <p><img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/%eb%a6%ac%ed%94%8c%eb%a6%ac%ec%bc%80%ec%9d%b4%ec%85%981.png" alt="peter-overview01 토픽을 리플리케이션 팩터 수 3으로 설정하여 각 브로커에 배치된 상태를 보여줌."  /></p>
 <ul>
@@ -239,7 +239,7 @@
 
 <div class="td-content" style="page-break-before: always">
     
-	<h1 id="pg-e34e2b3f476d2f8c5c54b46ab388e30b">1.3 - 파티션</h1>
+	<h1 id="pg-e34e2b3f476d2f8c5c54b46ab388e30b">1.3 - 파티션(partition)</h1>
     <div class="lead">하나의 토픽이 한 번에 처리 할 수 있는 한계를 높이기 위해 토픽 하나를 여러 개로 나눠 병렬 처리가 가능하게 만든 것을 파티션(partition)이라고 함.</div>
 	<ul>
 <li>하나의 토픽을 여러 개로 나누면 분산 처리도 가능 함.</li>
@@ -252,18 +252,42 @@
 <li>파티션 수는 초기 생성 후 언제든지 늘릴 수 있지만, 반대로 한 번 늘린 파티션 수는 절대로 줄일 수 없음.</li>
 <li>초기 파티션 수를 2 또는 4 정도로 생성 후, 메시지 처리량이나 컨슈머의 LAG등을 모니터링 하면서 조금씩 늘려가는 방법이 가장 좋음.</li>
 </ul>
-<blockquote>
-<p><strong>컨슈머 LAG란?</strong> 운영 모니터링 지표 중 하나로</p>
-<p>프로듀서가 보낸 메시지 수(카프카에 남아 있는 메시지 수) - 컨슈머가 가져간 메시지 수</p>
+
+
+<div class="alert alert-primary" role="alert">
+<h4 class="alert-heading">컨슈머 LAG이란?</h4>
+
+    운영 모니터링 지표 중 하나로 프로듀서가 보낸 메시지 수(카프카에 남아 있는 메시지 수) - 컨슈머가 가져간 메시지 수
+
+</div>
+
+
+</div>
+
+
+
+    
+	
+  
+    
+    
+	
+    
+
+<div class="td-content" style="page-break-before: always">
+    
+	<h1 id="pg-d4cd3afbc57bc227c7053df375395cfa">1.4 - 세그먼트(segment)</h1>
+    <div class="lead">실제 메시지가 저장되는 파일 시스템 단위</div>
+	<p>프로듀서에 의해 브로커로 전송된 메시지는 토픽의 파티션에 저장되며, 각 메시지들은 세그먼트(segment)라는 로그 파일의 형태로 브로커의 로컬 디스크에 저장 됨.</p>
+<p><img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/segment.png" alt="Untitled"  /></p>
+<h5 id="topic-partition-segment-관계도">Topic, Partition, Segment 관계도</h5>
+<p><img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/kafka_data_flow.png" alt="Topic, Partition, Segment 관계도"  /></p>
+<h6 id="카프카-처리-흐름">카프카 처리 흐름</h6>
 <ul>
-<li>예
-<ul>
-<li>프로듀서가 5개의 메시지를 카프카로 전송하고 컨슈머는 4개의 메시지만 가져간 경우 : LAG는 5 - 4 = 1</li>
-<li>컨슈머에서 지연없이 모든 메시지를 가져 갔을 경우 : LAG는 5 - 5 = 0</li>
+<li>프로듀서는 카프카의 Peter-overview01 토픽으로 메시지 전송</li>
+<li>peter-overview01 토픽은 파티션이 하나뿐이므로, 프로듀서로부터 받은 메시지를 파티션0의 세그먼트 로그 파일에 저장</li>
+<li>브로커의 세그먼트 로그 파일에 저장된 메시지는 컨슈머에서 가져 감</li>
 </ul>
-</li>
-</ul>
-</blockquote>
 
 </div>
 

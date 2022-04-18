@@ -4,7 +4,6 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="generator" content="Hugo 0.96.0" />
-<link rel="alternate" type="application/rss&#43;xml" href="https://www.devtokki.com/tags/structure/index.xml">
 <meta name="robots" content="index, follow">
 
 
@@ -19,17 +18,26 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>structure | DevToKKi</title>
-<meta name="description" content="">
-<meta property="og:title" content="structure" />
-<meta property="og:description" content="Dev ToKKi Blog" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.devtokki.com/tags/structure/" /><meta property="og:site_name" content="DevToKKi" />
+<title>세그먼트(segment) | DevToKKi</title>
+<meta name="description" content="실제 메시지가 저장되는 파일 시스템 단위
+">
+<meta property="og:title" content="세그먼트(segment)" />
+<meta property="og:description" content="실제 메시지가 저장되는 파일 시스템 단위
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.devtokki.com/data_platform/apache_kafka/kafka_basic_and_structure/%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8/" /><meta property="article:section" content="data_platform" />
+<meta property="article:published_time" content="2022-04-19T07:42:49+09:00" />
+<meta property="article:modified_time" content="2022-04-19T07:42:49+09:00" /><meta property="og:site_name" content="DevToKKi" />
 
-<meta itemprop="name" content="structure">
-<meta itemprop="description" content="Dev ToKKi Blog"><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="structure"/>
-<meta name="twitter:description" content="Dev ToKKi Blog"/>
+<meta itemprop="name" content="세그먼트(segment)">
+<meta itemprop="description" content="실제 메시지가 저장되는 파일 시스템 단위
+"><meta itemprop="datePublished" content="2022-04-19T07:42:49+09:00" />
+<meta itemprop="dateModified" content="2022-04-19T07:42:49+09:00" />
+<meta itemprop="wordCount" content="53">
+<meta itemprop="keywords" content="kafka,basic,segment," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="세그먼트(segment)"/>
+<meta name="twitter:description" content="실제 메시지가 저장되는 파일 시스템 단위
+"/>
 
 
 
@@ -43,7 +51,7 @@
   crossorigin="anonymous"></script>
 
   </head>
-  <body class="td-term">
+  <body class="td-page">
     <header>
       
 <nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" style="background-color:#1b251c">
@@ -75,7 +83,7 @@
 				
 				
 				
-				<a class="nav-link" href="/data_platform/" ><span>Data Platform</span></a>
+				<a class="nav-link active" href="/data_platform/" ><span class="active">Data Platform</span></a>
 			</li>
 			
 			
@@ -87,23 +95,171 @@
 </nav>
 
     </header>
-    <div class="container-fluid td-default td-outer">
-      <main role="main" class="td-main">
-        
-<div class="td-content">
-  <main class="taxonomy-taxonomy-page">
-    <h1>Tag: <span>structure</span></h1>
-    <div>
-      
-    </div>
-    <div>
-      
-        
-        <article class="article-teaser article-type-data_platform">
-          <h3><a href="/data_platform/apache_kafka/kafka_basic_and_structure/">카프카 기본 개념과 구조</a></h3>
-          <p>카프카의 기본 개념과 구조에 대해 기술하고 있습니다.</p>
-          <header class="article-meta">
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap">
+          <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
             
+  <script>
+    $(function() {
+    $("#td-section-nav a").removeClass("active");
+    $("#td-section-nav #m-data_platformapache_kafkakafka_basic_and_structureec84b8eab7b8eba8bced8ab8").addClass("active"); 
+    $("#td-section-nav #m-data_platformapache_kafkakafka_basic_and_structureec84b8eab7b8eba8bced8ab8-li span").addClass("td-sidebar-nav-active-item"); 
+    $("#td-section-nav #m-data_platformapache_kafkakafka_basic_and_structureec84b8eab7b8eba8bced8ab8").parents("li").addClass("active-path"); 
+    $("#td-section-nav li.active-path").addClass("show"); 
+    $("#td-section-nav li.active-path").children("input").prop('checked', true);
+    $("#td-section-nav #m-data_platformapache_kafkakafka_basic_and_structureec84b8eab7b8eba8bced8ab8-li").siblings("li").addClass("show");  
+    $("#td-section-nav #m-data_platformapache_kafkakafka_basic_and_structureec84b8eab7b8eba8bced8ab8-li").children("ul").children("li").addClass("show");  
+    $("#td-sidebar-menu").toggleClass("d-none"); 
+    });
+  </script>
+  
+<div id="td-sidebar-menu" class="td-sidebar__inner d-none">
+  <form class="td-sidebar__search d-flex align-items-center">
+    <input type="search" class="form-control td-search-input" placeholder="&#xf002; 사이트에서 검색…" aria-label="사이트에서 검색…" autocomplete="off">
+
+    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    </button>
+  </form>
+  <nav class="collapse td-sidebar-nav foldable-nav" id="td-section-nav">
+    <ul class="td-sidebar-nav__section pr-md-3 ul-0">
+      <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-data_platform-li">
+  <a href="/data_platform/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-data_platform"><span class="">Data Platform</span></a>
+  <ul class="ul-1">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-data_platformapache_kafka-li">
+  <input type="checkbox" id="m-data_platformapache_kafka-check"/>
+  <label for="m-data_platformapache_kafka-check"><a href="/data_platform/apache_kafka/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-data_platformapache_kafka"><span class="">Apache Kafka</span></a></label>
+  
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-data_platformapache_kafkakafka_basic_and_structure-li">
+  <input type="checkbox" id="m-data_platformapache_kafkakafka_basic_and_structure-check"/>
+  <label for="m-data_platformapache_kafkakafka_basic_and_structure-check"><a href="/data_platform/apache_kafka/kafka_basic_and_structure/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-data_platformapache_kafkakafka_basic_and_structure"><span class="">카프카 기본 개념과 구조</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data_platformapache_kafkakafka_basic_and_structureecb9b4ed9484ecb9b4eba5bc_eab5acec84b1ed9598eb8a94_eca3bcec9a94_ec9a94ec868c-li">
+  <input type="checkbox" id="m-data_platformapache_kafkakafka_basic_and_structureecb9b4ed9484ecb9b4eba5bc_eab5acec84b1ed9598eb8a94_eca3bcec9a94_ec9a94ec868c-check"/>
+  <label for="m-data_platformapache_kafkakafka_basic_and_structureecb9b4ed9484ecb9b4eba5bc_eab5acec84b1ed9598eb8a94_eca3bcec9a94_ec9a94ec868c-check"><a href="/data_platform/apache_kafka/kafka_basic_and_structure/%EC%B9%B4%ED%94%84%EC%B9%B4%EB%A5%BC_%EA%B5%AC%EC%84%B1%ED%95%98%EB%8A%94_%EC%A3%BC%EC%9A%94_%EC%9A%94%EC%86%8C/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-data_platformapache_kafkakafka_basic_and_structureecb9b4ed9484ecb9b4eba5bc_eab5acec84b1ed9598eb8a94_eca3bcec9a94_ec9a94ec868c"><span class="">카프카를 구성하는 주요 요소</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data_platformapache_kafkakafka_basic_and_structureeba6aced948ceba6acecbc80ec9db4ec8598-li">
+  <input type="checkbox" id="m-data_platformapache_kafkakafka_basic_and_structureeba6aced948ceba6acecbc80ec9db4ec8598-check"/>
+  <label for="m-data_platformapache_kafkakafka_basic_and_structureeba6aced948ceba6acecbc80ec9db4ec8598-check"><a href="/data_platform/apache_kafka/kafka_basic_and_structure/%EB%A6%AC%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-data_platformapache_kafkakafka_basic_and_structureeba6aced948ceba6acecbc80ec9db4ec8598"><span class="">리플리케이션(replication)</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data_platformapache_kafkakafka_basic_and_structureed8c8ced8bb0ec8598-li">
+  <input type="checkbox" id="m-data_platformapache_kafkakafka_basic_and_structureed8c8ced8bb0ec8598-check"/>
+  <label for="m-data_platformapache_kafkakafka_basic_and_structureed8c8ced8bb0ec8598-check"><a href="/data_platform/apache_kafka/kafka_basic_and_structure/%ED%8C%8C%ED%8B%B0%EC%85%98/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-data_platformapache_kafkakafka_basic_and_structureed8c8ced8bb0ec8598"><span class="">파티션(partition)</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data_platformapache_kafkakafka_basic_and_structureec84b8eab7b8eba8bced8ab8-li">
+  <input type="checkbox" id="m-data_platformapache_kafkakafka_basic_and_structureec84b8eab7b8eba8bced8ab8-check"/>
+  <label for="m-data_platformapache_kafkakafka_basic_and_structureec84b8eab7b8eba8bced8ab8-check"><a href="/data_platform/apache_kafka/kafka_basic_and_structure/%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-data_platformapache_kafkakafka_basic_and_structureec84b8eab7b8eba8bced8ab8"><span class="">세그먼트(segment)</span></a></label>
+  
+</li>
+  </ul>
+</li>
+  </ul>
+</li>
+  </ul>
+</li>
+    </ul>
+  </nav>
+</div>
+
+
+          </aside>
+          <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+            
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+<a id="print" href="https://www.devtokki.com/data_platform/apache_kafka/kafka_basic_and_structure/printview/"><i class="fa fa-print fa-fw"></i> 전체 섹션 프린트</a>
+
+</div>
+
+            
+
+
+
+
+            
+
+	
+		
+			
+
+
+
+  
+  
+    <div class="taxonomy taxonomy-terms-cloud taxo-categories">
+      
+        <h5 class="taxonomy-title">Categories</h5>
+      
+      <ul class="taxonomy-terms">
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/data-platform/" data-taxonomy-term="data-platform"><span class="taxonomy-label">data platform</span><span class="taxonomy-count">6</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/kafka/" data-taxonomy-term="kafka"><span class="taxonomy-label">kafka</span><span class="taxonomy-count">6</span></a></li>
+        
+      </ul>
+    </div>
+  
+
+		
+			
+
+
+
+  
+  
+    <div class="taxonomy taxonomy-terms-cloud taxo-tags">
+      
+        <h5 class="taxonomy-title">Tags</h5>
+      
+      <ul class="taxonomy-terms">
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/basic/" data-taxonomy-term="basic"><span class="taxonomy-label">basic</span><span class="taxonomy-count">5</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/kafka/" data-taxonomy-term="kafka"><span class="taxonomy-label">kafka</span><span class="taxonomy-count">6</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/partition/" data-taxonomy-term="partition"><span class="taxonomy-label">partition</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/replication/" data-taxonomy-term="replication"><span class="taxonomy-label">replication</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/segment/" data-taxonomy-term="segment"><span class="taxonomy-label">segment</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/structure/" data-taxonomy-term="structure"><span class="taxonomy-label">structure</span><span class="taxonomy-count">1</span></a></li>
+        
+      </ul>
+    </div>
+  
+
+		
+	
+
+          </aside>
+          <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
+            
+  
+
+            <nav aria-label="breadcrumb" class="td-breadcrumbs">
+  <ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="https://www.devtokki.com/data_platform/">Data Platform</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="https://www.devtokki.com/data_platform/apache_kafka/">Apache Kafka</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="https://www.devtokki.com/data_platform/apache_kafka/kafka_basic_and_structure/">카프카 기본 개념과 구조</a>
+  </li>
+  <li class="breadcrumb-item active" aria-current="page">
+    <a href="https://www.devtokki.com/data_platform/apache_kafka/kafka_basic_and_structure/%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8/">세그먼트(segment)</a>
+  </li>
+  </ol>
+</nav>
+            
+<div class="td-content">
+	<h1>세그먼트(segment)</h1>
+	<div class="lead">실제 메시지가 저장되는 파일 시스템 단위</div>
+	<header class="article-meta">
+		
 
   
     
@@ -133,7 +289,7 @@
     
       <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/basic/" data-taxonomy-term="basic"><span class="taxonomy-label">basic</span></a></li>
     
-      <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/structure/" data-taxonomy-term="structure"><span class="taxonomy-label">structure</span></a></li>
+      <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/segment/" data-taxonomy-term="segment"><span class="taxonomy-label">segment</span></a></li>
     
   </ul>
 </div>
@@ -141,16 +297,28 @@
     
   
 
-            
-          </header>
-        </article>
-      
-    </div>
-    <a href="https://www.devtokki.com/tags/" class="all-taxonomy-terms">[I18n] ui all Tags</a>
-  </main>
+		
+	</header>    
+	<p>프로듀서에 의해 브로커로 전송된 메시지는 토픽의 파티션에 저장되며, 각 메시지들은 세그먼트(segment)라는 로그 파일의 형태로 브로커의 로컬 디스크에 저장 됨.</p>
+<p><img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/segment.png" alt="Untitled"  /></p>
+<h5 id="topic-partition-segment-관계도">Topic, Partition, Segment 관계도</h5>
+<p><img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/kafka_data_flow.png" alt="Topic, Partition, Segment 관계도"  /></p>
+<h6 id="카프카-처리-흐름">카프카 처리 흐름</h6>
+<ul>
+<li>프로듀서는 카프카의 Peter-overview01 토픽으로 메시지 전송</li>
+<li>peter-overview01 토픽은 파티션이 하나뿐이므로, 프로듀서로부터 받은 메시지를 파티션0의 세그먼트 로그 파일에 저장</li>
+<li>브로커의 세그먼트 로그 파일에 저장된 메시지는 컨슈머에서 가져 감</li>
+</ul>
+
+	
+	
+	
 </div>
 
-      </main>
+
+          </main>
+        </div>
+      </div>
       
 <footer class="py-5 row d-print-none" style="background-color:#1b251c">
   <div class="container-fluid mx-sm-5">
