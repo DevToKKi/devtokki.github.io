@@ -18,25 +18,25 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>카프카를 구성하는 주요 요소 | DevToKKi</title>
-<meta name="description" content="해당 페이지는 카프카를 공부하면서 도움이 되는 카프카의 기본 개념에 대해 간략하게 설명합니다.
+<title>파티션 | DevToKKi</title>
+<meta name="description" content="하나의 토픽이 한 번에 처리 할 수 있는 한계를 높이기 위해 토픽 하나를 여러 개로 나눠 병렬 처리가 가능하게 만든 것을 파티션(partition)이라고 함.
 ">
-<meta property="og:title" content="카프카를 구성하는 주요 요소" />
-<meta property="og:description" content="해당 페이지는 카프카를 공부하면서 도움이 되는 카프카의 기본 개념에 대해 간략하게 설명합니다.
+<meta property="og:title" content="파티션" />
+<meta property="og:description" content="하나의 토픽이 한 번에 처리 할 수 있는 한계를 높이기 위해 토픽 하나를 여러 개로 나눠 병렬 처리가 가능하게 만든 것을 파티션(partition)이라고 함.
 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.devtokki.com/data_platform/apache_kafka/kafka_basic_and_structure/%EC%B9%B4%ED%94%84%EC%B9%B4%EB%A5%BC_%EA%B5%AC%EC%84%B1%ED%95%98%EB%8A%94_%EC%A3%BC%EC%9A%94_%EC%9A%94%EC%86%8C/" /><meta property="article:section" content="data_platform" />
-<meta property="article:published_time" content="2022-04-17T03:40:29+09:00" />
-<meta property="article:modified_time" content="2022-04-17T03:40:29+09:00" /><meta property="og:site_name" content="DevToKKi" />
+<meta property="og:url" content="https://www.devtokki.com/data_platform/apache_kafka/kafka_basic_and_structure/%ED%8C%8C%ED%8B%B0%EC%85%98/" /><meta property="article:section" content="data_platform" />
+<meta property="article:published_time" content="2022-04-18T01:21:19+09:00" />
+<meta property="article:modified_time" content="2022-04-18T01:21:19+09:00" /><meta property="og:site_name" content="DevToKKi" />
 
-<meta itemprop="name" content="카프카를 구성하는 주요 요소">
-<meta itemprop="description" content="해당 페이지는 카프카를 공부하면서 도움이 되는 카프카의 기본 개념에 대해 간략하게 설명합니다.
-"><meta itemprop="datePublished" content="2022-04-17T03:40:29+09:00" />
-<meta itemprop="dateModified" content="2022-04-17T03:40:29+09:00" />
-<meta itemprop="wordCount" content="114">
-<meta itemprop="keywords" content="kafka,basic," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="카프카를 구성하는 주요 요소"/>
-<meta name="twitter:description" content="해당 페이지는 카프카를 공부하면서 도움이 되는 카프카의 기본 개념에 대해 간략하게 설명합니다.
+<meta itemprop="name" content="파티션">
+<meta itemprop="description" content="하나의 토픽이 한 번에 처리 할 수 있는 한계를 높이기 위해 토픽 하나를 여러 개로 나눠 병렬 처리가 가능하게 만든 것을 파티션(partition)이라고 함.
+"><meta itemprop="datePublished" content="2022-04-18T01:21:19+09:00" />
+<meta itemprop="dateModified" content="2022-04-18T01:21:19+09:00" />
+<meta itemprop="wordCount" content="128">
+<meta itemprop="keywords" content="kafka,basic,partition," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="파티션"/>
+<meta name="twitter:description" content="하나의 토픽이 한 번에 처리 할 수 있는 한계를 높이기 위해 토픽 하나를 여러 개로 나눠 병렬 처리가 가능하게 만든 것을 파티션(partition)이라고 함.
 "/>
 
 
@@ -103,13 +103,13 @@
   <script>
     $(function() {
     $("#td-section-nav a").removeClass("active");
-    $("#td-section-nav #m-data_platformapache_kafkakafka_basic_and_structureecb9b4ed9484ecb9b4eba5bc_eab5acec84b1ed9598eb8a94_eca3bcec9a94_ec9a94ec868c").addClass("active"); 
-    $("#td-section-nav #m-data_platformapache_kafkakafka_basic_and_structureecb9b4ed9484ecb9b4eba5bc_eab5acec84b1ed9598eb8a94_eca3bcec9a94_ec9a94ec868c-li span").addClass("td-sidebar-nav-active-item"); 
-    $("#td-section-nav #m-data_platformapache_kafkakafka_basic_and_structureecb9b4ed9484ecb9b4eba5bc_eab5acec84b1ed9598eb8a94_eca3bcec9a94_ec9a94ec868c").parents("li").addClass("active-path"); 
+    $("#td-section-nav #m-data_platformapache_kafkakafka_basic_and_structureed8c8ced8bb0ec8598").addClass("active"); 
+    $("#td-section-nav #m-data_platformapache_kafkakafka_basic_and_structureed8c8ced8bb0ec8598-li span").addClass("td-sidebar-nav-active-item"); 
+    $("#td-section-nav #m-data_platformapache_kafkakafka_basic_and_structureed8c8ced8bb0ec8598").parents("li").addClass("active-path"); 
     $("#td-section-nav li.active-path").addClass("show"); 
     $("#td-section-nav li.active-path").children("input").prop('checked', true);
-    $("#td-section-nav #m-data_platformapache_kafkakafka_basic_and_structureecb9b4ed9484ecb9b4eba5bc_eab5acec84b1ed9598eb8a94_eca3bcec9a94_ec9a94ec868c-li").siblings("li").addClass("show");  
-    $("#td-section-nav #m-data_platformapache_kafkakafka_basic_and_structureecb9b4ed9484ecb9b4eba5bc_eab5acec84b1ed9598eb8a94_eca3bcec9a94_ec9a94ec868c-li").children("ul").children("li").addClass("show");  
+    $("#td-section-nav #m-data_platformapache_kafkakafka_basic_and_structureed8c8ced8bb0ec8598-li").siblings("li").addClass("show");  
+    $("#td-section-nav #m-data_platformapache_kafkakafka_basic_and_structureed8c8ced8bb0ec8598-li").children("ul").children("li").addClass("show");  
     $("#td-sidebar-menu").toggleClass("d-none"); 
     });
   </script>
@@ -244,14 +244,14 @@
     <a href="https://www.devtokki.com/data_platform/apache_kafka/kafka_basic_and_structure/">카프카 기본 개념과 구조</a>
   </li>
   <li class="breadcrumb-item active" aria-current="page">
-    <a href="https://www.devtokki.com/data_platform/apache_kafka/kafka_basic_and_structure/%EC%B9%B4%ED%94%84%EC%B9%B4%EB%A5%BC_%EA%B5%AC%EC%84%B1%ED%95%98%EB%8A%94_%EC%A3%BC%EC%9A%94_%EC%9A%94%EC%86%8C/">카프카를 구성하는 주요 요소</a>
+    <a href="https://www.devtokki.com/data_platform/apache_kafka/kafka_basic_and_structure/%ED%8C%8C%ED%8B%B0%EC%85%98/">파티션</a>
   </li>
   </ol>
 </nav>
             
 <div class="td-content">
-	<h1>카프카를 구성하는 주요 요소</h1>
-	<div class="lead">해당 페이지는 카프카를 공부하면서 도움이 되는 카프카의 기본 개념에 대해 간략하게 설명합니다.</div>
+	<h1>파티션</h1>
+	<div class="lead">하나의 토픽이 한 번에 처리 할 수 있는 한계를 높이기 위해 토픽 하나를 여러 개로 나눠 병렬 처리가 가능하게 만든 것을 파티션(partition)이라고 함.</div>
 	<header class="article-meta">
 		
 
@@ -283,6 +283,8 @@
     
       <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/basic/" data-taxonomy-term="basic"><span class="taxonomy-label">basic</span></a></li>
     
+      <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/partition/" data-taxonomy-term="partition"><span class="taxonomy-label">partition</span></a></li>
+    
   </ul>
 </div>
 
@@ -291,18 +293,29 @@
 
 		
 	</header>    
-	<h3 id="카프카-주요-요소">카프카 주요 요소</h3>
-<ul>
-<li>주키퍼(Zookeeper) : 아파치 프로젝트 애플리케이션 이름으로 <U><strong>카프카의 메타데이터(metadata) 관리 및 브로커의 정상 상태 점검(health check)을 담당</strong></U></li>
-<li>카프카(Kafka) 또는 카프카 클러스터(Kafka cluster) : 아파치 프로젝트 애플리케이션 이름으로 <U><strong>여러 대의 브로커를 구성한 클러스터를 의미</strong></U></li>
-<li>브로커(Broker): 카프카 애플리케이션이 설치된 <U><strong>서버 또는 노드</strong></U>를 칭함</li>
-<li>프로듀서(Producer) : 카프카로 <U><strong>메시지를 보내는 역할</strong></U>을 하는 클라이언트를 총칭</li>
-<li>컨슈머(Consumer) : 카프카에서 <U><strong>메시지를 꺼내가는 역할</strong></U>을 하는 클라이언트 총칭</li>
-<li>토픽(Topic) : 카프카는 <U><strong>메시지 피드들을 토픽으로 구분</strong></U>하고, 각 <U><strong>토픽의 이름은 카프카 내에서 고유</strong></U> 함.</li>
-<li>파티션(Partition) : 병렬 처리 및 고성능을 얻기 위해 <U><strong>하나의 토픽을 여러 개로 나눈 것</strong></U>을 말함.</li>
-<li>세그먼트(Segment) :  프로듀서가 전송한 실제 메시지가 <U><strong>브로커의 로컬 디스크에 저장되는 파일</strong></U>을 말함.</li>
-<li>메시지(Message) 또는 레코드(Record) : 프로듀서가 브로커로 전송하거나 컨슈머가 <U><strong>읽어가는 데이터 조각</strong></U>을 말함.</li>
+	<ul>
+<li>하나의 토픽을 여러 개로 나누면 분산 처리도 가능 함.</li>
+<li>나뉜 파티션 수 만큼 컨슈머를 연결 할 수 있음.</li>
 </ul>
+<p><img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/topic_and_partition_relation.png" alt="토픽과 파티션의 관계"  /></p>
+<p>토픽과 파티션의 관계</p>
+<ul>
+<li>파티션 수도 토픽을 생성할 때 옵션으로 설정하게 되는데, 파티션 수를 정하는 기준은 다소 모호한 경우가 많음</li>
+<li>파티션 수는 초기 생성 후 언제든지 늘릴 수 있지만, 반대로 한 번 늘린 파티션 수는 절대로 줄일 수 없음.</li>
+<li>초기 파티션 수를 2 또는 4 정도로 생성 후, 메시지 처리량이나 컨슈머의 LAG등을 모니터링 하면서 조금씩 늘려가는 방법이 가장 좋음.</li>
+</ul>
+<blockquote>
+<p><strong>컨슈머 LAG란?</strong> 운영 모니터링 지표 중 하나로</p>
+<p>프로듀서가 보낸 메시지 수(카프카에 남아 있는 메시지 수) - 컨슈머가 가져간 메시지 수</p>
+<ul>
+<li>예
+<ul>
+<li>프로듀서가 5개의 메시지를 카프카로 전송하고 컨슈머는 4개의 메시지만 가져간 경우 : LAG는 5 - 4 = 1</li>
+<li>컨슈머에서 지연없이 모든 메시지를 가져 갔을 경우 : LAG는 5 - 5 = 0</li>
+</ul>
+</li>
+</ul>
+</blockquote>
 
 	
 	

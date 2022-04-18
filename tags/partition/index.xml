@@ -1,0 +1,54 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DevToKKi – partition</title>
+    <link>https://www.devtokki.com/tags/partition/</link>
+    <description>Recent content in partition on DevToKKi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 18 Apr 2022 01:21:19 +0900</lastBuildDate>
+    
+	  <atom:link href="https://www.devtokki.com/tags/partition/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Data_platform: 파티션</title>
+      <link>https://www.devtokki.com/data_platform/apache_kafka/kafka_basic_and_structure/%ED%8C%8C%ED%8B%B0%EC%85%98/</link>
+      <pubDate>Mon, 18 Apr 2022 01:21:19 +0900</pubDate>
+      
+      <guid>https://www.devtokki.com/data_platform/apache_kafka/kafka_basic_and_structure/%ED%8C%8C%ED%8B%B0%EC%85%98/</guid>
+      <description>
+        
+        
+        &lt;ul&gt;
+&lt;li&gt;하나의 토픽을 여러 개로 나누면 분산 처리도 가능 함.&lt;/li&gt;
+&lt;li&gt;나뉜 파티션 수 만큼 컨슈머를 연결 할 수 있음.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.devtokki.com/data/data_platform/apache_kafka/kafka_basic_and_structure/topic_and_partition_relation.png&#34; alt=&#34;토픽과 파티션의 관계&#34;  /&gt;&lt;/p&gt;
+&lt;p&gt;토픽과 파티션의 관계&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;파티션 수도 토픽을 생성할 때 옵션으로 설정하게 되는데, 파티션 수를 정하는 기준은 다소 모호한 경우가 많음&lt;/li&gt;
+&lt;li&gt;파티션 수는 초기 생성 후 언제든지 늘릴 수 있지만, 반대로 한 번 늘린 파티션 수는 절대로 줄일 수 없음.&lt;/li&gt;
+&lt;li&gt;초기 파티션 수를 2 또는 4 정도로 생성 후, 메시지 처리량이나 컨슈머의 LAG등을 모니터링 하면서 조금씩 늘려가는 방법이 가장 좋음.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;컨슈머 LAG란?&lt;/strong&gt; 운영 모니터링 지표 중 하나로&lt;/p&gt;
+&lt;p&gt;프로듀서가 보낸 메시지 수(카프카에 남아 있는 메시지 수) - 컨슈머가 가져간 메시지 수&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;예
+&lt;ul&gt;
+&lt;li&gt;프로듀서가 5개의 메시지를 카프카로 전송하고 컨슈머는 4개의 메시지만 가져간 경우 : LAG는 5 - 4 = 1&lt;/li&gt;
+&lt;li&gt;컨슈머에서 지연없이 모든 메시지를 가져 갔을 경우 : LAG는 5 - 5 = 0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
