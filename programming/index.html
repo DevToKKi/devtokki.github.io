@@ -100,36 +100,21 @@
         <div class="row flex-xl-nowrap">
           <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
             
-  <script>
-    $(function() {
-    $("#td-section-nav a").removeClass("active");
-    $("#td-section-nav #m-programming").addClass("active"); 
-    $("#td-section-nav #m-programming-li span").addClass("td-sidebar-nav-active-item"); 
-    $("#td-section-nav #m-programming").parents("li").addClass("active-path"); 
-    $("#td-section-nav li.active-path").addClass("show"); 
-    $("#td-section-nav li.active-path").children("input").prop('checked', true);
-    $("#td-section-nav #m-programming-li").siblings("li").addClass("show");  
-    $("#td-section-nav #m-programming-li").children("ul").children("li").addClass("show");  
-    $("#td-sidebar-menu").toggleClass("d-none"); 
-    });
-  </script>
-  
-<div id="td-sidebar-menu" class="td-sidebar__inner d-none">
+<div id="td-sidebar-menu" class="td-sidebar__inner">
   <form class="td-sidebar__search d-flex align-items-center">
     <input type="search" class="form-control td-search-input" placeholder="&#xf002; 사이트에서 검색…" aria-label="사이트에서 검색…" autocomplete="off">
 
     <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
     </button>
   </form>
-  <nav class="collapse td-sidebar-nav foldable-nav" id="td-section-nav">
+  <nav class="collapse td-sidebar-nav" id="td-section-nav">
     <ul class="td-sidebar-nav__section pr-md-3 ul-0">
-      <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-programming-li">
-  <a href="/programming/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-programming"><span class="">Programming</span></a>
+      <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-programming-li">
+  <a href="/programming/" class="align-left pl-0 active td-sidebar-link td-sidebar-link__section tree-root" id="m-programming"><span class="td-sidebar-nav-active-item">Programming</span></a>
 </li>
     </ul>
   </nav>
 </div>
-
 
           </aside>
           <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">

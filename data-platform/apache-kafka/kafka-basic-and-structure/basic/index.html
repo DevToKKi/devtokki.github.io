@@ -28,11 +28,11 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/basic/" /><meta property="article:section" content="data-platform" />
 <meta property="article:published_time" content="2022-04-19T08:34:14+09:00" />
-<meta property="article:modified_time" content="2022-04-21T13:27:07+09:00" /><meta property="og:site_name" content="DevToKKi" />
+<meta property="article:modified_time" content="2022-04-21T13:51:47+09:00" /><meta property="og:site_name" content="DevToKKi" />
 
 <meta itemprop="name" content="카프카 기초 다지기">
 <meta itemprop="description" content="카프카를 구성하는 주요 요소  주키퍼(Zookeeper) : 아파치 프로젝트 애플리케이션 이름으로 카프카의 메타데이터(metadata) 관리 및 브로커의 정상 상태 점검(health check)을 담당 카프카(Kafka) 또는 카프카 클러스터(Kafka cluster) : 아파치 프로젝트 애플리케이션 이름으로 여러 대의 브로커를 구성한 클러스터를 의미 브로커(Broker): 카프카 애플리케이션이 설치된 서버 또는 노드를 칭함 프로듀서(Producer) : 카프카로 메시지를 보내는 역할을 하는 클라이언트를 총칭 컨슈머(Consumer) : 카프카에서 메시지를 꺼내가는 역할을 하는 클라이언트 총칭 토픽(Topic) : 카프카는 메시지 피드들을 토픽으로 구분하고, 각 토픽의 이름은 카프카 내에서 고유 함."><meta itemprop="datePublished" content="2022-04-19T08:34:14+09:00" />
-<meta itemprop="dateModified" content="2022-04-21T13:27:07+09:00" />
+<meta itemprop="dateModified" content="2022-04-21T13:51:47+09:00" />
 <meta itemprop="wordCount" content="436">
 <meta itemprop="keywords" content="kafka,basic&#34;,replication,partition,segment," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="카프카 기초 다지기"/>
@@ -99,50 +99,28 @@
         <div class="row flex-xl-nowrap">
           <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
             
-  <script>
-    $(function() {
-    $("#td-section-nav a").removeClass("active");
-    $("#td-section-nav #m-data-platformapache-kafkakafka-basic-and-structurebasic").addClass("active"); 
-    $("#td-section-nav #m-data-platformapache-kafkakafka-basic-and-structurebasic-li span").addClass("td-sidebar-nav-active-item"); 
-    $("#td-section-nav #m-data-platformapache-kafkakafka-basic-and-structurebasic").parents("li").addClass("active-path"); 
-    $("#td-section-nav li.active-path").addClass("show"); 
-    $("#td-section-nav li.active-path").children("input").prop('checked', true);
-    $("#td-section-nav #m-data-platformapache-kafkakafka-basic-and-structurebasic-li").siblings("li").addClass("show");  
-    $("#td-section-nav #m-data-platformapache-kafkakafka-basic-and-structurebasic-li").children("ul").children("li").addClass("show");  
-    $("#td-sidebar-menu").toggleClass("d-none"); 
-    });
-  </script>
-  
-<div id="td-sidebar-menu" class="td-sidebar__inner d-none">
+<div id="td-sidebar-menu" class="td-sidebar__inner">
   <form class="td-sidebar__search d-flex align-items-center">
     <input type="search" class="form-control td-search-input" placeholder="&#xf002; 사이트에서 검색…" aria-label="사이트에서 검색…" autocomplete="off">
 
     <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
     </button>
   </form>
-  <nav class="collapse td-sidebar-nav foldable-nav" id="td-section-nav">
+  <nav class="collapse td-sidebar-nav" id="td-section-nav">
     <ul class="td-sidebar-nav__section pr-md-3 ul-0">
-      <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-data-platform-li">
+      <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-data-platform-li">
   <a href="/data-platform/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-data-platform"><span class="">Data Platform</span></a>
   <ul class="ul-1">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-data-platformapache-kafka-li">
-  <input type="checkbox" id="m-data-platformapache-kafka-check"/>
-  <label for="m-data-platformapache-kafka-check"><a href="/data-platform/apache-kafka/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-kafka"><span class="">Apache Kafka</span></a></label>
-  
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-data-platformapache-kafka-li">
+  <a href="/data-platform/apache-kafka/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-kafka"><span class="">Apache Kafka</span></a>
   <ul class="ul-2 foldable">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-data-platformapache-kafkakafka-basic-and-structure-li">
-  <input type="checkbox" id="m-data-platformapache-kafkakafka-basic-and-structure-check"/>
-  <label for="m-data-platformapache-kafkakafka-basic-and-structure-check"><a href="/data-platform/apache-kafka/kafka-basic-and-structure/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-kafkakafka-basic-and-structure"><span class="">카프카 기본 개념과 구조</span></a></label>
-  
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-data-platformapache-kafkakafka-basic-and-structure-li">
+  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-kafkakafka-basic-and-structure"><span class="">카프카 기본 개념과 구조</span></a>
   <ul class="ul-3 foldable">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-basic-and-structurebasic-li">
-  <input type="checkbox" id="m-data-platformapache-kafkakafka-basic-and-structurebasic-check"/>
-  <label for="m-data-platformapache-kafkakafka-basic-and-structurebasic-check"><a href="/data-platform/apache-kafka/kafka-basic-and-structure/basic/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurebasic"><span class="">카프카 기초 다지기</span></a></label>
-  
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-data-platformapache-kafkakafka-basic-and-structurebasic-li">
+  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/basic/" class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurebasic"><span class="td-sidebar-nav-active-item">카프카 기초 다지기</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-basic-and-structurekey-concept-li">
-  <input type="checkbox" id="m-data-platformapache-kafkakafka-basic-and-structurekey-concept-check"/>
-  <label for="m-data-platformapache-kafkakafka-basic-and-structurekey-concept-check"><a href="/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekey-concept"><span class="">카프카의 핵심 개념</span></a></label>
-  
+  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekey-concept"><span class="">카프카의 핵심 개념</span></a>
 </li>
   </ul>
 </li>
@@ -153,7 +131,6 @@
     </ul>
   </nav>
 </div>
-
 
           </aside>
           <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
