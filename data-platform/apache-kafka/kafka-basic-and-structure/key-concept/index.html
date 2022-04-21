@@ -4,9 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="generator" content="Hugo 0.96.0" />
-<link rel="canonical" type="text/html" href="https://www.devtokki.com/programming/">
-<link rel="alternate" type="application/rss&#43;xml" href="https://www.devtokki.com/programming/index.xml">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 
 
 <link rel="shortcut icon" href="/favicons/favicon.ico" >
@@ -20,24 +18,26 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Programming | DevToKKi</title>
-<meta name="description" content="
-
-
-해당 카테고리는 Programming에 대해 관련된 기술 문서를 제공합니다.
-
-
-
+<title>카프카의 핵심 개념 | DevToKKi</title>
+<meta name="description" content="카프카가 높은 처리량과 안정성을 지니게 된 특성들에 대해 설명
 ">
-<meta property="og:title" content="Programming" />
-<meta property="og:description" content="Dev ToKKi Blog" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.devtokki.com/programming/" /><meta property="og:site_name" content="DevToKKi" />
+<meta property="og:title" content="카프카의 핵심 개념" />
+<meta property="og:description" content="카프카가 높은 처리량과 안정성을 지니게 된 특성들에 대해 설명
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/" /><meta property="article:section" content="data-platform" />
+<meta property="article:published_time" content="2022-04-21T11:05:08+09:00" />
+<meta property="article:modified_time" content="2022-04-21T11:05:08+09:00" /><meta property="og:site_name" content="DevToKKi" />
 
-<meta itemprop="name" content="Programming">
-<meta itemprop="description" content="Dev ToKKi Blog"><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Programming"/>
-<meta name="twitter:description" content="Dev ToKKi Blog"/>
+<meta itemprop="name" content="카프카의 핵심 개념">
+<meta itemprop="description" content="카프카가 높은 처리량과 안정성을 지니게 된 특성들에 대해 설명
+"><meta itemprop="datePublished" content="2022-04-21T11:05:08+09:00" />
+<meta itemprop="dateModified" content="2022-04-21T11:05:08+09:00" />
+<meta itemprop="wordCount" content="450">
+<meta itemprop="keywords" content="kafka,basic," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="카프카의 핵심 개념"/>
+<meta name="twitter:description" content="카프카가 높은 처리량과 안정성을 지니게 된 특성들에 대해 설명
+"/>
 
 
 
@@ -51,7 +51,7 @@
   crossorigin="anonymous"></script>
 
   </head>
-  <body class="td-section">
+  <body class="td-page">
     <header>
       
 <nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" style="background-color:#1b251c">
@@ -71,7 +71,7 @@
 				
 				
 				
-				<a class="nav-link active" href="/programming/" ><span class="active">Programming</span></a>
+				<a class="nav-link" href="/programming/" ><span>Programming</span></a>
 			</li>
 			
 			<li class="nav-item mr-4 mb-2 mb-lg-0">
@@ -83,7 +83,7 @@
 				
 				
 				
-				<a class="nav-link" href="/data-platform/" ><span>Data Platform</span></a>
+				<a class="nav-link active" href="/data-platform/" ><span class="active">Data Platform</span></a>
 			</li>
 			
 			
@@ -95,62 +95,82 @@
 </nav>
 
     </header>
-    <div class="container-fluid td-outer">
-      <div class="td-main">
-        <div class="row flex-xl-nowrap">
-          <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
-            
+    <div class="container-fluid td-default td-outer">
+      <main role="main" class="td-main">
+        
 
-
-
-
-<div class="td-content">
-<div class="pageinfo pageinfo-primary d-print-none">
-<p>
-이 섹션의 다중 페이지 출력 화면임.
-<a href="#" onclick="print();return false;">여기를 클릭하여 프린트</a>.
-</p><p>
-<a href="/programming/">이 페이지의 일반 화면으로 돌아가기</a>.
+<h3 id="주요-특징">주요 특징</h3>
+<h4 id="1-분산-시스템">1. 분산 시스템</h4>
+<p>카프카도 분산 시스템으로 유연한 리소스 확장 가능</p>
+<h4 id="2-페이지-캐시">2. 페이지 캐시</h4>
+<p align="center">
+  <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/page_cache.png">
 </p>
-</div>
+<p>직접 디스크에 읽고 쓰는 대신 물리 메모리 중 애플리케이션이 사용하지 않는 일부 잔여 메모리를 활용하여 디스크 I/O에 대한 접근을 줄여 성능을 높일 수 있음</p>
+<h4 id="3-배치-전송-처리">3. 배치 전송 처리</h4>
+<p>카프카는 프로듀서, 컨슈머 클라이언트들과 서로 통신하면서 수 많은 메시지를 주고 받음.
+이 때 발생하는 많은 통신을 묶어서 처리 할 수 있다면, 단건으로 통신할 때에 비해 네트워크 오버헤드를 줄일 수 있음.
+뿐만 아니라 장기적으로는 더욱 빠르고 효율적으로 처리 할 수 있음.</p>
+<p>처리해야할 데이터 특성에 따라 실시간 또는 배치 작업으로 처리</p>
+<ul>
+<li>상품 재고 수량 데이터 → 실시간 처리</li>
+<li>구매 이력 정보 로그 → 배치 처리</li>
+</ul>
+<h4 id="4-압축-전송">4. 압축 전송</h4>
+<ul>
+<li>카프카는 메시지 전송 시 좀 더 성능이 높은 압축 전송을 사용하는 것을 권장하나 메시지의 형식이나 크기에 따라 또 다른 결과를 나타낼 수 있으니 실제로 메시지를 전송해보면서 압축 타입별로 테스트 후 결정을 추천</li>
+<li>지원하는 압축 타입
+<ul>
+<li>높은 압축률 : gzip, zstd</li>
+<li>빠른 응답 속도 : snappy, lz4</li>
+</ul>
+</li>
+<li>압축 전송 이점
+<ul>
+<li>네트워크 대역폭 및 회선 비용 절감</li>
+<li>배치 전송과 결합해 사용할 경우 더욱 높은 효과를 얻을 수 있음</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-토픽-파티션-오프셋">5. 토픽, 파티션, 오프셋</h4>
+<p>카프카는 토픽(topic)이라는 곳에 데이터를 저장하는데 메일 전송 시스템의 이메일 주소 정도의 개념으로 이해하면 됨. 토픽은 병렬 처리를 위해 여러개의 파티션이라는 단위로 나뉨</p>
+<p>파티션의 메시지가 저장되는 위치를 오프셋이라고 부르며, 순차적으로 증가하는 숫자(64비트 정수) 형태</p>
+<p align="center"> <img src="https://sookocheff.com/post/kafka/kafka-in-a-nutshell/log-anatomy.png"> </p>
+<ul>
+<li>파티션과 오프셋(출처: <a href="https://sookocheff.com/post/kafka/kafka-in-a-nutshell/">https://sookocheff.com/post/kafka/kafka-in-a-nutshell/</a>)</li>
+</ul>
+<p>위 그림에서는 하나의 토픽이 3개의 파티션으로 나뉘며 프로듀스로부터 전송되는 메시지들의 쓰기 동작이 각 파티션별로 이뤄짐을 볼 수 있음.</p>
+<p>각 파티션마다 순차적으로 증가하는 숫자들은 오프셋 임</p>
+<p>각 파티션에서의 오프셋은 고유한 숫자로, 카프카에서는 <strong>오프셋을 통해 메시지의 순서를 보장</strong>하고 <strong>컨슈머에서는 마지막까지 읽은 위치를 알 수 있음</strong>.</p>
+<h4 id="6-고가용성-보장">6. 고가용성 보장</h4>
+<p>카프카는 분산 시스템이기 때문에 하나의 서버 또는 노드가 다운되어도 다른 서버 또는 노드가 장애가 발생한 서버의 역할을 대신해 안정적인 서비스 가능</p>
+<p>이런 <strong>고가용성을 보장하기 위해 리플리케이션 기능을 제공</strong></p>
+<p>토픽 자체를 복제하는 것이 아니라 토픽의 파티션을 복제하는 것임</p>
+<p>토픽을 생성할 때 옵션으로 리플리케이션 팩터 수를 지정할 수 있음</p>
+<p>원본과 리플리케이션을 구분하기 위해 리더(leader)와 팔로워(follower)라고 구분을 함</p>
+<ul>
+<li>리더(leader)는 프로듀서, 컨슈머로부터 오는 모든 읽기와 쓰기 요청을 처리</li>
+<li>팔로워(follower)는 오직 리더로부터 리플리케이션</li>
+</ul>
+<p>팔로워 수가 많을 수록 브로커의 디스크 공간도 소비되므로 이상적인 리플리케이션 팩터 수를 유지할 필요가 있으며 일반적으로 3으로 구성하도록 권장</p>
+<h4 id="7-주키퍼의-의존성">7. 주키퍼의 의존성</h4>
+<p>주키퍼는 많은 분산 애플리케이션에서 코디네이터 역할을 하는 애플리케이션으로 사용 됨</p>
+<p>여러 대의 서버를 앙상블(클러스터)로 구성하고, 살아 있는 노드 수가 과반수 이상 유지된다면 지속적인 서비스가 가능한 구조</p>
+<p>즉, 주키퍼는 반드시 홀수로 구성해야 함</p>
+<p>지노드(znode)를 이용해 카프카의 메타 정보가 주키퍼에 기록되며, 주키퍼는 이러한 지노드를 이용해 브로커의 노드 관리, 토픽 관리, 컨트롤러 관리 등을 수행</p>
+<p>최근 카프카에서 주키퍼에 대한 의존성을 제거하려는 움직임이 진행 중임</p>
+<ul>
+<li>Apache Kafka 2.8 버전부터 주키퍼 대신 kraft 를 사용할 수 있으나 아직은 개발 단계로 문서에서도 표기 되어 있음</li>
+</ul>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>KRaft is in early access and should be used in development only. It is not suitable for production.</p>
+<p><a href="https://developer.confluent.io/learn/kraft/">https://developer.confluent.io/learn/kraft/</a></p>
+</blockquote>
 
 
 
-<h1 class="title">Programming</h1>
-
-
-
-
-
-
-<div class="content">
-      
-
-<div class="pageinfo pageinfo-primary">
-<p>해당 카테고리는 Programming에 대해 관련된 기술 문서를 제공합니다.</p>
-
-</div>
-
-
-</div>
-</div>
-
-
-  
-  
-  
-  
-
-  
-  
-
-  
-
-
-
-          </main>
-        </div>
-      </div>
+      </main>
       
 <footer class="py-5 row d-print-none" style="background-color:#1b251c">
   <div class="container-fluid mx-sm-5">

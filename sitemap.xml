@@ -2,17 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.devtokki.com/data_platform/apache_kafka/kafka_basic_and_structure/basic/</loc>
+    <loc>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/basic/</loc>
     <lastmod>2022-04-19T08:34:14+09:00</lastmod>
   </url><url>
-    <loc>https://www.devtokki.com/data_platform/apache_kafka/kafka_basic_and_structure/key-concept/</loc>
+    <loc>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/</loc>
     <lastmod>2022-04-21T11:05:08+09:00</lastmod>
   </url><url>
     <loc>https://www.devtokki.com/programming/</loc>
     <lastmod>2022-04-17T04:23:09+09:00</lastmod>
   </url><url>
-    <loc>https://www.devtokki.com/data_platform/</loc>
-    <lastmod>2022-04-17T04:23:09+09:00</lastmod>
+    <loc>https://www.devtokki.com/data-platform/</loc>
+    <lastmod>2022-04-21T11:05:08+09:00</lastmod>
   </url><url>
     <loc>https://www.devtokki.com/tags/basic/</loc>
     <lastmod>2022-04-21T11:05:08+09:00</lastmod>
@@ -33,13 +33,13 @@
     <lastmod>2022-04-21T11:05:08+09:00</lastmod>
   </url><url>
     <loc>https://www.devtokki.com/tags/structure/</loc>
-    <lastmod>2022-04-19T07:56:47+09:00</lastmod>
+    <lastmod>2022-04-17T22:59:37+09:00</lastmod>
   </url><url>
-    <loc>https://www.devtokki.com/data_platform/apache_kafka/kafka_basic_and_structure/</loc>
-    <lastmod>2022-04-19T07:56:47+09:00</lastmod>
+    <loc>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/</loc>
+    <lastmod>2022-04-17T22:59:37+09:00</lastmod>
   </url><url>
-    <loc>https://www.devtokki.com/data_platform/apache_kafka/</loc>
-    <lastmod>2022-04-18T01:19:55+09:00</lastmod>
+    <loc>https://www.devtokki.com/data-platform/apache-kafka/</loc>
+    <lastmod>2022-04-17T03:40:29+09:00</lastmod>
   </url><url>
     <loc>https://www.devtokki.com/</loc>
     <lastmod>2022-04-17T13:59:03+09:00</lastmod>

@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>DevToKKi – structure</title>
-    <link>https://www.devtokki.com/tags/structure/</link>
-    <description>Recent content in structure on DevToKKi</description>
+    <title>DevToKKi – Apache Kafka</title>
+    <link>https://www.devtokki.com/data-platform/apache-kafka/</link>
+    <description>Recent content in Apache Kafka on DevToKKi</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 17 Apr 2022 22:59:37 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 17 Apr 2022 03:40:29 +0900</lastBuildDate>
     
-	  <atom:link href="https://www.devtokki.com/tags/structure/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://www.devtokki.com/data-platform/apache-kafka/index.xml" rel="self" type="application/rss+xml" />
     
     
       
