@@ -177,9 +177,9 @@
 
 <div class="td-content" style="">
     
-	<h1 id="pg-e0f0c4e01e904c3a3538ab739e608acc">1.1 - 카프카를 구성하는 주요 요소</h1>
-    <div class="lead">해당 페이지는 카프카를 공부하면서 도움이 되는 카프카의 기본 개념에 대해 간략하게 설명합니다.</div>
-	<h3 id="카프카-주요-요소">카프카 주요 요소</h3>
+	<h1 id="pg-2136980f4d0c52059b05334d52189790">1.1 - 카프카 기초 다지기</h1>
+    
+	<h3 id="카프카를-구성하는-주요-요소">카프카를 구성하는 주요 요소</h3>
 <ul>
 <li>주키퍼(Zookeeper) : 아파치 프로젝트 애플리케이션 이름으로 <U><strong>카프카의 메타데이터(metadata) 관리 및 브로커의 정상 상태 점검(health check)을 담당</strong></U></li>
 <li>카프카(Kafka) 또는 카프카 클러스터(Kafka cluster) : 아파치 프로젝트 애플리케이션 이름으로 <U><strong>여러 대의 브로커를 구성한 클러스터를 의미</strong></U></li>
@@ -191,27 +191,14 @@
 <li>세그먼트(Segment) :  프로듀서가 전송한 실제 메시지가 <U><strong>브로커의 로컬 디스크에 저장되는 파일</strong></U>을 말함.</li>
 <li>메시지(Message) 또는 레코드(Record) : 프로듀서가 브로커로 전송하거나 컨슈머가 <U><strong>읽어가는 데이터 조각</strong></U>을 말함.</li>
 </ul>
-
-</div>
-
-
-
-    
-	
-  
-    
-    
-	
-    
-
-<div class="td-content" style="page-break-before: always">
-    
-	<h1 id="pg-e2c724e61b6830292ff484fa58e33ecc">1.2 - 리플리케이션(replication)</h1>
-    <div class="lead">카프카에서 리플리케이션(replication)이란 각 메시지들을 여러 개로 복제해서 카프카 클러스터 내 브로커 들에 분산시키는 동작을 의미.</div>
-	<p>peter-overview01 토픽을 리플리케이션 팩터 수 3으로 설정하여 각 브로커에 배치된 상태를 보여줌.</p>
-<p><img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/%eb%a6%ac%ed%94%8c%eb%a6%ac%ec%bc%80%ec%9d%b4%ec%85%981.png" alt="peter-overview01 토픽을 리플리케이션 팩터 수 3으로 설정하여 각 브로커에 배치된 상태를 보여줌."  /></p>
+<h3 id="리플리케이션replication">리플리케이션(replication)</h3>
+<p>카프카에서 리플리케이션(replication)이란 각 메시지들을 여러 개로 복제해서 카프카 클러스터 내 브로커 들에 분산시키는 동작을 의미.</p>
+<p>아래 그림은 peter-overview01 토픽을 리플리케이션 팩터 수 3으로 설정하여 각 브로커에 배치된 상태를 보여줌.</p>
+<p align="center">
+<img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/replication.png">
+</p>
 <ul>
-<li>안전성을 목적으로 모든 토픽에 대해 각 3개의 리플리케이션으로 설정 할 수 있음.</li>
+<li>안정성을 목적으로 모든 토픽에 대해 각 3개의 리플리케이션으로 설정 할 수 있음.</li>
 <li>리플리케이션 팩터수가 커지면 안정성은 높아지지만 그만큼 브로커 리소스를 많이 사용하게 됨.</li>
 <li>복제에 대한 오버헤드를 줄여서 최대한 브로커를 효율적으로 사용하는 것을 권장</li>
 <li>토픽 생성시 기준
@@ -224,28 +211,13 @@
 <li>안정성을 높이기 위해 리플리케이션 팩터 수를 4 이상 설정 할 수 있지만 경험상 3일 경우 충분히 메시지 안정성도 보장하고 적절한 디스크 공간을 사용할 수 있었음.</li>
 <li>리플리케이션 팩터 수를 4 이상으로 설정시 디스크 공간을 많이 사용하기 때문에 이 점을 염두해서 사용 할 것.</li>
 </ul>
-
-</div>
-
-
-
-    
-	
-  
-    
-    
-	
-    
-
-<div class="td-content" style="page-break-before: always">
-    
-	<h1 id="pg-e34e2b3f476d2f8c5c54b46ab388e30b">1.3 - 파티션(partition)</h1>
-    <div class="lead">하나의 토픽이 한 번에 처리 할 수 있는 한계를 높이기 위해 토픽 하나를 여러 개로 나눠 병렬 처리가 가능하게 만든 것을 파티션(partition)이라고 함.</div>
-	<ul>
+<h3 id="파티션partition">파티션(partition)</h3>
+<p>하나의 토픽이 한 번에 처리 할 수 있는 한계를 높이기 위해 토픽 하나를 여러 개로 나눠 병렬 처리가 가능하게 만든 것을 파티션(partition)이라고 함.</p>
+<ul>
 <li>하나의 토픽을 여러 개로 나누면 분산 처리도 가능 함.</li>
 <li>나뉜 파티션 수 만큼 컨슈머를 연결 할 수 있음.</li>
 </ul>
-<p><img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/topic_and_partition_relation.png" alt="토픽과 파티션의 관계"  /></p>
+<p align="center"> <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/topic_and_partition_relation.png"> </p>
 <p>토픽과 파티션의 관계</p>
 <ul>
 <li>파티션 수도 토픽을 생성할 때 옵션으로 설정하게 되는데, 파티션 수를 정하는 기준은 다소 모호한 경우가 많음</li>
@@ -261,6 +233,18 @@
 
 </div>
 
+<h3 id="세그먼트segment">세그먼트(segment)</h3>
+<p>실제 메시지가 저장되는 파일 시스템 단위
+프로듀서에 의해 브로커로 전송된 메시지는 토픽의 파티션에 저장되며, 각 메시지들은 세그먼트(segment)라는 로그 파일의 형태로 브로커의 로컬 디스크에 저장 됨.</p>
+<p align="center"> <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/segment.png"> </p>
+<h4 id="-topic-partition-segment-관계도">* Topic, Partition, Segment 관계도</h4>
+<p align="center"> <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/kafka_data_flow.png"> </p>
+<h4 id="-카프카-처리-흐름">* 카프카 처리 흐름</h4>
+<ul>
+<li>프로듀서는 카프카의 Peter-overview01 토픽으로 메시지 전송</li>
+<li>peter-overview01 토픽은 파티션이 하나뿐이므로, 프로듀서로부터 받은 메시지를 파티션0의 세그먼트 로그 파일에 저장</li>
+<li>브로커의 세그먼트 로그 파일에 저장된 메시지는 컨슈머에서 가져 감</li>
+</ul>
 
 </div>
 
@@ -276,18 +260,76 @@
 
 <div class="td-content" style="page-break-before: always">
     
-	<h1 id="pg-d4cd3afbc57bc227c7053df375395cfa">1.4 - 세그먼트(segment)</h1>
-    <div class="lead">실제 메시지가 저장되는 파일 시스템 단위</div>
-	<p>프로듀서에 의해 브로커로 전송된 메시지는 토픽의 파티션에 저장되며, 각 메시지들은 세그먼트(segment)라는 로그 파일의 형태로 브로커의 로컬 디스크에 저장 됨.</p>
-<p><img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/segment.png" alt="Untitled"  /></p>
-<h5 id="topic-partition-segment-관계도">Topic, Partition, Segment 관계도</h5>
-<p><img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/kafka_data_flow.png" alt="Topic, Partition, Segment 관계도"  /></p>
-<h6 id="카프카-처리-흐름">카프카 처리 흐름</h6>
+	<h1 id="pg-1c85772360a0ced75dd7a228ab66014f">1.2 - 카프카의 핵심 개념</h1>
+    <div class="lead">카프카가 높은 처리량과 안정성을 지니게 된 특성들에 대해 설명</div>
+	<h3 id="주요-특징">주요 특징</h3>
+<h4 id="1-분산-시스템">1. 분산 시스템</h4>
+<p>카프카도 분산 시스템으로 유연한 리소스 확장 가능</p>
+<h4 id="2-페이지-캐시">2. 페이지 캐시</h4>
+<p align="center">
+  <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/page_cache.png">
+</p>
+<p>직접 디스크에 읽고 쓰는 대신 물리 메모리 중 애플리케이션이 사용하지 않는 일부 잔여 메모리를 활용하여 디스크 I/O에 대한 접근을 줄여 성능을 높일 수 있음</p>
+<h4 id="3-배치-전송-처리">3. 배치 전송 처리</h4>
+<p>카프카는 프로듀서, 컨슈머 클라이언트들과 서로 통신하면서 수 많은 메시지를 주고 받음.
+이 때 발생하는 많은 통신을 묶어서 처리 할 수 있다면, 단건으로 통신할 때에 비해 네트워크 오버헤드를 줄일 수 있음.
+뿐만 아니라 장기적으로는 더욱 빠르고 효율적으로 처리 할 수 있음.</p>
+<p>처리해야할 데이터 특성에 따라 실시간 또는 배치 작업으로 처리</p>
 <ul>
-<li>프로듀서는 카프카의 Peter-overview01 토픽으로 메시지 전송</li>
-<li>peter-overview01 토픽은 파티션이 하나뿐이므로, 프로듀서로부터 받은 메시지를 파티션0의 세그먼트 로그 파일에 저장</li>
-<li>브로커의 세그먼트 로그 파일에 저장된 메시지는 컨슈머에서 가져 감</li>
+<li>상품 재고 수량 데이터 → 실시간 처리</li>
+<li>구매 이력 정보 로그 → 배치 처리</li>
 </ul>
+<h4 id="4-압축-전송">4. 압축 전송</h4>
+<ul>
+<li>카프카는 메시지 전송 시 좀 더 성능이 높은 압축 전송을 사용하는 것을 권장하나 메시지의 형식이나 크기에 따라 또 다른 결과를 나타낼 수 있으니 실제로 메시지를 전송해보면서 압축 타입별로 테스트 후 결정을 추천</li>
+<li>지원하는 압축 타입
+<ul>
+<li>높은 압축률 : gzip, zstd</li>
+<li>빠른 응답 속도 : snappy, lz4</li>
+</ul>
+</li>
+<li>압축 전송 이점
+<ul>
+<li>네트워크 대역폭 및 회선 비용 절감</li>
+<li>배치 전송과 결합해 사용할 경우 더욱 높은 효과를 얻을 수 있음</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-토픽-파티션-오프셋">5. 토픽, 파티션, 오프셋</h4>
+<p>카프카는 토픽(topic)이라는 곳에 데이터를 저장하는데 메일 전송 시스템의 이메일 주소 정도의 개념으로 이해하면 됨. 토픽은 병렬 처리를 위해 여러개의 파티션이라는 단위로 나뉨</p>
+<p>파티션의 메시지가 저장되는 위치를 오프셋이라고 부르며, 순차적으로 증가하는 숫자(64비트 정수) 형태</p>
+<p align="center"> <img src="https://sookocheff.com/post/kafka/kafka-in-a-nutshell/log-anatomy.png"> </p>
+<ul>
+<li>파티션과 오프셋(출처: <a href="https://sookocheff.com/post/kafka/kafka-in-a-nutshell/">https://sookocheff.com/post/kafka/kafka-in-a-nutshell/</a>)</li>
+</ul>
+<p>위 그림에서는 하나의 토픽이 3개의 파티션으로 나뉘며 프로듀스로부터 전송되는 메시지들의 쓰기 동작이 각 파티션별로 이뤄짐을 볼 수 있음.</p>
+<p>각 파티션마다 순차적으로 증가하는 숫자들은 오프셋 임</p>
+<p>각 파티션에서의 오프셋은 고유한 숫자로, 카프카에서는 <strong>오프셋을 통해 메시지의 순서를 보장</strong>하고 <strong>컨슈머에서는 마지막까지 읽은 위치를 알 수 있음</strong>.</p>
+<h4 id="6-고가용성-보장">6. 고가용성 보장</h4>
+<p>카프카는 분산 시스템이기 때문에 하나의 서버 또는 노드가 다운되어도 다른 서버 또는 노드가 장애가 발생한 서버의 역할을 대신해 안정적인 서비스 가능</p>
+<p>이런 <strong>고가용성을 보장하기 위해 리플리케이션 기능을 제공</strong></p>
+<p>토픽 자체를 복제하는 것이 아니라 토픽의 파티션을 복제하는 것임</p>
+<p>토픽을 생성할 때 옵션으로 리플리케이션 팩터 수를 지정할 수 있음</p>
+<p>원본과 리플리케이션을 구분하기 위해 리더(leader)와 팔로워(follower)라고 구분을 함</p>
+<ul>
+<li>리더(leader)는 프로듀서, 컨슈머로부터 오는 모든 읽기와 쓰기 요청을 처리</li>
+<li>팔로워(follower)는 오직 리더로부터 리플리케이션</li>
+</ul>
+<p>팔로워 수가 많을 수록 브로커의 디스크 공간도 소비되므로 이상적인 리플리케이션 팩터 수를 유지할 필요가 있으며 일반적으로 3으로 구성하도록 권장</p>
+<h4 id="7-주키퍼의-의존성">7. 주키퍼의 의존성</h4>
+<p>주키퍼는 많은 분산 애플리케이션에서 코디네이터 역할을 하는 애플리케이션으로 사용 됨</p>
+<p>여러 대의 서버를 앙상블(클러스터)로 구성하고, 살아 있는 노드 수가 과반수 이상 유지된다면 지속적인 서비스가 가능한 구조</p>
+<p>즉, 주키퍼는 반드시 홀수로 구성해야 함</p>
+<p>지노드(znode)를 이용해 카프카의 메타 정보가 주키퍼에 기록되며, 주키퍼는 이러한 지노드를 이용해 브로커의 노드 관리, 토픽 관리, 컨트롤러 관리 등을 수행</p>
+<p>최근 카프카에서 주키퍼에 대한 의존성을 제거하려는 움직임이 진행 중임</p>
+<ul>
+<li>Apache Kafka 2.8 버전부터 주키퍼 대신 kraft 를 사용할 수 있으나 아직은 개발 단계로 문서에서도 표기 되어 있음</li>
+</ul>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>KRaft is in early access and should be used in development only. It is not suitable for production.</p>
+<p><a href="https://developer.confluent.io/learn/kraft/">https://developer.confluent.io/learn/kraft/</a></p>
+</blockquote>
 
 </div>
 
