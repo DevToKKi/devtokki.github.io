@@ -4,8 +4,6 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="generator" content="Hugo 0.96.0" />
-<link rel="alternate" type="text/html" href="https://www.devtokki.com/data-platform/apache-kafka/printview/">
-<link rel="alternate" type="application/rss&#43;xml" href="https://www.devtokki.com/data-platform/apache-kafka/index.xml">
 <meta name="robots" content="index, follow">
 
 
@@ -20,24 +18,26 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Apache Kafka | DevToKKi</title>
-<meta name="description" content="
-
-
-본 페이지는 Apache Kafka에 대해 공부한 내용을 제공합니다.
-
-
-
+<title>컨슈머 그룹 | DevToKKi</title>
+<meta name="description" content="컨슈머 그룹에 대해 설명
 ">
-<meta property="og:title" content="Apache Kafka" />
-<meta property="og:description" content="DevToKKi Blog" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.devtokki.com/data-platform/apache-kafka/" /><meta property="og:site_name" content="DevToKKi" />
+<meta property="og:title" content="컨슈머 그룹" />
+<meta property="og:description" content="컨슈머 그룹에 대해 설명
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/" /><meta property="article:section" content="data-platform" />
+<meta property="article:published_time" content="2022-04-22T14:44:07+09:00" />
+<meta property="article:modified_time" content="2022-04-22T14:44:07+09:00" /><meta property="og:site_name" content="DevToKKi" />
 
-<meta itemprop="name" content="Apache Kafka">
-<meta itemprop="description" content="DevToKKi Blog"><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Apache Kafka"/>
-<meta name="twitter:description" content="DevToKKi Blog"/>
+<meta itemprop="name" content="컨슈머 그룹">
+<meta itemprop="description" content="컨슈머 그룹에 대해 설명
+"><meta itemprop="datePublished" content="2022-04-22T14:44:07+09:00" />
+<meta itemprop="dateModified" content="2022-04-22T14:44:07+09:00" />
+<meta itemprop="wordCount" content="90">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="컨슈머 그룹"/>
+<meta name="twitter:description" content="컨슈머 그룹에 대해 설명
+"/>
 
 
 
@@ -51,7 +51,7 @@
   crossorigin="anonymous"></script>
 
   </head>
-  <body class="td-section">
+  <body class="td-page">
     <header>
       
 <nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" style="background-color:#1b251c">
@@ -113,9 +113,9 @@
   <a href="/data-platform/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-data-platform"><span class="">Data Platform</span></a>
   <ul class="ul-1">
     <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-data-platformapache-kafka-li">
-  <a href="/data-platform/apache-kafka/" class="align-left pl-0 active td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-kafka"><span class="td-sidebar-nav-active-item">Apache Kafka</span></a>
+  <a href="/data-platform/apache-kafka/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-kafka"><span class="">Apache Kafka</span></a>
   <ul class="ul-2 foldable">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-data-platformapache-kafkakafka-basic-and-structure-li">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-data-platformapache-kafkakafka-basic-and-structure-li">
   <a href="/data-platform/apache-kafka/kafka-basic-and-structure/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-kafkakafka-basic-and-structure"><span class="">카프카 기본 개념과 구조</span></a>
   <ul class="ul-3 foldable">
     <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-basic-and-structurebasic-li">
@@ -126,8 +126,8 @@
   <a href="/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-producer-overview"><span class="">프로듀서 기본 동작 및 주요 옵션</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-consumer-overview-li">
   <a href="/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-overview/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-consumer-overview"><span class="">컨슈머 기본 동작 및 주요 옵션</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-consumer-group-li">
-  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-consumer-group"><span class="">컨슈머 그룹</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-consumer-group-li">
+  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/" class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-consumer-group"><span class="td-sidebar-nav-active-item">컨슈머 그룹</span></a>
 </li>
   </ul>
 </li>
@@ -143,7 +143,7 @@
           <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
             
 <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
-<a id="print" href="https://www.devtokki.com/data-platform/apache-kafka/printview/"><i class="fa fa-print fa-fw"></i> 전체 섹션 프린트</a>
+<a id="print" href="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/printview/"><i class="fa fa-print fa-fw"></i> 전체 섹션 프린트</a>
 
 </div>
 
@@ -201,15 +201,21 @@
   <li class="breadcrumb-item">
     <a href="https://www.devtokki.com/data-platform/">Data Platform</a>
   </li>
-  <li class="breadcrumb-item active" aria-current="page">
+  <li class="breadcrumb-item">
     <a href="https://www.devtokki.com/data-platform/apache-kafka/">Apache Kafka</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/">카프카 기본 개념과 구조</a>
+  </li>
+  <li class="breadcrumb-item active" aria-current="page">
+    <a href="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/">컨슈머 그룹</a>
   </li>
   </ol>
 </nav>
             
 <div class="td-content">
-	<h1>Apache Kafka</h1>
-  
+	<h1>컨슈머 그룹</h1>
+	<div class="lead">컨슈머 그룹에 대해 설명</div>
 	<header class="article-meta">
 		
 
@@ -226,6 +232,10 @@
     
       <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/kafka/" data-taxonomy-term="kafka"><span class="taxonomy-label">kafka</span></a></li>
     
+      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/consumer-group/" data-taxonomy-term="consumer-group"><span class="taxonomy-label">consumer group</span></a></li>
+    
+      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/consumer/" data-taxonomy-term="consumer"><span class="taxonomy-label">consumer</span></a></li>
+    
   </ul>
 </div>
 
@@ -233,41 +243,24 @@
   
 
 		
-	</header>
-	
-
-<div class="pageinfo pageinfo-primary">
-<p>본 페이지는 Apache Kafka에 대해 공부한 내용을 제공합니다.</p>
-
-</div>
-
-
-        <div class="section-index">
-    
-    
-    
-    
-    
-    
-    
-    
-    <hr class="panel-line">
-        
-            
-            <div class="entry">
-                <h5>
-                    <a href="/data-platform/apache-kafka/kafka-basic-and-structure/">카프카 기본 개념과 구조</a>
-                </h5>
-                <p>카프카의 기본 개념과 구조에 대해 기술하고 있습니다.</p>
-            </div>
-        
-    
-</div>
+	</header>    
+	<figure>
+  <p align="center">
+    <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/consumer-group.png"/>
+  </p>
+  <figcaption align="center">컨슈머 그룹과 컨슈머</figcaption>
+</figure>
+<p>커슈머는 컨슈머 그룹안에 속한 것이 일반적인 구조로, 하나의 컨슈머 그룹 안에 여러 개의 컨슈머가 구성될 수 있음.
+위 그림과 같이 토픽의 파티션과 일대일로 매핑되어 메시지를 가져오게 됨.</p>
+<p>왼쪽에 peter-01이라는 토픽과 3개의 파티션으로 구성되어 있고, 오른쪽에는 consumer group 01이라는 컨슈머 그룹 아이디를 가진 컨슈머 그룹이 있으며, peter-01 토픽의 파티션 수와 동일한 3개의 컨슈머가 속해 있음.</p>
+<p>컨슈머들은 하나의 컨슈머 그룹 안에 속해 있으며, 그룹 내의 컨슈머들은 서로의 정보를 공유 함.</p>
+<p>예를 들어 Consumer01이 문제가 생겨 종료됐다면, Consumer02 또는 Consumer03은 Consumer01이 하던 일을 대신해 peter-01 토픽의 partition0을 컨슘하기 시작 함.</p>
 
 	
 	
 	
 </div>
+
 
           </main>
         </div>

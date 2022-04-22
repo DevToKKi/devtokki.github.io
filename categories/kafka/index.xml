@@ -4,7 +4,7 @@
     <link>https://www.devtokki.com/categories/kafka/</link>
     <description>Recent content in kafka on DevToKKi</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 22 Apr 2022 13:45:54 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 22 Apr 2022 14:44:07 +0900</lastBuildDate>
     
 	  <atom:link href="https://www.devtokki.com/categories/kafka/index.xml" rel="self" type="application/rss+xml" />
     
@@ -106,6 +106,19 @@
 &lt;li&gt;브로커의 세그먼트 로그 파일에 저장된 메시지는 컨슈머에서 가져 감&lt;/li&gt;
 &lt;/ul&gt;
 
+      </description>
+    </item>
+    
+    <item>
+      <title>Data-Platform: 카프카 기본 개념과 구조</title>
+      <link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/</link>
+      <pubDate>Sun, 17 Apr 2022 22:59:37 +0900</pubDate>
+      
+      <guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/</guid>
+      <description>
+        
+        
+        
       </description>
     </item>
     
@@ -366,15 +379,26 @@
     </item>
     
     <item>
-      <title>Data-Platform: 카프카 기본 개념과 구조</title>
-      <link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/</link>
-      <pubDate>Sun, 17 Apr 2022 22:59:37 +0900</pubDate>
+      <title>Data-Platform: 컨슈머 그룹</title>
+      <link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/</link>
+      <pubDate>Fri, 22 Apr 2022 14:44:07 +0900</pubDate>
       
-      <guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/</guid>
+      <guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/</guid>
       <description>
         
         
-        
+        &lt;figure&gt;
+  &lt;p align=&#34;center&#34;&gt;
+    &lt;img src=&#34;https://www.devtokki.com/data/data_platform/apache_kafka/kafka_basic_and_structure/consumer-group.png&#34;/&gt;
+  &lt;/p&gt;
+  &lt;figcaption align=&#34;center&#34;&gt;컨슈머 그룹과 컨슈머&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;커슈머는 컨슈머 그룹안에 속한 것이 일반적인 구조로, 하나의 컨슈머 그룹 안에 여러 개의 컨슈머가 구성될 수 있음.
+위 그림과 같이 토픽의 파티션과 일대일로 매핑되어 메시지를 가져오게 됨.&lt;/p&gt;
+&lt;p&gt;왼쪽에 peter-01이라는 토픽과 3개의 파티션으로 구성되어 있고, 오른쪽에는 consumer group 01이라는 컨슈머 그룹 아이디를 가진 컨슈머 그룹이 있으며, peter-01 토픽의 파티션 수와 동일한 3개의 컨슈머가 속해 있음.&lt;/p&gt;
+&lt;p&gt;컨슈머들은 하나의 컨슈머 그룹 안에 속해 있으며, 그룹 내의 컨슈머들은 서로의 정보를 공유 함.&lt;/p&gt;
+&lt;p&gt;예를 들어 Consumer01이 문제가 생겨 종료됐다면, Consumer02 또는 Consumer03은 Consumer01이 하던 일을 대신해 peter-01 토픽의 partition0을 컨슘하기 시작 함.&lt;/p&gt;
+
       </description>
     </item>
     

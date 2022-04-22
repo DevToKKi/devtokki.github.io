@@ -569,6 +569,34 @@
     
 	
   
+    
+    
+	
+    
+
+<div class="td-content" style="page-break-before: always">
+    
+	<h1 id="pg-32aef646acb12193858569be5798503a">1.1.5 - 컨슈머 그룹</h1>
+    <div class="lead">컨슈머 그룹에 대해 설명</div>
+	<figure>
+  <p align="center">
+    <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/consumer-group.png"/>
+  </p>
+  <figcaption align="center">컨슈머 그룹과 컨슈머</figcaption>
+</figure>
+<p>커슈머는 컨슈머 그룹안에 속한 것이 일반적인 구조로, 하나의 컨슈머 그룹 안에 여러 개의 컨슈머가 구성될 수 있음.
+위 그림과 같이 토픽의 파티션과 일대일로 매핑되어 메시지를 가져오게 됨.</p>
+<p>왼쪽에 peter-01이라는 토픽과 3개의 파티션으로 구성되어 있고, 오른쪽에는 consumer group 01이라는 컨슈머 그룹 아이디를 가진 컨슈머 그룹이 있으며, peter-01 토픽의 파티션 수와 동일한 3개의 컨슈머가 속해 있음.</p>
+<p>컨슈머들은 하나의 컨슈머 그룹 안에 속해 있으며, 그룹 내의 컨슈머들은 서로의 정보를 공유 함.</p>
+<p>예를 들어 Consumer01이 문제가 생겨 종료됐다면, Consumer02 또는 Consumer03은 Consumer01이 하던 일을 대신해 peter-01 토픽의 partition0을 컨슘하기 시작 함.</p>
+
+</div>
+
+
+
+    
+	
+  
 
     
 	
