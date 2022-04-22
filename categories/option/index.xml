@@ -1,46 +1,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>DevToKKi – producer</title>
-    <link>https://www.devtokki.com/categories/producer/</link>
-    <description>Recent content in producer on DevToKKi</description>
+    <title>DevToKKi – option</title>
+    <link>https://www.devtokki.com/categories/option/</link>
+    <description>Recent content in option on DevToKKi</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Fri, 22 Apr 2022 12:51:34 +0900</lastBuildDate>
     
-	  <atom:link href="https://www.devtokki.com/categories/producer/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://www.devtokki.com/categories/option/index.xml" rel="self" type="application/rss+xml" />
     
     
       
         
       
     
-    
-    <item>
-      <title>Data-Platform: 프로듀서 컴포컨트 구조 및 기본 동작</title>
-      <link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-components-overview/</link>
-      <pubDate>Fri, 22 Apr 2022 08:23:39 +0900</pubDate>
-      
-      <guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-components-overview/</guid>
-      <description>
-        
-        
-        &lt;figure&gt;
-  &lt;p align=&#34;center&#34;&gt;
-    &lt;img src=&#34;https://www.devtokki.com/data/data_platform/apache_kafka/kafka_basic_and_structure/producer.png&#34;&gt;
-  &lt;/p&gt;
-  &lt;figcaption align=&#34;center&#34;&gt;프로듀서 디자인 개요(출처: https://dzone.com/articles/take-a-deep-dive-into-kafka-producer-api/)&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;ProducerRecord라고 표시된 부분은 카프카로 전송하기 위한 실제 데이터이며, 레코드는 토픽, 파티션, 키, 밸류로 구성 됨.&lt;/p&gt;
-&lt;p&gt;프로듀서가 카프카로 레코드를 전송할 때, 카프카의 특정 토픽으로 메시지를 전송하기 때문에 &lt;strong&gt;레코드에서 토픽과 밸류(메시지 내용)는 필수 값&lt;/strong&gt;이며, &lt;strong&gt;특정 파티션을 지정하기 위한 레코드의 파티션과 특정 파티션에 레코드들을 정렬하기 위한 레코드의 키는 선택사항(옵션)&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;각 레코드들은 프로듀서의 send() 메소드를 통해 시리얼라이저(serializer), 파티셔너(partitioner)를 거침.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;프로듀서 레코드의 파티션을 지정했을 경우&lt;br&gt; &amp;ndash;&amp;gt; 파티셔너는 아무 동작하지 않고 지정된 파티션으로 레코드를 전달.&lt;/li&gt;
-&lt;li&gt;프로듀서 레코드의 파티션을 지정 안했을 경우&lt;br&gt; &amp;ndash;&amp;gt; 키를 가지고 파티션을 선택해 레코드를 전달 함. 기본적으로 라운드 로빈(round robin) 방식으로 동작.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;send() 메소드 동작 이후 &lt;strong&gt;레코드들을 파티션별로 잠시 모아 둠&lt;/strong&gt;. 모아둔 이유는 프로듀서가 카프카로 전송하기 전, &lt;strong&gt;배치 전송&lt;/strong&gt;하기 위함.&lt;/p&gt;
-&lt;p&gt;전송이 실패하면 재시도 동작이 이뤄지고, 지정된 횟수 만큼의 재시도가 실패하면 최종 실패 전달. 전송이 성공하면 메타데이터를 리턴하게 됨.&lt;/p&gt;
-
-      </description>
-    </item>
     
     <item>
       <title>Data-Platform: 프로듀서 주요 옵션</title>
