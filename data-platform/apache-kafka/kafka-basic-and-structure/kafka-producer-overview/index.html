@@ -4,9 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="generator" content="Hugo 0.96.0" />
-<link rel="canonical" type="text/html" href="https://www.devtokki.com/data-platform/apache-kafka/">
-<link rel="alternate" type="application/rss&#43;xml" href="https://www.devtokki.com/data-platform/apache-kafka/index.xml">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 
 
 <link rel="shortcut icon" href="/favicons/favicon.ico" >
@@ -20,24 +18,26 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Apache Kafka | DevToKKi</title>
-<meta name="description" content="
-
-
-본 페이지는 Apache Kafka에 대해 공부한 내용을 제공합니다.
-
-
-
+<title>프로듀서 기본 동작 및 주요 옵션 | DevToKKi</title>
+<meta name="description" content="프로듀서 기본 동작과 주요 옵션에 대해 설명
 ">
-<meta property="og:title" content="Apache Kafka" />
-<meta property="og:description" content="DevToKKi Blog" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.devtokki.com/data-platform/apache-kafka/" /><meta property="og:site_name" content="DevToKKi" />
+<meta property="og:title" content="프로듀서 기본 동작 및 주요 옵션" />
+<meta property="og:description" content="프로듀서 기본 동작과 주요 옵션에 대해 설명
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/" /><meta property="article:section" content="data-platform" />
+<meta property="article:published_time" content="2022-04-22T08:23:39+09:00" />
+<meta property="article:modified_time" content="2022-04-22T08:23:39+09:00" /><meta property="og:site_name" content="DevToKKi" />
 
-<meta itemprop="name" content="Apache Kafka">
-<meta itemprop="description" content="DevToKKi Blog"><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Apache Kafka"/>
-<meta name="twitter:description" content="DevToKKi Blog"/>
+<meta itemprop="name" content="프로듀서 기본 동작 및 주요 옵션">
+<meta itemprop="description" content="프로듀서 기본 동작과 주요 옵션에 대해 설명
+"><meta itemprop="datePublished" content="2022-04-22T08:23:39+09:00" />
+<meta itemprop="dateModified" content="2022-04-22T08:23:39+09:00" />
+<meta itemprop="wordCount" content="422">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="프로듀서 기본 동작 및 주요 옵션"/>
+<meta name="twitter:description" content="프로듀서 기본 동작과 주요 옵션에 대해 설명
+"/>
 
 
 
@@ -51,7 +51,7 @@
   crossorigin="anonymous"></script>
 
   </head>
-  <body class="td-section">
+  <body class="td-page">
     <header>
       
 <nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" style="background-color:#1b251c">
@@ -98,274 +98,150 @@
     <div class="container-fluid td-outer">
       <div class="td-main">
         <div class="row flex-xl-nowrap">
-          <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
+          <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+            
+<div id="td-sidebar-menu" class="td-sidebar__inner">
+  <form class="td-sidebar__search d-flex align-items-center">
+    <input type="search" class="form-control td-search-input" placeholder="&#xf002; 사이트에서 검색…" aria-label="사이트에서 검색…" autocomplete="off">
+
+    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    </button>
+  </form>
+  <nav class="collapse td-sidebar-nav" id="td-section-nav">
+    <ul class="td-sidebar-nav__section pr-md-3 ul-0">
+      <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-data-platform-li">
+  <a href="/data-platform/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-data-platform"><span class="">Data Platform</span></a>
+  <ul class="ul-1">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-data-platformapache-kafka-li">
+  <a href="/data-platform/apache-kafka/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-kafka"><span class="">Apache Kafka</span></a>
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-data-platformapache-kafkakafka-basic-and-structure-li">
+  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-kafkakafka-basic-and-structure"><span class="">카프카 기본 개념과 구조</span></a>
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-basic-and-structurebasic-li">
+  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/basic/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurebasic"><span class="">카프카 기초 다지기</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-basic-and-structurekey-concept-li">
+  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekey-concept"><span class="">카프카의 핵심 개념</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-producer-overview-li">
+  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/" class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-producer-overview"><span class="td-sidebar-nav-active-item">프로듀서 기본 동작 및 주요 옵션</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-consumer-overview-li">
+  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-overview/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-consumer-overview"><span class="">컨슈머 기본 동작 및 주요 옵션</span></a>
+</li>
+  </ul>
+</li>
+  </ul>
+</li>
+  </ul>
+</li>
+    </ul>
+  </nav>
+</div>
+
+          </aside>
+          <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+            
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+<a id="print" href="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/printview/"><i class="fa fa-print fa-fw"></i> 전체 섹션 프린트</a>
+
+</div>
+
             
 
 
 
 
+            
+
+	
+		
+			
+
+
+
+  
+  
+    <div class="taxonomy taxonomy-terms-cloud taxo-categories">
+      
+        <h5 class="taxonomy-title">Categories</h5>
+      
+      <ul class="taxonomy-terms">
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/basic/" data-taxonomy-term="basic"><span class="taxonomy-label">basic</span><span class="taxonomy-count">2</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/consumer/" data-taxonomy-term="consumer"><span class="taxonomy-label">consumer</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/data-platform/" data-taxonomy-term="data-platform"><span class="taxonomy-label">data platform</span><span class="taxonomy-count">6</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/kafka/" data-taxonomy-term="kafka"><span class="taxonomy-label">kafka</span><span class="taxonomy-count">6</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/option/" data-taxonomy-term="option"><span class="taxonomy-label">option</span><span class="taxonomy-count">2</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/producer/" data-taxonomy-term="producer"><span class="taxonomy-label">producer</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/structure/" data-taxonomy-term="structure"><span class="taxonomy-label">structure</span><span class="taxonomy-count">1</span></a></li>
+        
+      </ul>
+    </div>
+  
+
+		
+	
+
+          </aside>
+          <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
+            
+  
+
+            <nav aria-label="breadcrumb" class="td-breadcrumbs">
+  <ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="https://www.devtokki.com/data-platform/">Data Platform</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="https://www.devtokki.com/data-platform/apache-kafka/">Apache Kafka</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/">카프카 기본 개념과 구조</a>
+  </li>
+  <li class="breadcrumb-item active" aria-current="page">
+    <a href="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/">프로듀서 기본 동작 및 주요 옵션</a>
+  </li>
+  </ol>
+</nav>
+            
 <div class="td-content">
-<div class="pageinfo pageinfo-primary d-print-none">
-<p>
-이 섹션의 다중 페이지 출력 화면임.
-<a href="#" onclick="print();return false;">여기를 클릭하여 프린트</a>.
-</p><p>
-<a href="/data-platform/apache-kafka/">이 페이지의 일반 화면으로 돌아가기</a>.
-</p>
-</div>
+	<h1>프로듀서 기본 동작 및 주요 옵션</h1>
+	<div class="lead">프로듀서 기본 동작과 주요 옵션에 대해 설명</div>
+	<header class="article-meta">
+		
 
-
-
-<h1 class="title">Apache Kafka</h1>
-
-
-
-
-
-
-<div class="content">
+  
+    
       
 
-<div class="pageinfo pageinfo-primary">
-<p>본 페이지는 Apache Kafka에 대해 공부한 내용을 제공합니다.</p>
 
+<div class="taxonomy taxonomy-terms-article taxo-categories">
+  <h5 class="taxonomy-title">Categories:</h5>
+  <ul class="taxonomy-terms">
+    
+      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/data-platform/" data-taxonomy-term="data-platform"><span class="taxonomy-label">data platform</span></a></li>
+    
+      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/kafka/" data-taxonomy-term="kafka"><span class="taxonomy-label">kafka</span></a></li>
+    
+      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/structure/" data-taxonomy-term="structure"><span class="taxonomy-label">structure</span></a></li>
+    
+      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/producer/" data-taxonomy-term="producer"><span class="taxonomy-label">producer</span></a></li>
+    
+      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/option/" data-taxonomy-term="option"><span class="taxonomy-label">option</span></a></li>
+    
+  </ul>
 </div>
 
-
-</div>
-</div>
-
-
-  
-  
-  
+    
   
 
-  
-  
-
-  
-    
-    
-	
-    
-
-<div class="td-content" style="">
-    
-	<h1 id="pg-bb7db4a61332e1fe3dd232a413e65bc1">1 - 카프카 기본 개념과 구조</h1>
-    <div class="lead">카프카의 기본 개념과 구조에 대해 기술하고 있습니다.</div>
-	
-</div>
-
-
-
-    
-      
-  
-  
-  
-  
-
-  
-  
-
-  
-    
-    
-	
-    
-
-<div class="td-content" style="">
-    
-	<h1 id="pg-b46aff701aa04c0929a33de8d3a53acf">1.1 - 카프카 기초 다지기</h1>
-    
-	<h3 id="카프카를-구성하는-주요-요소">카프카를 구성하는 주요 요소</h3>
-<ul>
-<li>주키퍼(Zookeeper) : 아파치 프로젝트 애플리케이션 이름으로 <U><strong>카프카의 메타데이터(metadata) 관리 및 브로커의 정상 상태 점검(health check)을 담당</strong></U></li>
-<li>카프카(Kafka) 또는 카프카 클러스터(Kafka cluster) : 아파치 프로젝트 애플리케이션 이름으로 <U><strong>여러 대의 브로커를 구성한 클러스터를 의미</strong></U></li>
-<li>브로커(Broker): 카프카 애플리케이션이 설치된 <U><strong>서버 또는 노드</strong></U>를 칭함</li>
-<li>프로듀서(Producer) : 카프카로 <U><strong>메시지를 보내는 역할</strong></U>을 하는 클라이언트를 총칭</li>
-<li>컨슈머(Consumer) : 카프카에서 <U><strong>메시지를 꺼내가는 역할</strong></U>을 하는 클라이언트 총칭</li>
-<li>토픽(Topic) : 카프카는 <U><strong>메시지 피드들을 토픽으로 구분</strong></U>하고, 각 <U><strong>토픽의 이름은 카프카 내에서 고유</strong></U> 함.</li>
-<li>파티션(Partition) : 병렬 처리 및 고성능을 얻기 위해 <U><strong>하나의 토픽을 여러 개로 나눈 것</strong></U>을 말함.</li>
-<li>세그먼트(Segment) :  프로듀서가 전송한 실제 메시지가 <U><strong>브로커의 로컬 디스크에 저장되는 파일</strong></U>을 말함.</li>
-<li>메시지(Message) 또는 레코드(Record) : 프로듀서가 브로커로 전송하거나 컨슈머가 <U><strong>읽어가는 데이터 조각</strong></U>을 말함.</li>
-</ul>
-<h3 id="리플리케이션replication">리플리케이션(replication)</h3>
-<p>카프카에서 리플리케이션(replication)이란 각 메시지들을 여러 개로 복제해서 카프카 클러스터 내 브로커 들에 분산시키는 동작을 의미.</p>
-<p>아래 그림은 peter-overview01 토픽을 리플리케이션 팩터 수 3으로 설정하여 각 브로커에 배치된 상태를 보여줌.</p>
-<figure>
-  <p align="center">
-    <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/replication.png"/>
-  </p>
-</figure>
-<ul>
-<li>안정성을 목적으로 모든 토픽에 대해 각 3개의 리플리케이션으로 설정 할 수 있음.</li>
-<li>리플리케이션 팩터수가 커지면 안정성은 높아지지만 그만큼 브로커 리소스를 많이 사용하게 됨.</li>
-<li>복제에 대한 오버헤드를 줄여서 최대한 브로커를 효율적으로 사용하는 것을 권장</li>
-<li>토픽 생성시 기준
-<ul>
-<li>테스트 개발 환경 : 리플리케이션 팩터 수를 1로 설정</li>
-<li>운영 환경(로그성 메시지로서 약간의 유실 허용) : 리플레케이션 팩터 수를 2로 설정</li>
-<li>운영 환경(유실 허용하지 않음) : 리플리케이션 팩터 수를 3으로 설정</li>
-</ul>
-</li>
-<li>안정성을 높이기 위해 리플리케이션 팩터 수를 4 이상 설정 할 수 있지만 경험상 3일 경우 충분히 메시지 안정성도 보장하고 적절한 디스크 공간을 사용할 수 있음.</li>
-<li>리플리케이션 팩터 수를 4 이상으로 설정시 디스크 공간을 많이 사용하기 때문에 이 점을 염두해서 사용 할 것.</li>
-</ul>
-<h3 id="파티션partition">파티션(partition)</h3>
-<p>하나의 토픽이 한 번에 처리 할 수 있는 한계를 높이기 위해 토픽 하나를 여러 개로 나눠 병렬 처리가 가능하게 만든 것을 파티션(partition)이라고 함.</p>
-<ul>
-<li>하나의 토픽을 여러 개로 나누면 분산 처리도 가능 함.</li>
-<li>나뉜 파티션 수 만큼 컨슈머를 연결 할 수 있음.</li>
-</ul>
-<figure>
-  <p align="center">
-    <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/topic_and_partition_relation.png"/> 
-  </p>
-  <figcaption align="center"> 토픽과 파티션의 관계 </figcaption>
-</figure>
-<ul>
-<li>파티션 수도 토픽을 생성할 때 옵션으로 설정하게 되는데, 파티션 수를 정하는 기준은 다소 모호한 경우가 많음</li>
-<li>파티션 수는 초기 생성 후 언제든지 늘릴 수 있지만, 반대로 한 번 늘린 파티션 수는 절대로 줄일 수 없음.</li>
-<li>초기 파티션 수를 2 또는 4 정도로 생성 후, 메시지 처리량이나 컨슈머의 LAG등을 모니터링 하면서 조금씩 늘려가는 방법이 가장 좋음.</li>
-</ul>
-
-
-<div class="alert alert-primary" role="alert">
-<h4 class="alert-heading">컨슈머 LAG이란?</h4>
-
-    운영 모니터링 지표 중 하나로 프로듀서가 보낸 메시지 수(카프카에 남아 있는 메시지 수) - 컨슈머가 가져간 메시지 수
-
-</div>
-
-<h3 id="세그먼트segment">세그먼트(segment)</h3>
-<figure>
-  <p align="center"> 
-    <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/segment.png" /> 
-  </p>
-</figure>
-<br>
-<p>실제 메시지가 저장되는 파일 시스템 단위
-프로듀서에 의해 브로커로 전송된 메시지는 토픽의 파티션에 저장되며, 각 메시지들은 세그먼트(segment)라는 로그 파일의 형태로 브로커의 로컬 디스크에 저장 됨.</p>
-<br>
-<figure>
-  <p align="center"> 
-    <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/kafka_data_flow.png"> 
-  </p>
-  <figcaption align="center">Topic, Partition, Segment 관계도</figcaption>
-</figure>
-<h4 id="-카프카-처리-흐름">* 카프카 처리 흐름</h4>
-<ul>
-<li>프로듀서는 카프카의 Peter-overview01 토픽으로 메시지 전송</li>
-<li>peter-overview01 토픽은 파티션이 하나뿐이므로, 프로듀서로부터 받은 메시지를 파티션0의 세그먼트 로그 파일에 저장</li>
-<li>브로커의 세그먼트 로그 파일에 저장된 메시지는 컨슈머에서 가져 감</li>
-</ul>
-
-</div>
-
-
-
-    
-	
-  
-    
-    
-	
-    
-
-<div class="td-content" style="page-break-before: always">
-    
-	<h1 id="pg-500911cfc6ad58fdb332937ce1c22be0">1.2 - 카프카의 핵심 개념</h1>
-    <div class="lead">카프카가 높은 처리량과 안정성을 지니게 된 특성들에 대해 설명</div>
-	<h3 id="주요-특징">주요 특징</h3>
-<h4 id="1-분산-시스템">1. 분산 시스템</h4>
-<p>카프카도 분산 시스템으로 유연한 리소스 확장 가능</p>
-<h4 id="2-페이지-캐시">2. 페이지 캐시</h4>
-<p align="center">
-  <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/page_cache.png">
-</p>
-<p>직접 디스크에 읽고 쓰는 대신 물리 메모리 중 애플리케이션이 사용하지 않는 일부 잔여 메모리를 활용하여 디스크 I/O에 대한 접근을 줄여 성능을 높일 수 있음</p>
-<h4 id="3-배치-전송-처리">3. 배치 전송 처리</h4>
-<p>카프카는 프로듀서, 컨슈머 클라이언트들과 서로 통신하면서 수 많은 메시지를 주고 받음.
-이 때 발생하는 많은 통신을 묶어서 처리 할 수 있다면, 단건으로 통신할 때에 비해 네트워크 오버헤드를 줄일 수 있음.
-뿐만 아니라 장기적으로는 더욱 빠르고 효율적으로 처리 할 수 있음.</p>
-<p>처리해야할 데이터 특성에 따라 실시간 또는 배치 작업으로 처리</p>
-<ul>
-<li>상품 재고 수량 데이터 → 실시간 처리</li>
-<li>구매 이력 정보 로그 → 배치 처리</li>
-</ul>
-<h4 id="4-압축-전송">4. 압축 전송</h4>
-<ul>
-<li>카프카는 메시지 전송 시 좀 더 성능이 높은 압축 전송을 사용하는 것을 권장하나 메시지의 형식이나 크기에 따라 또 다른 결과를 나타낼 수 있으니 실제로 메시지를 전송해보면서 압축 타입별로 테스트 후 결정을 추천</li>
-<li>지원하는 압축 타입
-<ul>
-<li>높은 압축률 : gzip, zstd</li>
-<li>빠른 응답 속도 : snappy, lz4</li>
-</ul>
-</li>
-<li>압축 전송 이점
-<ul>
-<li>네트워크 대역폭 및 회선 비용 절감</li>
-<li>배치 전송과 결합해 사용할 경우 더욱 높은 효과를 얻을 수 있음</li>
-</ul>
-</li>
-</ul>
-<h4 id="5-토픽-파티션-오프셋">5. 토픽, 파티션, 오프셋</h4>
-<p>카프카는 토픽(topic)이라는 곳에 데이터를 저장하는데 메일 전송 시스템의 이메일 주소 정도의 개념으로 이해하면 됨.</p>
-<p>토픽은 병렬 처리를 위해 여러개의 파티션이라는 단위로 나뉨</p>
-<p>파티션의 메시지가 저장되는 위치를 오프셋이라고 부르며, 순차적으로 증가하는 숫자(64비트 정수) 형태</p>
-<figure>
-  <p align="center"> 
-    <img src="https://sookocheff.com/post/kafka/kafka-in-a-nutshell/log-anatomy.png">
-  </p>
-  <figcaption align="center">파티션과 오프셋(출처: https://sookocheff.com/post/kafka/kafka-in-a-nutshell/)</figcaption>
-</figure>
-<p>위 그림에서는 하나의 토픽이 3개의 파티션으로 나뉘며 프로듀스로부터 전송되는 메시지들의 쓰기 동작이 각 파티션별로 이뤄짐을 볼 수 있음.</p>
-<p>각 파티션마다 순차적으로 증가하는 숫자들은 오프셋 임</p>
-<p>각 파티션에서의 오프셋은 고유한 숫자로, 카프카에서는 <strong>오프셋을 통해 메시지의 순서를 보장</strong>하고 <strong>컨슈머에서는 마지막까지 읽은 위치를 알 수 있음</strong>.</p>
-<h4 id="6-고가용성-보장">6. 고가용성 보장</h4>
-<p>카프카는 분산 시스템이기 때문에 하나의 서버 또는 노드가 다운되어도 다른 서버 또는 노드가 장애가 발생한 서버의 역할을 대신해 안정적인 서비스 가능</p>
-<p>이런 <strong>고가용성을 보장하기 위해 리플리케이션 기능을 제공</strong></p>
-<p>토픽 자체를 복제하는 것이 아니라 토픽의 파티션을 복제하는 것임</p>
-<p>토픽을 생성할 때 옵션으로 리플리케이션 팩터 수를 지정할 수 있음</p>
-<p>원본과 리플리케이션을 구분하기 위해 리더(leader)와 팔로워(follower)라고 구분을 함</p>
-<ul>
-<li>리더(leader)는 프로듀서, 컨슈머로부터 오는 모든 읽기와 쓰기 요청을 처리</li>
-<li>팔로워(follower)는 오직 리더로부터 리플리케이션</li>
-</ul>
-<p>팔로워 수가 많을 수록 브로커의 디스크 공간도 소비되므로 이상적인 리플리케이션 팩터 수를 유지할 필요가 있으며 일반적으로 3으로 구성하도록 권장</p>
-<h4 id="7-주키퍼의-의존성">7. 주키퍼의 의존성</h4>
-<p>주키퍼는 많은 분산 애플리케이션에서 코디네이터 역할을 하는 애플리케이션으로 사용 됨</p>
-<p>여러 대의 서버를 앙상블(클러스터)로 구성하고, 살아 있는 노드 수가 과반수 이상 유지된다면 지속적인 서비스가 가능한 구조</p>
-<p>즉, 주키퍼는 반드시 홀수로 구성해야 함</p>
-<p>지노드(znode)를 이용해 카프카의 메타 정보가 주키퍼에 기록되며, 주키퍼는 이러한 지노드를 이용해 브로커의 노드 관리, 토픽 관리, 컨트롤러 관리 등을 수행</p>
-<p>최근 카프카에서 주키퍼에 대한 의존성을 제거하려는 움직임이 진행 중임</p>
-<ul>
-<li>Apache Kafka 2.8 버전부터 주키퍼 대신 kraft 를 사용할 수 있으나 아직은 개발 단계로 문서에서도 표기 되어 있음</li>
-</ul>
-<blockquote>
-<p><strong>Note</strong></p>
-<p>KRaft is in early access and should be used in development only. It is not suitable for production.</p>
-<p><a href="https://developer.confluent.io/learn/kraft/">https://developer.confluent.io/learn/kraft/</a></p>
-</blockquote>
-
-</div>
-
-
-
-    
-	
-  
-    
-    
-	
-    
-
-<div class="td-content" style="page-break-before: always">
-    
-	<h1 id="pg-ad5b7f7c74d02220e0e45513dc0a12bd">1.3 - 프로듀서 기본 동작 및 주요 옵션</h1>
-    <div class="lead">프로듀서 기본 동작과 주요 옵션에 대해 설명</div>
+		
+	</header>    
 	<figure>
   <p align="center">
     <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/producer.png">
@@ -438,110 +314,10 @@
 </tbody>
 </table>
 
+	
+	
+	
 </div>
-
-
-
-    
-	
-  
-    
-    
-	
-    
-
-<div class="td-content" style="page-break-before: always">
-    
-	<h1 id="pg-fa3e0f5a626e2449b704e82f7d5f290f">1.4 - 컨슈머 기본 동작 및 주요 옵션</h1>
-    <div class="lead">컨슈머 기본 동작과 주요 옵션에 대해 설명</div>
-	<p>컨슈머는 카프카의 토픽에 저장되어 있는 메시지를 가져오는 역할을 담당. 단순하게 메시지만 가져오는 기능만 하는 것이 아니라 내부적으로는 컨슈머 그룹, 리밸런싱 등 여러 동작을 수행 함.</p>
-<h4 id="기본-동작">기본 동작</h4>
-<p>프로듀서가 카프카의 토픽으로 메시지를 전송하면 해당 메시지들은 브로커들의 로컬 디스크에 저장되며 컨슈머를 이용해 토픽에 저장된 메시지를 가져올 수 있음.</p>
-<p>컨슈머 그룹은 하나 이상의 컨슈머들이 모여 있는 그룹을 의미하고, 컨슈머는 반드시 컨슈머 그룹에 속하게 됨. 그리고 컨슈머 그룹은 각 파티션의 리더에게 카프카 토픽에 저장된 메시지를 가져오기 위한 요청을 보냄.</p>
-<p>이때 파티션 수와 컨슈머 수(하나의 컨슈머 그룹 안에 있는 컨슈머 수)는 1:1로 매핑되는 것이 이상적 임.</p>
-<blockquote>
-<p><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 주의:</strong> 파티션 수와 컨슈머 수의 비율을 반드시 1:1로 매핑해야 하는 것은 아니지만, 파티션 수보다 더 많다고 해서 <strong>더 빠르게 토픽의 메시지를 가져오거나 처리량이 높아지는 것이 아니라 더 많은 수의 컨슈머들이 대기 상태로 존재</strong>하기 때문.</p>
-</blockquote>
-<h4 id="컨슈머-주요-옵션">컨슈머 주요 옵션</h4>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Consumer Option</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">bootstrap.servers</td>
-<td style="text-align:left">프로듀서와 동일하게 브로커의 정보를 입력.</td>
-</tr>
-<tr>
-<td style="text-align:left">fetch.min.bytes</td>
-<td style="text-align:left">한 번에 가져올 수 있는 최소 데이터 크기. 지정한 크기보다 작은 경우, 요청에 응답하지 않고 데이터가 누적될 때까지 대기.</td>
-</tr>
-<tr>
-<td style="text-align:left">group.id</td>
-<td style="text-align:left">컨슈머가 속한 컨슈머 그룹을 식별하는 식별자. 동일한 그룹 내의 컨슈머 정보는 모두 공유 됨.</td>
-</tr>
-<tr>
-<td style="text-align:left">heartbeat.interval.ms</td>
-<td style="text-align:left">하트 비트가 있다는 것은 컨슈머의 상태가 active임을 의미. <em>session.timeout.ms</em>와 밀접한 관계가 있으며, <em>session.timeout.ms</em>보다 낮은 값으로 설정해야 함. 일반적으로 <em>session.timeout.ms</em>의 1/3로 설정.</td>
-</tr>
-<tr>
-<td style="text-align:left">max.partition.fetch.bytes</td>
-<td style="text-align:left">파티션 당 가져올 수 있는 최대 크기</td>
-</tr>
-<tr>
-<td style="text-align:left">session.timeout.ms</td>
-<td style="text-align:left">이 옵션을 이용해, 컨슈머가 종료된 것인지를 판단. 컨슈머는 주기적으로 하트 비트를 보내야 하고, 만약 이 시간 전까지 하트 비트를 보내지 않았다면 해당 컨슈머는 종료된 것으로 간주하고 컨슈머 그룹에서 제외 후, 리밸런싱을 시작 함.</td>
-</tr>
-<tr>
-<td style="text-align:left">enable.auto.commit</td>
-<td style="text-align:left">백그라운드로 주기적으로 오프셋을 커밋</td>
-</tr>
-<tr>
-<td style="text-align:left">auto.offset.reset</td>
-<td style="text-align:left">카프카에서 초기 오프셋이 없거나 현재 오프셋이 더 이상 존재하지 않는 경우에 다음 옵션으로 reset 함. <ul><li>earliest: 가장 초기의 오프셋값으로 설정</li><li>latest: 가장 마지막 오프셋값으로 설정</li><li>none: 이전 오프셋값을 찾지 못하면 에러를 나타냄.</li></ul></td>
-</tr>
-<tr>
-<td style="text-align:left">fetch.max.bytes</td>
-<td style="text-align:left">한 번의 가져오기 요청으로 가져올 수 있는 최대 크기</td>
-</tr>
-<tr>
-<td style="text-align:left">group.instance.id</td>
-<td style="text-align:left">컨슈머의 고유 식별자. 만약 설정한다면 static 멤버로 간주되어, 불필요한 리밸런싱을 하지 않음.</td>
-</tr>
-<tr>
-<td style="text-align:left">isolation.level</td>
-<td style="text-align:left">트랜잭션 컨슈머에서 사용되는 옵션. <ul><li>read_uncommited(Default) : 모든 메시지를 읽음</li><li>read_committed : 트랜잭션이 완료된 메시지만 읽음</li></ul></td>
-</tr>
-<tr>
-<td style="text-align:left">max.poll.records</td>
-<td style="text-align:left">한 번의 poll() 요청으로 가져오는 최대 메시지 수.</td>
-</tr>
-<tr>
-<td style="text-align:left">partition.assignment.strategy</td>
-<td style="text-align:left">파티션 할당 전략.(Default : range)</td>
-</tr>
-<tr>
-<td style="text-align:left">fetch.max.wait.ms</td>
-<td style="text-align:left"><em>fetch.min.bytes</em>에 의해 설정된 데이터보다 적은 경우 요청에 대한 응답을 기다리는 최대 시간.</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-
-
-
-    
-	
-  
-
-    
-	
-  
-
 
 
           </main>

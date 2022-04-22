@@ -396,14 +396,15 @@
 
 <div class="td-content" style="page-break-before: always">
     
-	<h1 id="pg-23dc47a3d859648c684a6d7e9cfdfc28">1.1.3 - 프로듀서 컴포컨트 구조 및 기본 동작</h1>
-    <div class="lead">프로듀서 구조와 기본 동작에 대해 설명</div>
+	<h1 id="pg-ad5b7f7c74d02220e0e45513dc0a12bd">1.1.3 - 프로듀서 기본 동작 및 주요 옵션</h1>
+    <div class="lead">프로듀서 기본 동작과 주요 옵션에 대해 설명</div>
 	<figure>
   <p align="center">
     <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/producer.png">
   </p>
   <figcaption align="center">프로듀서 디자인 개요(출처: https://dzone.com/articles/take-a-deep-dive-into-kafka-producer-api/)</figcaption>
 </figure>
+<h4 id="기본-동작">기본 동작</h4>
 <p>ProducerRecord라고 표시된 부분은 카프카로 전송하기 위한 실제 데이터이며, 레코드는 토픽, 파티션, 키, 밸류로 구성 됨.</p>
 <p>프로듀서가 카프카로 레코드를 전송할 때, 카프카의 특정 토픽으로 메시지를 전송하기 때문에 <strong>레코드에서 토픽과 밸류(메시지 내용)는 필수 값</strong>이며, <strong>특정 파티션을 지정하기 위한 레코드의 파티션과 특정 파티션에 레코드들을 정렬하기 위한 레코드의 키는 선택사항(옵션)</strong></p>
 <p>각 레코드들은 프로듀서의 send() 메소드를 통해 시리얼라이저(serializer), 파티셔너(partitioner)를 거침.</p>
@@ -465,6 +466,98 @@
 <tr>
 <td style="text-align:left">transactional.id</td>
 <td style="text-align:left">&lsquo;정확히 한 번 전송&rsquo;을 위해 사용하는 옵션. 동일한 TransactionalId에 한해 정확히 한 번을 보장. 옵션을 사용하기 전 <em>enable.idempotence</em>를 true로 설정해야 함.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+
+
+    
+	
+  
+    
+    
+	
+    
+
+<div class="td-content" style="page-break-before: always">
+    
+	<h1 id="pg-fa3e0f5a626e2449b704e82f7d5f290f">1.1.4 - 컨슈머 기본 동작 및 주요 옵션</h1>
+    <div class="lead">컨슈머 기본 동작과 주요 옵션에 대해 설명</div>
+	<p>컨슈머는 카프카의 토픽에 저장되어 있는 메시지를 가져오는 역할을 담당. 단순하게 메시지만 가져오는 기능만 하는 것이 아니라 내부적으로는 컨슈머 그룹, 리밸런싱 등 여러 동작을 수행 함.</p>
+<h4 id="기본-동작">기본 동작</h4>
+<p>프로듀서가 카프카의 토픽으로 메시지를 전송하면 해당 메시지들은 브로커들의 로컬 디스크에 저장되며 컨슈머를 이용해 토픽에 저장된 메시지를 가져올 수 있음.</p>
+<p>컨슈머 그룹은 하나 이상의 컨슈머들이 모여 있는 그룹을 의미하고, 컨슈머는 반드시 컨슈머 그룹에 속하게 됨. 그리고 컨슈머 그룹은 각 파티션의 리더에게 카프카 토픽에 저장된 메시지를 가져오기 위한 요청을 보냄.</p>
+<p>이때 파티션 수와 컨슈머 수(하나의 컨슈머 그룹 안에 있는 컨슈머 수)는 1:1로 매핑되는 것이 이상적 임.</p>
+<blockquote>
+<p><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 주의:</strong> 파티션 수와 컨슈머 수의 비율을 반드시 1:1로 매핑해야 하는 것은 아니지만, 파티션 수보다 더 많다고 해서 <strong>더 빠르게 토픽의 메시지를 가져오거나 처리량이 높아지는 것이 아니라 더 많은 수의 컨슈머들이 대기 상태로 존재</strong>하기 때문.</p>
+</blockquote>
+<h4 id="컨슈머-주요-옵션">컨슈머 주요 옵션</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Consumer Option</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">bootstrap.servers</td>
+<td style="text-align:left">프로듀서와 동일하게 브로커의 정보를 입력.</td>
+</tr>
+<tr>
+<td style="text-align:left">fetch.min.bytes</td>
+<td style="text-align:left">한 번에 가져올 수 있는 최소 데이터 크기. 지정한 크기보다 작은 경우, 요청에 응답하지 않고 데이터가 누적될 때까지 대기.</td>
+</tr>
+<tr>
+<td style="text-align:left">group.id</td>
+<td style="text-align:left">컨슈머가 속한 컨슈머 그룹을 식별하는 식별자. 동일한 그룹 내의 컨슈머 정보는 모두 공유 됨.</td>
+</tr>
+<tr>
+<td style="text-align:left">heartbeat.interval.ms</td>
+<td style="text-align:left">하트 비트가 있다는 것은 컨슈머의 상태가 active임을 의미. <em>session.timeout.ms</em>와 밀접한 관계가 있으며, <em>session.timeout.ms</em>보다 낮은 값으로 설정해야 함. 일반적으로 <em>session.timeout.ms</em>의 1/3로 설정.</td>
+</tr>
+<tr>
+<td style="text-align:left">max.partition.fetch.bytes</td>
+<td style="text-align:left">파티션 당 가져올 수 있는 최대 크기</td>
+</tr>
+<tr>
+<td style="text-align:left">session.timeout.ms</td>
+<td style="text-align:left">이 옵션을 이용해, 컨슈머가 종료된 것인지를 판단. 컨슈머는 주기적으로 하트 비트를 보내야 하고, 만약 이 시간 전까지 하트 비트를 보내지 않았다면 해당 컨슈머는 종료된 것으로 간주하고 컨슈머 그룹에서 제외 후, 리밸런싱을 시작 함.</td>
+</tr>
+<tr>
+<td style="text-align:left">enable.auto.commit</td>
+<td style="text-align:left">백그라운드로 주기적으로 오프셋을 커밋</td>
+</tr>
+<tr>
+<td style="text-align:left">auto.offset.reset</td>
+<td style="text-align:left">카프카에서 초기 오프셋이 없거나 현재 오프셋이 더 이상 존재하지 않는 경우에 다음 옵션으로 reset 함. <ul><li>earliest: 가장 초기의 오프셋값으로 설정</li><li>latest: 가장 마지막 오프셋값으로 설정</li><li>none: 이전 오프셋값을 찾지 못하면 에러를 나타냄.</li></ul></td>
+</tr>
+<tr>
+<td style="text-align:left">fetch.max.bytes</td>
+<td style="text-align:left">한 번의 가져오기 요청으로 가져올 수 있는 최대 크기</td>
+</tr>
+<tr>
+<td style="text-align:left">group.instance.id</td>
+<td style="text-align:left">컨슈머의 고유 식별자. 만약 설정한다면 static 멤버로 간주되어, 불필요한 리밸런싱을 하지 않음.</td>
+</tr>
+<tr>
+<td style="text-align:left">isolation.level</td>
+<td style="text-align:left">트랜잭션 컨슈머에서 사용되는 옵션. <ul><li>read_uncommited(Default) : 모든 메시지를 읽음</li><li>read_committed : 트랜잭션이 완료된 메시지만 읽음</li></ul></td>
+</tr>
+<tr>
+<td style="text-align:left">max.poll.records</td>
+<td style="text-align:left">한 번의 poll() 요청으로 가져오는 최대 메시지 수.</td>
+</tr>
+<tr>
+<td style="text-align:left">partition.assignment.strategy</td>
+<td style="text-align:left">파티션 할당 전략.(Default : range)</td>
+</tr>
+<tr>
+<td style="text-align:left">fetch.max.wait.ms</td>
+<td style="text-align:left"><em>fetch.min.bytes</em>에 의해 설정된 데이터보다 적은 경우 요청에 대한 응답을 기다리는 최대 시간.</td>
 </tr>
 </tbody>
 </table>
