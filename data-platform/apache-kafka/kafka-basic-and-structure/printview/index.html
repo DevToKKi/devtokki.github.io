@@ -159,9 +159,11 @@
 <h3 id="리플리케이션replication">리플리케이션(replication)</h3>
 <p>카프카에서 리플리케이션(replication)이란 각 메시지들을 여러 개로 복제해서 카프카 클러스터 내 브로커 들에 분산시키는 동작을 의미.</p>
 <p>아래 그림은 peter-overview01 토픽을 리플리케이션 팩터 수 3으로 설정하여 각 브로커에 배치된 상태를 보여줌.</p>
-<p align="center">
-<img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/replication.png">
-</p>
+<figure>
+  <p align="center">
+    <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/replication.png"/>
+  </p>
+</figure>
 <ul>
 <li>안정성을 목적으로 모든 토픽에 대해 각 3개의 리플리케이션으로 설정 할 수 있음.</li>
 <li>리플리케이션 팩터수가 커지면 안정성은 높아지지만 그만큼 브로커 리소스를 많이 사용하게 됨.</li>
@@ -182,8 +184,12 @@
 <li>하나의 토픽을 여러 개로 나누면 분산 처리도 가능 함.</li>
 <li>나뉜 파티션 수 만큼 컨슈머를 연결 할 수 있음.</li>
 </ul>
-<p align="center"> <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/topic_and_partition_relation.png"> </p>
-<p>토픽과 파티션의 관계</p>
+<figure>
+  <p align="center">
+    <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/topic_and_partition_relation.png"/> 
+  </p>
+  <figcaption align="center"> 토픽과 파티션의 관계 </figcaption>
+</figure>
 <ul>
 <li>파티션 수도 토픽을 생성할 때 옵션으로 설정하게 되는데, 파티션 수를 정하는 기준은 다소 모호한 경우가 많음</li>
 <li>파티션 수는 초기 생성 후 언제든지 늘릴 수 있지만, 반대로 한 번 늘린 파티션 수는 절대로 줄일 수 없음.</li>
@@ -199,11 +205,21 @@
 </div>
 
 <h3 id="세그먼트segment">세그먼트(segment)</h3>
+<figure>
+  <p align="center"> 
+    <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/segment.png" /> 
+  </p>
+</figure>
+<br>
 <p>실제 메시지가 저장되는 파일 시스템 단위
 프로듀서에 의해 브로커로 전송된 메시지는 토픽의 파티션에 저장되며, 각 메시지들은 세그먼트(segment)라는 로그 파일의 형태로 브로커의 로컬 디스크에 저장 됨.</p>
-<p align="center"> <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/segment.png"> </p>
-<h4 id="-topic-partition-segment-관계도">* Topic, Partition, Segment 관계도</h4>
-<p align="center"> <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/kafka_data_flow.png"> </p>
+<br>
+<figure>
+  <p align="center"> 
+    <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/kafka_data_flow.png"> 
+  </p>
+  <figcaption align="center">Topic, Partition, Segment 관계도</figcaption>
+</figure>
 <h4 id="-카프카-처리-흐름">* 카프카 처리 흐름</h4>
 <ul>
 <li>프로듀서는 카프카의 Peter-overview01 토픽으로 메시지 전송</li>
@@ -264,10 +280,12 @@
 <p>카프카는 토픽(topic)이라는 곳에 데이터를 저장하는데 메일 전송 시스템의 이메일 주소 정도의 개념으로 이해하면 됨.</p>
 <p>토픽은 병렬 처리를 위해 여러개의 파티션이라는 단위로 나뉨</p>
 <p>파티션의 메시지가 저장되는 위치를 오프셋이라고 부르며, 순차적으로 증가하는 숫자(64비트 정수) 형태</p>
-<p align="center"> <img src="https://sookocheff.com/post/kafka/kafka-in-a-nutshell/log-anatomy.png"> </p>
-<ul>
-<li>파티션과 오프셋(출처: <a href="https://sookocheff.com/post/kafka/kafka-in-a-nutshell/">https://sookocheff.com/post/kafka/kafka-in-a-nutshell/</a>)</li>
-</ul>
+<figure>
+  <p align="center"> 
+    <img src="https://sookocheff.com/post/kafka/kafka-in-a-nutshell/log-anatomy.png">
+  </p>
+  <figcaption align="center">파티션과 오프셋(출처: https://sookocheff.com/post/kafka/kafka-in-a-nutshell/)</figcaption>
+</figure>
 <p>위 그림에서는 하나의 토픽이 3개의 파티션으로 나뉘며 프로듀스로부터 전송되는 메시지들의 쓰기 동작이 각 파티션별로 이뤄짐을 볼 수 있음.</p>
 <p>각 파티션마다 순차적으로 증가하는 숫자들은 오프셋 임</p>
 <p>각 파티션에서의 오프셋은 고유한 숫자로, 카프카에서는 <strong>오프셋을 통해 메시지의 순서를 보장</strong>하고 <strong>컨슈머에서는 마지막까지 읽은 위치를 알 수 있음</strong>.</p>
@@ -296,6 +314,38 @@
 <p>KRaft is in early access and should be used in development only. It is not suitable for production.</p>
 <p><a href="https://developer.confluent.io/learn/kraft/">https://developer.confluent.io/learn/kraft/</a></p>
 </blockquote>
+
+</div>
+
+
+
+    
+	
+  
+    
+    
+	
+    
+
+<div class="td-content" style="page-break-before: always">
+    
+	<h1 id="pg-23dc47a3d859648c684a6d7e9cfdfc28">3 - 프로듀서 컴포컨트 구조 및 기본 동작</h1>
+    <div class="lead">프로듀서 구조와 기본 동작에 대해 설명합니다.</div>
+	<figure>
+  <p align="center">
+    <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/producer.png">
+  </p>
+  <figcaption align="center">프로듀서 디자인 개요(출처: https://dzone.com/articles/take-a-deep-dive-into-kafka-producer-api/)</figcaption>
+</figure>
+<p>ProducerRecord라고 표시된 부분은 카프카로 전송하기 위한 실제 데이터이며, 레코드는 토픽, 파티션, 키, 밸류로 구성 됨.</p>
+<p>프로듀서가 카프카로 레코드를 전송할 때, 카프카의 특정 토픽으로 메시지를 전송하기 때문에 <strong>레코드에서 토픽과 밸류(메시지 내용)는 필수 값</strong>이며, <strong>특정 파티션을 지정하기 위한 레코드의 파티션과 특정 파티션에 레코드들을 정렬하기 위한 레코드의 키는 선택사항(옵션)</strong></p>
+<p>각 레코드들은 프로듀서의 send() 메소드를 통해 시리얼라이저(serializer), 파티셔너(partitioner)를 거침.</p>
+<ul>
+<li>프로듀서 레코드의 파티션을 지정했을 경우<br> &ndash;&gt; 파티셔너는 아무 동작하지 않고 지정된 파티션으로 레코드를 전달.</li>
+<li>프로듀서 레코드의 파티션을 지정 안했을 경우<br> &ndash;&gt; 키를 가지고 파티션을 선택해 레코드를 전달 함. 기본적으로 라운드 로빈(round robin) 방식으로 동작.</li>
+</ul>
+<p>send() 메소드 동작 이후 <strong>레코드들을 파티션별로 잠시 모아 둠</strong>. 모아둔 이유는 프로듀서가 카프카로 전송하기 전, <strong>배치 전송</strong>하기 위함.</p>
+<p>전송이 실패하면 재시도 동작이 이뤄지고, 지정된 횟수 만큼의 재시도가 실패하면 최종 실패 전달. 전송이 성공하면 메타데이터를 리턴하게 됨.</p>
 
 </div>
 

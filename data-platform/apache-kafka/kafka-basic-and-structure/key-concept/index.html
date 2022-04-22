@@ -122,6 +122,8 @@
   <a href="/data-platform/apache-kafka/kafka-basic-and-structure/basic/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurebasic"><span class="">카프카 기초 다지기</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-data-platformapache-kafkakafka-basic-and-structurekey-concept-li">
   <a href="/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/" class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekey-concept"><span class="td-sidebar-nav-active-item">카프카의 핵심 개념</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-producer-components-overview-li">
+  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-components-overview/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-producer-components-overview"><span class="">프로듀서 컴포컨트 구조 및 기본 동작</span></a>
 </li>
   </ul>
 </li>
@@ -162,9 +164,13 @@
       
       <ul class="taxonomy-terms">
         
-          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/data-platform/" data-taxonomy-term="data-platform"><span class="taxonomy-label">data platform</span><span class="taxonomy-count">4</span></a></li>
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/data-platform/" data-taxonomy-term="data-platform"><span class="taxonomy-label">data platform</span><span class="taxonomy-count">5</span></a></li>
         
-          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/kafka/" data-taxonomy-term="kafka"><span class="taxonomy-label">kafka</span><span class="taxonomy-count">4</span></a></li>
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/kafka/" data-taxonomy-term="kafka"><span class="taxonomy-label">kafka</span><span class="taxonomy-count">5</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/producer/" data-taxonomy-term="producer"><span class="taxonomy-label">producer</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/structure/" data-taxonomy-term="structure"><span class="taxonomy-label">structure</span><span class="taxonomy-count">1</span></a></li>
         
       </ul>
     </div>
@@ -259,10 +265,12 @@
 <p>카프카는 토픽(topic)이라는 곳에 데이터를 저장하는데 메일 전송 시스템의 이메일 주소 정도의 개념으로 이해하면 됨.</p>
 <p>토픽은 병렬 처리를 위해 여러개의 파티션이라는 단위로 나뉨</p>
 <p>파티션의 메시지가 저장되는 위치를 오프셋이라고 부르며, 순차적으로 증가하는 숫자(64비트 정수) 형태</p>
-<p align="center"> <img src="https://sookocheff.com/post/kafka/kafka-in-a-nutshell/log-anatomy.png"> </p>
-<ul>
-<li>파티션과 오프셋(출처: <a href="https://sookocheff.com/post/kafka/kafka-in-a-nutshell/">https://sookocheff.com/post/kafka/kafka-in-a-nutshell/</a>)</li>
-</ul>
+<figure>
+  <p align="center"> 
+    <img src="https://sookocheff.com/post/kafka/kafka-in-a-nutshell/log-anatomy.png">
+  </p>
+  <figcaption align="center">파티션과 오프셋(출처: https://sookocheff.com/post/kafka/kafka-in-a-nutshell/)</figcaption>
+</figure>
 <p>위 그림에서는 하나의 토픽이 3개의 파티션으로 나뉘며 프로듀스로부터 전송되는 메시지들의 쓰기 동작이 각 파티션별로 이뤄짐을 볼 수 있음.</p>
 <p>각 파티션마다 순차적으로 증가하는 숫자들은 오프셋 임</p>
 <p>각 파티션에서의 오프셋은 고유한 숫자로, 카프카에서는 <strong>오프셋을 통해 메시지의 순서를 보장</strong>하고 <strong>컨슈머에서는 마지막까지 읽은 위치를 알 수 있음</strong>.</p>
