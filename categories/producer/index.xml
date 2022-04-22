@@ -29,7 +29,7 @@
   &lt;/p&gt;
   &lt;figcaption align=&#34;center&#34;&gt;프로듀서 디자인 개요(출처: https://dzone.com/articles/take-a-deep-dive-into-kafka-producer-api/)&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;h4 id=&#34;기본-동작&#34;&gt;기본 동작&lt;/h4&gt;
+&lt;h3 id=&#34;기본-동작&#34;&gt;기본 동작&lt;/h3&gt;
 &lt;p&gt;ProducerRecord라고 표시된 부분은 카프카로 전송하기 위한 실제 데이터이며, 레코드는 토픽, 파티션, 키, 밸류로 구성 됨.&lt;/p&gt;
 &lt;p&gt;프로듀서가 카프카로 레코드를 전송할 때, 카프카의 특정 토픽으로 메시지를 전송하기 때문에 &lt;strong&gt;레코드에서 토픽과 밸류(메시지 내용)는 필수 값&lt;/strong&gt;이며, &lt;strong&gt;특정 파티션을 지정하기 위한 레코드의 파티션과 특정 파티션에 레코드들을 정렬하기 위한 레코드의 키는 선택사항(옵션)&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;각 레코드들은 프로듀서의 send() 메소드를 통해 시리얼라이저(serializer), 파티셔너(partitioner)를 거침.&lt;/p&gt;

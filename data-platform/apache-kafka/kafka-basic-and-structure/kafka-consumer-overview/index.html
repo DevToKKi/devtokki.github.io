@@ -27,12 +27,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-overview/" /><meta property="article:section" content="data-platform" />
 <meta property="article:published_time" content="2022-04-22T13:45:54+09:00" />
-<meta property="article:modified_time" content="2022-04-22T13:45:54+09:00" /><meta property="og:site_name" content="DevToKKi" />
+<meta property="article:modified_time" content="2022-04-22T14:33:40+09:00" /><meta property="og:site_name" content="DevToKKi" />
 
 <meta itemprop="name" content="컨슈머 기본 동작 및 주요 옵션">
 <meta itemprop="description" content="컨슈머 기본 동작과 주요 옵션에 대해 설명
 "><meta itemprop="datePublished" content="2022-04-22T13:45:54+09:00" />
-<meta itemprop="dateModified" content="2022-04-22T13:45:54+09:00" />
+<meta itemprop="dateModified" content="2022-04-22T14:33:40+09:00" />
 <meta itemprop="wordCount" content="338">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="컨슈머 기본 동작 및 주요 옵션"/>
@@ -148,6 +148,17 @@
             
 
 
+<div class="td-toc"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#기본-동작">기본 동작</a></li>
+        <li><a href="#컨슈머-주요-옵션">컨슈머 주요 옵션</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+
 
 
             
@@ -241,14 +252,14 @@
 		
 	</header>    
 	<p>컨슈머는 카프카의 토픽에 저장되어 있는 메시지를 가져오는 역할을 담당. 단순하게 메시지만 가져오는 기능만 하는 것이 아니라 내부적으로는 컨슈머 그룹, 리밸런싱 등 여러 동작을 수행 함.</p>
-<h4 id="기본-동작">기본 동작</h4>
+<h3 id="기본-동작">기본 동작</h3>
 <p>프로듀서가 카프카의 토픽으로 메시지를 전송하면 해당 메시지들은 브로커들의 로컬 디스크에 저장되며 컨슈머를 이용해 토픽에 저장된 메시지를 가져올 수 있음.</p>
 <p>컨슈머 그룹은 하나 이상의 컨슈머들이 모여 있는 그룹을 의미하고, 컨슈머는 반드시 컨슈머 그룹에 속하게 됨. 그리고 컨슈머 그룹은 각 파티션의 리더에게 카프카 토픽에 저장된 메시지를 가져오기 위한 요청을 보냄.</p>
 <p>이때 파티션 수와 컨슈머 수(하나의 컨슈머 그룹 안에 있는 컨슈머 수)는 1:1로 매핑되는 것이 이상적 임.</p>
 <blockquote>
 <p><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 주의:</strong> 파티션 수와 컨슈머 수의 비율을 반드시 1:1로 매핑해야 하는 것은 아니지만, 파티션 수보다 더 많다고 해서 <strong>더 빠르게 토픽의 메시지를 가져오거나 처리량이 높아지는 것이 아니라 더 많은 수의 컨슈머들이 대기 상태로 존재</strong>하기 때문.</p>
 </blockquote>
-<h4 id="컨슈머-주요-옵션">컨슈머 주요 옵션</h4>
+<h3 id="컨슈머-주요-옵션">컨슈머 주요 옵션</h3>
 <table>
 <thead>
 <tr>

@@ -29,7 +29,7 @@
   &lt;/p&gt;
   &lt;figcaption align=&#34;center&#34;&gt;프로듀서 디자인 개요(출처: https://dzone.com/articles/take-a-deep-dive-into-kafka-producer-api/)&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;h4 id=&#34;기본-동작&#34;&gt;기본 동작&lt;/h4&gt;
+&lt;h3 id=&#34;기본-동작&#34;&gt;기본 동작&lt;/h3&gt;
 &lt;p&gt;ProducerRecord라고 표시된 부분은 카프카로 전송하기 위한 실제 데이터이며, 레코드는 토픽, 파티션, 키, 밸류로 구성 됨.&lt;/p&gt;
 &lt;p&gt;프로듀서가 카프카로 레코드를 전송할 때, 카프카의 특정 토픽으로 메시지를 전송하기 때문에 &lt;strong&gt;레코드에서 토픽과 밸류(메시지 내용)는 필수 값&lt;/strong&gt;이며, &lt;strong&gt;특정 파티션을 지정하기 위한 레코드의 파티션과 특정 파티션에 레코드들을 정렬하기 위한 레코드의 키는 선택사항(옵션)&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;각 레코드들은 프로듀서의 send() 메소드를 통해 시리얼라이저(serializer), 파티셔너(partitioner)를 거침.&lt;/p&gt;
@@ -108,14 +108,14 @@
         
         
         &lt;p&gt;컨슈머는 카프카의 토픽에 저장되어 있는 메시지를 가져오는 역할을 담당. 단순하게 메시지만 가져오는 기능만 하는 것이 아니라 내부적으로는 컨슈머 그룹, 리밸런싱 등 여러 동작을 수행 함.&lt;/p&gt;
-&lt;h4 id=&#34;기본-동작&#34;&gt;기본 동작&lt;/h4&gt;
+&lt;h3 id=&#34;기본-동작&#34;&gt;기본 동작&lt;/h3&gt;
 &lt;p&gt;프로듀서가 카프카의 토픽으로 메시지를 전송하면 해당 메시지들은 브로커들의 로컬 디스크에 저장되며 컨슈머를 이용해 토픽에 저장된 메시지를 가져올 수 있음.&lt;/p&gt;
 &lt;p&gt;컨슈머 그룹은 하나 이상의 컨슈머들이 모여 있는 그룹을 의미하고, 컨슈머는 반드시 컨슈머 그룹에 속하게 됨. 그리고 컨슈머 그룹은 각 파티션의 리더에게 카프카 토픽에 저장된 메시지를 가져오기 위한 요청을 보냄.&lt;/p&gt;
 &lt;p&gt;이때 파티션 수와 컨슈머 수(하나의 컨슈머 그룹 안에 있는 컨슈머 수)는 1:1로 매핑되는 것이 이상적 임.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;&lt;i class=&#34;fa fa-exclamation-triangle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt; 주의:&lt;/strong&gt; 파티션 수와 컨슈머 수의 비율을 반드시 1:1로 매핑해야 하는 것은 아니지만, 파티션 수보다 더 많다고 해서 &lt;strong&gt;더 빠르게 토픽의 메시지를 가져오거나 처리량이 높아지는 것이 아니라 더 많은 수의 컨슈머들이 대기 상태로 존재&lt;/strong&gt;하기 때문.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4 id=&#34;컨슈머-주요-옵션&#34;&gt;컨슈머 주요 옵션&lt;/h4&gt;
+&lt;h3 id=&#34;컨슈머-주요-옵션&#34;&gt;컨슈머 주요 옵션&lt;/h3&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
