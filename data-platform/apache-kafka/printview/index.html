@@ -244,18 +244,17 @@
   <p align="center"> 
     <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/segment.png" /> 
   </p>
+  <figcaption align="center">파티션과 세그먼트</figcaption>
 </figure>
-<br>
 <p>실제 메시지가 저장되는 파일 시스템 단위
 프로듀서에 의해 브로커로 전송된 메시지는 토픽의 파티션에 저장되며, 각 메시지들은 세그먼트(segment)라는 로그 파일의 형태로 브로커의 로컬 디스크에 저장 됨.</p>
-<br>
+<h4 id="카프카-처리-흐름">카프카 처리 흐름</h4>
 <figure>
   <p align="center"> 
     <img src="/data/data_platform/apache_kafka/kafka_basic_and_structure/kafka_data_flow.png"> 
   </p>
   <figcaption align="center">Topic, Partition, Segment 관계도</figcaption>
 </figure>
-<h4 id="-카프카-처리-흐름">* 카프카 처리 흐름</h4>
 <ul>
 <li>프로듀서는 카프카의 Peter-overview01 토픽으로 메시지 전송</li>
 <li>peter-overview01 토픽은 파티션이 하나뿐이므로, 프로듀서로부터 받은 메시지를 파티션0의 세그먼트 로그 파일에 저장</li>

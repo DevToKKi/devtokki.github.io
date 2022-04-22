@@ -87,18 +87,17 @@
   &lt;p align=&#34;center&#34;&gt; 
     &lt;img src=&#34;https://www.devtokki.com/data/data_platform/apache_kafka/kafka_basic_and_structure/segment.png&#34; /&gt; 
   &lt;/p&gt;
+  &lt;figcaption align=&#34;center&#34;&gt;파티션과 세그먼트&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;br&gt;
 &lt;p&gt;실제 메시지가 저장되는 파일 시스템 단위
 프로듀서에 의해 브로커로 전송된 메시지는 토픽의 파티션에 저장되며, 각 메시지들은 세그먼트(segment)라는 로그 파일의 형태로 브로커의 로컬 디스크에 저장 됨.&lt;/p&gt;
-&lt;br&gt;
+&lt;h4 id=&#34;카프카-처리-흐름&#34;&gt;카프카 처리 흐름&lt;/h4&gt;
 &lt;figure&gt;
   &lt;p align=&#34;center&#34;&gt; 
     &lt;img src=&#34;https://www.devtokki.com/data/data_platform/apache_kafka/kafka_basic_and_structure/kafka_data_flow.png&#34;&gt; 
   &lt;/p&gt;
   &lt;figcaption align=&#34;center&#34;&gt;Topic, Partition, Segment 관계도&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;h4 id=&#34;-카프카-처리-흐름&#34;&gt;* 카프카 처리 흐름&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;프로듀서는 카프카의 Peter-overview01 토픽으로 메시지 전송&lt;/li&gt;
 &lt;li&gt;peter-overview01 토픽은 파티션이 하나뿐이므로, 프로듀서로부터 받은 메시지를 파티션0의 세그먼트 로그 파일에 저장&lt;/li&gt;
