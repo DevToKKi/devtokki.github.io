@@ -4,7 +4,7 @@
     <link>https://www.devtokki.com/categories/data-platform/</link>
     <description>Recent content in data platform on DevToKKi</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 22 Apr 2022 12:51:34 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 22 Apr 2022 08:23:39 +0900</lastBuildDate>
     
 	  <atom:link href="https://www.devtokki.com/categories/data-platform/index.xml" rel="self" type="application/rss+xml" />
     
@@ -217,20 +217,8 @@
 &lt;/ul&gt;
 &lt;p&gt;send() 메소드 동작 이후 &lt;strong&gt;레코드들을 파티션별로 잠시 모아 둠&lt;/strong&gt;. 모아둔 이유는 프로듀서가 카프카로 전송하기 전, &lt;strong&gt;배치 전송&lt;/strong&gt;하기 위함.&lt;/p&gt;
 &lt;p&gt;전송이 실패하면 재시도 동작이 이뤄지고, 지정된 횟수 만큼의 재시도가 실패하면 최종 실패 전달. 전송이 성공하면 메타데이터를 리턴하게 됨.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Data-Platform: 프로듀서 주요 옵션</title>
-      <link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-options/</link>
-      <pubDate>Fri, 22 Apr 2022 12:51:34 +0900</pubDate>
-      
-      <guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-options/</guid>
-      <description>
-        
-        
-        &lt;table&gt;
+&lt;h3 id=&#34;프로듀서-주요-옵션&#34;&gt;프로듀서 주요 옵션&lt;/h3&gt;
+&lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th style=&#34;text-align:left&#34;&gt;Producer Option&lt;/th&gt;
