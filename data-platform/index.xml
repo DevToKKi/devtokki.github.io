@@ -39,7 +39,7 @@
 &lt;p&gt;아래 그림은 peter-overview01 토픽을 리플리케이션 팩터 수 3으로 설정하여 각 브로커에 배치된 상태를 보여줌.&lt;/p&gt;
 &lt;figure&gt;
   &lt;p align=&#34;center&#34;&gt;
-    &lt;img src=&#34;https://www.devtokki.com/data/data_platform/apache_kafka/kafka_basic_and_structure/replication.png&#34;/&gt;
+    &lt;img src=&#34;https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/replication.png&#34;/&gt;
   &lt;/p&gt;
 &lt;/figure&gt;
 &lt;ul&gt;
@@ -64,7 +64,7 @@
 &lt;/ul&gt;
 &lt;figure&gt;
   &lt;p align=&#34;center&#34;&gt;
-    &lt;img src=&#34;https://www.devtokki.com/data/data_platform/apache_kafka/kafka_basic_and_structure/topic_and_partition_relation.png&#34;/&gt; 
+    &lt;img src=&#34;https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/topic-and-partition-relation.png&#34;/&gt; 
   &lt;/p&gt;
   &lt;figcaption align=&#34;center&#34;&gt; 토픽과 파티션의 관계 &lt;/figcaption&gt;
 &lt;/figure&gt;
@@ -85,7 +85,7 @@
 &lt;h3 id=&#34;세그먼트segment&#34;&gt;세그먼트(segment)&lt;/h3&gt;
 &lt;figure&gt;
   &lt;p align=&#34;center&#34;&gt; 
-    &lt;img src=&#34;https://www.devtokki.com/data/data_platform/apache_kafka/kafka_basic_and_structure/segment.png&#34; /&gt; 
+    &lt;img src=&#34;https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/segment.png&#34; /&gt; 
   &lt;/p&gt;
   &lt;figcaption align=&#34;center&#34;&gt;파티션과 세그먼트&lt;/figcaption&gt;
 &lt;/figure&gt;
@@ -94,7 +94,7 @@
 &lt;h4 id=&#34;카프카-처리-흐름&#34;&gt;카프카 처리 흐름&lt;/h4&gt;
 &lt;figure&gt;
   &lt;p align=&#34;center&#34;&gt; 
-    &lt;img src=&#34;https://www.devtokki.com/data/data_platform/apache_kafka/kafka_basic_and_structure/kafka_data_flow.png&#34;&gt; 
+    &lt;img src=&#34;https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/kafka-data-flow.png&#34;&gt; 
   &lt;/p&gt;
   &lt;figcaption align=&#34;center&#34;&gt;Topic, Partition, Segment 관계도&lt;/figcaption&gt;
 &lt;/figure&gt;
@@ -121,7 +121,7 @@
 &lt;p&gt;카프카도 분산 시스템으로 유연한 리소스 확장 가능&lt;/p&gt;
 &lt;h4 id=&#34;2-페이지-캐시&#34;&gt;2. 페이지 캐시&lt;/h4&gt;
 &lt;p align=&#34;center&#34;&gt;
-  &lt;img src=&#34;https://www.devtokki.com/data/data_platform/apache_kafka/kafka_basic_and_structure/page_cache.png&#34;&gt;
+  &lt;img src=&#34;https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/page-cache.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;직접 디스크에 읽고 쓰는 대신 물리 메모리 중 애플리케이션이 사용하지 않는 일부 잔여 메모리를 활용하여 디스크 I/O에 대한 접근을 줄여 성능을 높일 수 있음&lt;/p&gt;
 &lt;h4 id=&#34;3-배치-전송-처리&#34;&gt;3. 배치 전송 처리&lt;/h4&gt;
@@ -202,7 +202,7 @@
         
         &lt;figure&gt;
   &lt;p&gt;
-    &lt;img src=&#34;https://www.devtokki.com/data/data_platform/apache_kafka/kafka_basic_and_structure/producer.png&#34;&gt;
+    &lt;img src=&#34;https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/producer.png&#34;&gt;
   &lt;/p&gt;
   &lt;figcaption align=&#34;center&#34;&gt;프로듀서 디자인 개요(출처: https://dzone.com/articles/take-a-deep-dive-into-kafka-producer-api/)&lt;/figcaption&gt;
 &lt;/figure&gt;
@@ -374,7 +374,7 @@
         
         &lt;figure&gt;
   &lt;p align=&#34;center&#34;&gt;
-    &lt;img src=&#34;https://www.devtokki.com/data/data_platform/apache_kafka/kafka_basic_and_structure/consumer-group.png&#34;/&gt;
+    &lt;img src=&#34;https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/consumer-group.png&#34;/&gt;
   &lt;/p&gt;
   &lt;figcaption align=&#34;center&#34;&gt;컨슈머 그룹과 컨슈머&lt;/figcaption&gt;
 &lt;/figure&gt;
