@@ -1,11 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>DevToKKi – Architecture</title>
-    <link>https://www.devtokki.com/architecture/</link>
-    <description>Recent content in Architecture on DevToKKi</description>
+    <title>DevToKKi – reactive</title>
+    <link>https://www.devtokki.com/categories/reactive/</link>
+    <description>Recent content in reactive on DevToKKi</description>
     <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 16 Jun 2022 01:14:14 +0900</lastBuildDate>
     
-	  <atom:link href="https://www.devtokki.com/architecture/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://www.devtokki.com/categories/reactive/index.xml" rel="self" type="application/rss+xml" />
     
     
       
