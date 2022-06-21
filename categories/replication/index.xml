@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>DevToKKi – 카프카 내부 동작 원리</title>
-    <link>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/</link>
-    <description>Recent content in 카프카 내부 동작 원리 on DevToKKi</description>
+    <title>DevToKKi – replication</title>
+    <link>https://www.devtokki.com/categories/replication/</link>
+    <description>Recent content in replication on DevToKKi</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 22 Apr 2022 15:30:43 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jun 2022 00:54:46 +0900</lastBuildDate>
     
-	  <atom:link href="https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://www.devtokki.com/categories/replication/index.xml" rel="self" type="application/rss+xml" />
     
     
       

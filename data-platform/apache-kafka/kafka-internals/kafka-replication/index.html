@@ -20,11 +20,11 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Kafka Replication | DevToKKi</title>
+<title>카프카 리플리케이션(Replication) | DevToKKi</title>
 <meta name="description" content="
 
 ">
-<meta property="og:title" content="Kafka Replication" />
+<meta property="og:title" content="카프카 리플리케이션(Replication)" />
 <meta property="og:description" content="(adsbygoogle = window.adsbygoogle || []).push({});  고가용성 분산 스트리밍 플랫폼인 카프카는 많은 데이터 파이프라인의 정중앙에 위치하는 메인 허브 역할을 하는데 만약 하드웨어의 문제나 점검 등으로 인해 정상적으로 동작하지 못해 전체 데이터 파이프라인에 영향을 미친다면 매우 큰 문제이다. 이러한 장애가 발생하더라도 중앙 데이터 허브로서 안정적인 서비스가 운영될 수 있도록 카프카 내부에서는 리플리케이션이라는 동작을 수행한다.
 리플리케이션 동작 개요 카프카는 브로커의 장애에도 불구하고 연속적으로 안정적인 서비스 제공함으로써 데이터 유실을 방지하며 유연성을 제공한다." />
 <meta property="og:type" content="article" />
@@ -32,13 +32,13 @@
 <meta property="article:published_time" content="2022-06-22T00:54:46+09:00" />
 <meta property="article:modified_time" content="2022-06-22T01:24:00+09:00" /><meta property="og:site_name" content="DevToKKi" />
 
-<meta itemprop="name" content="Kafka Replication">
+<meta itemprop="name" content="카프카 리플리케이션(Replication)">
 <meta itemprop="description" content="(adsbygoogle = window.adsbygoogle || []).push({});  고가용성 분산 스트리밍 플랫폼인 카프카는 많은 데이터 파이프라인의 정중앙에 위치하는 메인 허브 역할을 하는데 만약 하드웨어의 문제나 점검 등으로 인해 정상적으로 동작하지 못해 전체 데이터 파이프라인에 영향을 미친다면 매우 큰 문제이다. 이러한 장애가 발생하더라도 중앙 데이터 허브로서 안정적인 서비스가 운영될 수 있도록 카프카 내부에서는 리플리케이션이라는 동작을 수행한다.
 리플리케이션 동작 개요 카프카는 브로커의 장애에도 불구하고 연속적으로 안정적인 서비스 제공함으로써 데이터 유실을 방지하며 유연성을 제공한다."><meta itemprop="datePublished" content="2022-06-22T00:54:46+09:00" />
 <meta itemprop="dateModified" content="2022-06-22T01:24:00+09:00" />
 <meta itemprop="wordCount" content="581">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Kafka Replication"/>
+<meta name="twitter:title" content="카프카 리플리케이션(Replication)"/>
 <meta name="twitter:description" content="(adsbygoogle = window.adsbygoogle || []).push({});  고가용성 분산 스트리밍 플랫폼인 카프카는 많은 데이터 파이프라인의 정중앙에 위치하는 메인 허브 역할을 하는데 만약 하드웨어의 문제나 점검 등으로 인해 정상적으로 동작하지 못해 전체 데이터 파이프라인에 영향을 미친다면 매우 큰 문제이다. 이러한 장애가 발생하더라도 중앙 데이터 허브로서 안정적인 서비스가 운영될 수 있도록 카프카 내부에서는 리플리케이션이라는 동작을 수행한다.
 리플리케이션 동작 개요 카프카는 브로커의 장애에도 불구하고 연속적으로 안정적인 서비스 제공함으로써 데이터 유실을 방지하며 유연성을 제공한다."/>
 
@@ -137,7 +137,7 @@
   <a href="/data-platform/apache-kafka/kafka-internals/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-kafkakafka-internals"><span class="">카프카 내부 동작 원리</span></a>
   <ul class="ul-3 foldable">
     <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-data-platformapache-kafkakafka-internalskafka-replication-li">
-  <a href="/data-platform/apache-kafka/kafka-internals/kafka-replication/" class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-internalskafka-replication"><span class="td-sidebar-nav-active-item">Kafka Replication</span></a>
+  <a href="/data-platform/apache-kafka/kafka-internals/kafka-replication/" class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-internalskafka-replication"><span class="td-sidebar-nav-active-item">카프카 리플리케이션(Replication)</span></a>
 </li>
   </ul>
 </li>
@@ -202,13 +202,15 @@
         
           <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/internals/" data-taxonomy-term="internals"><span class="taxonomy-label">internals</span><span class="taxonomy-count">1</span></a></li>
         
-          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/kafka/" data-taxonomy-term="kafka"><span class="taxonomy-label">kafka</span><span class="taxonomy-count">8</span></a></li>
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/kafka/" data-taxonomy-term="kafka"><span class="taxonomy-label">kafka</span><span class="taxonomy-count">9</span></a></li>
         
           <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/option/" data-taxonomy-term="option"><span class="taxonomy-label">option</span><span class="taxonomy-count">2</span></a></li>
         
           <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/producer/" data-taxonomy-term="producer"><span class="taxonomy-label">producer</span><span class="taxonomy-count">1</span></a></li>
         
           <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/reactive/" data-taxonomy-term="reactive"><span class="taxonomy-label">reactive</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/replication/" data-taxonomy-term="replication"><span class="taxonomy-label">replication</span><span class="taxonomy-count">1</span></a></li>
         
           <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/structure/" data-taxonomy-term="structure"><span class="taxonomy-label">structure</span><span class="taxonomy-count">1</span></a></li>
         
@@ -236,13 +238,13 @@
     <a href="https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/">카프카 내부 동작 원리</a>
   </li>
   <li class="breadcrumb-item active" aria-current="page">
-    <a href="https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/kafka-replication/">Kafka Replication</a>
+    <a href="https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/kafka-replication/">카프카 리플리케이션(Replication)</a>
   </li>
   </ol>
 </nav>
             
 <div class="td-content">
-	<h1>Kafka Replication</h1>
+	<h1>카프카 리플리케이션(Replication)</h1>
 	
 	<header class="article-meta">
 		
@@ -251,6 +253,17 @@
     
       
 
+
+<div class="taxonomy taxonomy-terms-article taxo-categories">
+  <h5 class="taxonomy-title">Categories:</h5>
+  <ul class="taxonomy-terms">
+    
+      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/kafka/" data-taxonomy-term="kafka"><span class="taxonomy-label">kafka</span></a></li>
+    
+      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/replication/" data-taxonomy-term="replication"><span class="taxonomy-label">replication</span></a></li>
+    
+  </ul>
+</div>
 
     
   

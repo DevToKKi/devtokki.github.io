@@ -4,9 +4,8 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="generator" content="Hugo 0.96.0" />
+<link rel="alternate" type="application/rss&#43;xml" href="https://www.devtokki.com/categories/replication/index.xml">
 <meta name="robots" content="index, follow">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174" crossorigin="anonymous"></script>
-
 
 
 <link rel="shortcut icon" href="/favicons/favicon.ico" >
@@ -20,26 +19,17 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>프로듀서 기본 동작 및 주요 옵션 | DevToKKi</title>
-<meta name="description" content="프로듀서 기본 동작과 주요 옵션에 대해 설명
-">
-<meta property="og:title" content="프로듀서 기본 동작 및 주요 옵션" />
-<meta property="og:description" content="프로듀서 기본 동작과 주요 옵션에 대해 설명
-" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/" /><meta property="article:section" content="data-platform" />
-<meta property="article:published_time" content="2022-04-22T08:23:39+09:00" />
-<meta property="article:modified_time" content="2022-06-21T15:53:50+09:00" /><meta property="og:site_name" content="DevToKKi" />
+<title>replication | DevToKKi</title>
+<meta name="description" content="">
+<meta property="og:title" content="replication" />
+<meta property="og:description" content="DevToKKi Blog" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.devtokki.com/categories/replication/" /><meta property="og:site_name" content="DevToKKi" />
 
-<meta itemprop="name" content="프로듀서 기본 동작 및 주요 옵션">
-<meta itemprop="description" content="프로듀서 기본 동작과 주요 옵션에 대해 설명
-"><meta itemprop="datePublished" content="2022-04-22T08:23:39+09:00" />
-<meta itemprop="dateModified" content="2022-06-21T15:53:50+09:00" />
-<meta itemprop="wordCount" content="432">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="프로듀서 기본 동작 및 주요 옵션"/>
-<meta name="twitter:description" content="프로듀서 기본 동작과 주요 옵션에 대해 설명
-"/>
+<meta itemprop="name" content="replication">
+<meta itemprop="description" content="DevToKKi Blog"><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="replication"/>
+<meta name="twitter:description" content="DevToKKi Blog"/>
 
 
 
@@ -53,7 +43,7 @@
   crossorigin="anonymous"></script>
 
   </head>
-  <body class="td-page">
+  <body class="td-term">
     <header>
       
 <nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" style="background-color:#1b251c">
@@ -85,7 +75,7 @@
 				
 				
 				
-				<a class="nav-link active" href="/data-platform/" ><span class="active">Data Platform</span></a>
+				<a class="nav-link" href="/data-platform/" ><span>Data Platform</span></a>
 			</li>
 			
 			
@@ -97,155 +87,23 @@
 </nav>
 
     </header>
-    <div class="container-fluid td-outer">
-      <div class="td-main">
-        <div class="row flex-xl-nowrap">
-          <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
-            
-<div id="td-sidebar-menu" class="td-sidebar__inner">
-  <form class="td-sidebar__search d-flex align-items-center">
-    <input type="search" class="form-control td-search-input" placeholder="&#xf002; 사이트에서 검색…" aria-label="사이트에서 검색…" autocomplete="off">
-
-    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
-    </button>
-  </form>
-  <nav class="collapse td-sidebar-nav" id="td-section-nav">
-    <ul class="td-sidebar-nav__section pr-md-3 ul-0">
-      <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-data-platform-li">
-  <a href="/data-platform/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-data-platform"><span class="">Data Platform</span></a>
-  <ul class="ul-1">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-data-platformapache-kafka-li">
-  <a href="/data-platform/apache-kafka/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-kafka"><span class="">Apache Kafka</span></a>
-  <ul class="ul-2 foldable">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-data-platformapache-kafkakafka-basic-and-structure-li">
-  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-kafkakafka-basic-and-structure"><span class="">카프카 기본 개념과 구조</span></a>
-  <ul class="ul-3 foldable">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-basic-and-structurebasic-li">
-  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/basic/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurebasic"><span class="">카프카 기초 다지기</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-basic-and-structurekey-concept-li">
-  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekey-concept"><span class="">카프카의 핵심 개념</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-producer-overview-li">
-  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/" class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-producer-overview"><span class="td-sidebar-nav-active-item">프로듀서 기본 동작 및 주요 옵션</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-consumer-overview-li">
-  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-overview/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-consumer-overview"><span class="">컨슈머 기본 동작 및 주요 옵션</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-consumer-group-li">
-  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-consumer-group"><span class="">컨슈머 그룹</span></a>
-</li>
-  </ul>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-data-platformapache-kafkakafka-internals-li">
-  <a href="/data-platform/apache-kafka/kafka-internals/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-kafkakafka-internals"><span class="">카프카 내부 동작 원리</span></a>
-  <ul class="ul-3 foldable">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-internalskafka-replication-li">
-  <a href="/data-platform/apache-kafka/kafka-internals/kafka-replication/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-internalskafka-replication"><span class="">카프카 리플리케이션(Replication)</span></a>
-</li>
-  </ul>
-</li>
-  </ul>
-</li>
-  </ul>
-</li>
-    </ul>
-  </nav>
-</div>
-
-          </aside>
-          <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
-            
-<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
-<a id="print" href="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/printview/"><i class="fa fa-print fa-fw"></i> 전체 섹션 프린트</a>
-
-</div>
-
-            
-
-
-<div class="td-toc"><nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#기본-동작">기본 동작</a></li>
-        <li><a href="#프로듀서-주요-옵션">프로듀서 주요 옵션</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav></div>
-
-
-
-            
-
-	
-		
-			
-
-
-
-  
-  
-    <div class="taxonomy taxonomy-terms-cloud taxo-categories">
-      
-        <h5 class="taxonomy-title">Categories</h5>
-      
-      <ul class="taxonomy-terms">
+    <div class="container-fluid td-default td-outer">
+      <main role="main" class="td-main">
         
-          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/architecture/" data-taxonomy-term="architecture"><span class="taxonomy-label">architecture</span><span class="taxonomy-count">1</span></a></li>
-        
-          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/basic/" data-taxonomy-term="basic"><span class="taxonomy-label">basic</span><span class="taxonomy-count">2</span></a></li>
-        
-          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/consumer/" data-taxonomy-term="consumer"><span class="taxonomy-label">consumer</span><span class="taxonomy-count">2</span></a></li>
-        
-          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/consumer-group/" data-taxonomy-term="consumer-group"><span class="taxonomy-label">consumer group</span><span class="taxonomy-count">1</span></a></li>
-        
-          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/data-platform/" data-taxonomy-term="data-platform"><span class="taxonomy-label">data platform</span><span class="taxonomy-count">8</span></a></li>
-        
-          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/internals/" data-taxonomy-term="internals"><span class="taxonomy-label">internals</span><span class="taxonomy-count">1</span></a></li>
-        
-          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/kafka/" data-taxonomy-term="kafka"><span class="taxonomy-label">kafka</span><span class="taxonomy-count">9</span></a></li>
-        
-          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/option/" data-taxonomy-term="option"><span class="taxonomy-label">option</span><span class="taxonomy-count">2</span></a></li>
-        
-          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/producer/" data-taxonomy-term="producer"><span class="taxonomy-label">producer</span><span class="taxonomy-count">1</span></a></li>
-        
-          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/reactive/" data-taxonomy-term="reactive"><span class="taxonomy-label">reactive</span><span class="taxonomy-count">1</span></a></li>
-        
-          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/replication/" data-taxonomy-term="replication"><span class="taxonomy-label">replication</span><span class="taxonomy-count">1</span></a></li>
-        
-          <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/structure/" data-taxonomy-term="structure"><span class="taxonomy-label">structure</span><span class="taxonomy-count">1</span></a></li>
-        
-      </ul>
-    </div>
-  
-
-		
-	
-
-          </aside>
-          <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
-            
-  
-
-            <nav aria-label="breadcrumb" class="td-breadcrumbs">
-  <ol class="breadcrumb">
-  <li class="breadcrumb-item">
-    <a href="https://www.devtokki.com/data-platform/">Data Platform</a>
-  </li>
-  <li class="breadcrumb-item">
-    <a href="https://www.devtokki.com/data-platform/apache-kafka/">Apache Kafka</a>
-  </li>
-  <li class="breadcrumb-item">
-    <a href="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/">카프카 기본 개념과 구조</a>
-  </li>
-  <li class="breadcrumb-item active" aria-current="page">
-    <a href="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/">프로듀서 기본 동작 및 주요 옵션</a>
-  </li>
-  </ol>
-</nav>
-            
 <div class="td-content">
-	<h1>프로듀서 기본 동작 및 주요 옵션</h1>
-	<div class="lead">프로듀서 기본 동작과 주요 옵션에 대해 설명</div>
-	<header class="article-meta">
-		
+  <main class="taxonomy-taxonomy-page">
+    <h1>Category: <span>replication</span></h1>
+    <div>
+      
+    </div>
+    <div>
+      
+        
+        <article class="article-teaser article-type-data-platform">
+          <h3><a href="/data-platform/apache-kafka/kafka-internals/kafka-replication/">카프카 리플리케이션(Replication)</a></h3>
+          <p></p>
+          <header class="article-meta">
+            
 
   
     
@@ -256,15 +114,9 @@
   <h5 class="taxonomy-title">Categories:</h5>
   <ul class="taxonomy-terms">
     
-      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/data-platform/" data-taxonomy-term="data-platform"><span class="taxonomy-label">data platform</span></a></li>
-    
       <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/kafka/" data-taxonomy-term="kafka"><span class="taxonomy-label">kafka</span></a></li>
     
-      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/structure/" data-taxonomy-term="structure"><span class="taxonomy-label">structure</span></a></li>
-    
-      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/producer/" data-taxonomy-term="producer"><span class="taxonomy-label">producer</span></a></li>
-    
-      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/option/" data-taxonomy-term="option"><span class="taxonomy-label">option</span></a></li>
+      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/replication/" data-taxonomy-term="replication"><span class="taxonomy-label">replication</span></a></li>
     
   </ul>
 </div>
@@ -272,116 +124,16 @@
     
   
 
-		
-	</header>    
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
-     crossorigin="anonymous"></script>
-
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8842908287515174"
-     data-ad-slot="6261283644"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<figure>
-  <p>
-    <img src="/data/data-platform/apache-kafka/kafka-basic-and-structure/producer.png">
-  </p>
-  <figcaption align="center">프로듀서 디자인 개요(출처: https://dzone.com/articles/take-a-deep-dive-into-kafka-producer-api/)</figcaption>
-</figure>
-<h3 id="기본-동작">기본 동작</h3>
-<p>ProducerRecord라고 표시된 부분은 카프카로 전송하기 위한 실제 데이터이며, 레코드는 토픽, 파티션, 키, 밸류로 구성 됨.</p>
-<p>프로듀서가 카프카로 레코드를 전송할 때, 카프카의 특정 토픽으로 메시지를 전송하기 때문에 <strong>레코드에서 토픽과 밸류(메시지 내용)는 필수 값</strong>이며, <strong>특정 파티션을 지정하기 위한 레코드의 파티션과 특정 파티션에 레코드들을 정렬하기 위한 레코드의 키는 선택사항(옵션)</strong></p>
-<p>각 레코드들은 프로듀서의 send() 메소드를 통해 시리얼라이저(serializer), 파티셔너(partitioner)를 거침.</p>
-<ul>
-<li>프로듀서 레코드의 파티션을 지정했을 경우<br> &ndash;&gt; 파티셔너는 아무 동작하지 않고 지정된 파티션으로 레코드를 전달.</li>
-<li>프로듀서 레코드의 파티션을 지정 안했을 경우<br> &ndash;&gt; 키를 가지고 파티션을 선택해 레코드를 전달 함. 기본적으로 라운드 로빈(round robin) 방식으로 동작.</li>
-</ul>
-<p>send() 메소드 동작 이후 <strong>레코드들을 파티션별로 잠시 모아 둠</strong>. 모아둔 이유는 프로듀서가 카프카로 전송하기 전, <strong>배치 전송</strong>하기 위함.</p>
-<p>전송이 실패하면 재시도 동작이 이뤄지고, 지정된 횟수 만큼의 재시도가 실패하면 최종 실패 전달. 전송이 성공하면 메타데이터를 리턴하게 됨.</p>
-<h3 id="프로듀서-주요-옵션">프로듀서 주요 옵션</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Producer Option</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">bootstrap.servers</td>
-<td style="text-align:left">카프카 클러스터는 클러스터 마스터라는 개념이 없으므로, 클러스터 내 모든 서버가 클라이언트의 요청을 받을 수 있음. 클라이언트가 카프카 클러스터에 처음 연결하기 위한 호스트와 포트정보를 나타 냄.</td>
-</tr>
-<tr>
-<td style="text-align:left">client.dns.lookup</td>
-<td style="text-align:left">하나의 호스트에 여러 IP를 매핑해 사용하는 일부 환경에서 클라이언트가 하나의 IP와 연결하지 못할 경우에 다른 IP로 시도하는 설정. use_all_dns_ips가 기본값으로, DNS에 할당된 호스트의 모든 IP를 쿼리하고 저장. 첫 번째 IP로 접근 실패 시, 종료하지 않고 다음 IP로 접근 시도. <em>resolve_canonical_bootstrap_servers_only</em> 옵션은 Kerberos 환경에서 FQDN을 얻기 위한 용도로 사용 됨.</td>
-</tr>
-<tr>
-<td style="text-align:left">acks</td>
-<td style="text-align:left">프로듀서가 카프카 토픽의 리더 측에 메시지를 전송한 후 요청을 완료하기를 결정하는 옵션. 0, 1, all(-1)로 표현하며, 0은 빠른 전송을 의미하지만, 일부 메시지 손실 가능성 있음. 1은 리더가 메시지를 받았는지 확인하지만, 모든 팔로워를 전부 확인하지 않음. 대부분 기본값으로 1을 사용. all은 팔로워가 메시지를 받았는지 여부 확인. 다소 느릴 수 있으나 하나의 팔로우가 있는 한 메시지 손실은 없음.</td>
-</tr>
-<tr>
-<td style="text-align:left">buffer.memory</td>
-<td style="text-align:left">프로듀서가 카프카 서버로 데이터를 보내기 위해 잠시 대기(배치 전송이나 딜레이 등)할 수 있는 전체 메모리 바이트(byte)</td>
-</tr>
-<tr>
-<td style="text-align:left">compression.type</td>
-<td style="text-align:left">프로듀서가 메시지 전송 시 선택할 수 있는 압축 타입. none, gzip, snappy, lz4, zstd 중 선택</td>
-</tr>
-<tr>
-<td style="text-align:left">enbale.idempotence</td>
-<td style="text-align:left">설정을 true로 하는 경우 중복 없는 전송이 가능하며, 이와 동시에 <em>max.in.flight.requests.per.connection</em>은 5 이하, <em>retries</em>는 0 이상, <em>acks</em>는 all로 설정해야 함.</td>
-</tr>
-<tr>
-<td style="text-align:left">max.in.flight.requests.per.connection</td>
-<td style="text-align:left">하나의 커넥션에서 프로듀서가 최대한 ACK 없이 전송할 수 있는 요청 수. 메시지의 순서가 중요하다면 1로 설정할 것을 권장하지만 성능은 다소 떨어짐.</td>
-</tr>
-<tr>
-<td style="text-align:left">retries</td>
-<td style="text-align:left">일시적인 오류로 인해 전송에 실패한 데이터를 다시 보내주는 횟수</td>
-</tr>
-<tr>
-<td style="text-align:left">batch.size</td>
-<td style="text-align:left">프로듀서는 동일한 파티션으로 보내는 여러 데이터를 함께 배치로 보내려고 시도. 적절한 배치 크기 설정은 성능에 도움을 줌.</td>
-</tr>
-<tr>
-<td style="text-align:left">linger.ms</td>
-<td style="text-align:left">배치 형태의 메시지를 보내기 전 추가적인 메시지를 위해 기다리는 시간을 조정하고, 배치 크기에 도달하지 못한 상황에서 linger.ms 제한 시간에 도달 했을 때 메시지를 전송.</td>
-</tr>
-<tr>
-<td style="text-align:left">transactional.id</td>
-<td style="text-align:left">&lsquo;정확히 한 번 전송&rsquo;을 위해 사용하는 옵션. 동일한 TransactionalId에 한해 정확히 한 번을 보장. 옵션을 사용하기 전 <em>enable.idempotence</em>를 true로 설정해야 함.</td>
-</tr>
-<tr>
-<td style="text-align:left"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
-     crossorigin="anonymous"></script>
-
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8842908287515174"
-     data-ad-slot="6261283644"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-	
-	
-	
+            
+          </header>
+        </article>
+      
+    </div>
+    <a href="https://www.devtokki.com/categories/" class="all-taxonomy-terms">[I18n] ui all Categories</a>
+  </main>
 </div>
 
-
-          </main>
-        </div>
-      </div>
+      </main>
       
 <footer class="py-5 row d-print-none" style="background-color:#1b251c">
   <div class="container-fluid mx-sm-5">
