@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.96.0" />
+<meta name="generator" content="Hugo 0.94.0" />
 <meta name="robots" content="index, follow">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174" crossorigin="anonymous"></script>
 
@@ -35,7 +35,7 @@
 <meta itemprop="name" content="카프카 기초 다지기">
 <meta itemprop="description" content="카프카를 구성하는 주요 요소  주키퍼(Zookeeper) : 아파치 프로젝트 애플리케이션 이름으로 카프카의 메타데이터(metadata) 관리 및 브로커의 정상 상태 점검(health check)을 담당 카프카(Kafka) 또는 카프카 클러스터(Kafka cluster) : 아파치 프로젝트 애플리케이션 이름으로 여러 대의 브로커를 구성한 클러스터를 의미 브로커(Broker): 카프카 애플리케이션이 설치된 서버 또는 노드를 칭함 프로듀서(Producer) : 카프카로 메시지를 보내는 역할을 하는 클라이언트를 총칭 컨슈머(Consumer) : 카프카에서 메시지를 꺼내가는 역할을 하는 클라이언트 총칭 토픽(Topic) : 카프카는 메시지 피드들을 토픽으로 구분하고, 각 토픽의 이름은 카프카 내에서 고유 함."><meta itemprop="datePublished" content="2022-04-19T08:34:14+09:00" />
 <meta itemprop="dateModified" content="2022-04-26T23:30:34+09:00" />
-<meta itemprop="wordCount" content="436">
+<meta itemprop="wordCount" content="449">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="카프카 기초 다지기"/>
 <meta name="twitter:description" content="카프카를 구성하는 주요 요소  주키퍼(Zookeeper) : 아파치 프로젝트 애플리케이션 이름으로 카프카의 메타데이터(metadata) 관리 및 브로커의 정상 상태 점검(health check)을 담당 카프카(Kafka) 또는 카프카 클러스터(Kafka cluster) : 아파치 프로젝트 애플리케이션 이름으로 여러 대의 브로커를 구성한 클러스터를 의미 브로커(Broker): 카프카 애플리케이션이 설치된 서버 또는 노드를 칭함 프로듀서(Producer) : 카프카로 메시지를 보내는 역할을 하는 클라이언트를 총칭 컨슈머(Consumer) : 카프카에서 메시지를 꺼내가는 역할을 하는 클라이언트 총칭 토픽(Topic) : 카프카는 메시지 피드들을 토픽으로 구분하고, 각 토픽의 이름은 카프카 내에서 고유 함."/>
@@ -336,12 +336,29 @@
   </p>
   <figcaption align="center">Topic, Partition, Segment 관계도</figcaption>
 </figure>
-<ul>
-<li>프로듀서는 카프카의 Peter-overview01 토픽으로 메시지 전송</li>
-<li>peter-overview01 토픽은 파티션이 하나뿐이므로, 프로듀서로부터 받은 메시지를 파티션0의 세그먼트 로그 파일에 저장</li>
-<li>브로커의 세그먼트 로그 파일에 저장된 메시지는 컨슈머에서 가져 감</li>
-</ul>
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-12112121212"
+     data-ad-slot="1221212121"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+- 프로듀서는 카프카의 Peter-overview01 토픽으로 메시지 전송
+- peter-overview01 토픽은 파티션이 하나뿐이므로, 프로듀서로부터 받은 메시지를 파티션0의 세그먼트 로그 파일에 저장
+- 브로커의 세그먼트 로그 파일에 저장된 메시지는 컨슈머에서 가져 감
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-12112121212"
+     data-ad-slot="1221212121"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 	
 	
 	

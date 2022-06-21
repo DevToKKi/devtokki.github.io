@@ -99,12 +99,29 @@
   &lt;/p&gt;
   &lt;figcaption align=&#34;center&#34;&gt;Topic, Partition, Segment 관계도&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;ul&gt;
-&lt;li&gt;프로듀서는 카프카의 Peter-overview01 토픽으로 메시지 전송&lt;/li&gt;
-&lt;li&gt;peter-overview01 토픽은 파티션이 하나뿐이므로, 프로듀서로부터 받은 메시지를 파티션0의 세그먼트 로그 파일에 저장&lt;/li&gt;
-&lt;li&gt;브로커의 세그먼트 로그 파일에 저장된 메시지는 컨슈머에서 가져 감&lt;/li&gt;
-&lt;/ul&gt;
-
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block; text-align:center;&#34;
+     data-ad-layout=&#34;in-article&#34;
+     data-ad-format=&#34;fluid&#34;
+     data-ad-client=&#34;ca-pub-12112121212&#34;
+     data-ad-slot=&#34;1221212121&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+- 프로듀서는 카프카의 Peter-overview01 토픽으로 메시지 전송
+- peter-overview01 토픽은 파티션이 하나뿐이므로, 프로듀서로부터 받은 메시지를 파티션0의 세그먼트 로그 파일에 저장
+- 브로커의 세그먼트 로그 파일에 저장된 메시지는 컨슈머에서 가져 감
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block; text-align:center;&#34;
+     data-ad-layout=&#34;in-article&#34;
+     data-ad-format=&#34;fluid&#34;
+     data-ad-client=&#34;ca-pub-12112121212&#34;
+     data-ad-slot=&#34;1221212121&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
       </description>
     </item>
     
@@ -117,7 +134,17 @@
       <description>
         
         
-        &lt;h3 id=&#34;주요-특징&#34;&gt;주요 특징&lt;/h3&gt;
+        &lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block; text-align:center;&#34;
+     data-ad-layout=&#34;in-article&#34;
+     data-ad-format=&#34;fluid&#34;
+     data-ad-client=&#34;ca-pub-12112121212&#34;
+     data-ad-slot=&#34;1221212121&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;h3 id=&#34;주요-특징&#34;&gt;주요 특징&lt;/h3&gt;
 &lt;h4 id=&#34;1-분산-시스템&#34;&gt;1. 분산 시스템&lt;/h4&gt;
 &lt;p&gt;카프카도 분산 시스템으로 유연한 리소스 확장 가능&lt;/p&gt;
 &lt;h4 id=&#34;2-페이지-캐시&#34;&gt;2. 페이지 캐시&lt;/h4&gt;
@@ -188,6 +215,16 @@
 &lt;p&gt;KRaft is in early access and should be used in development only. It is not suitable for production.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://developer.confluent.io/learn/kraft/&#34;&gt;https://developer.confluent.io/learn/kraft/&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block; text-align:center;&#34;
+     data-ad-layout=&#34;in-article&#34;
+     data-ad-format=&#34;fluid&#34;
+     data-ad-client=&#34;ca-pub-12112121212&#34;
+     data-ad-slot=&#34;1221212121&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
 
       </description>
     </item>

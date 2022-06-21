@@ -99,12 +99,29 @@
   &lt;/p&gt;
   &lt;figcaption align=&#34;center&#34;&gt;Topic, Partition, Segment 관계도&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;ul&gt;
-&lt;li&gt;프로듀서는 카프카의 Peter-overview01 토픽으로 메시지 전송&lt;/li&gt;
-&lt;li&gt;peter-overview01 토픽은 파티션이 하나뿐이므로, 프로듀서로부터 받은 메시지를 파티션0의 세그먼트 로그 파일에 저장&lt;/li&gt;
-&lt;li&gt;브로커의 세그먼트 로그 파일에 저장된 메시지는 컨슈머에서 가져 감&lt;/li&gt;
-&lt;/ul&gt;
-
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block; text-align:center;&#34;
+     data-ad-layout=&#34;in-article&#34;
+     data-ad-format=&#34;fluid&#34;
+     data-ad-client=&#34;ca-pub-12112121212&#34;
+     data-ad-slot=&#34;1221212121&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+- 프로듀서는 카프카의 Peter-overview01 토픽으로 메시지 전송
+- peter-overview01 토픽은 파티션이 하나뿐이므로, 프로듀서로부터 받은 메시지를 파티션0의 세그먼트 로그 파일에 저장
+- 브로커의 세그먼트 로그 파일에 저장된 메시지는 컨슈머에서 가져 감
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block; text-align:center;&#34;
+     data-ad-layout=&#34;in-article&#34;
+     data-ad-format=&#34;fluid&#34;
+     data-ad-client=&#34;ca-pub-12112121212&#34;
+     data-ad-slot=&#34;1221212121&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
       </description>
     </item>
     
@@ -130,7 +147,17 @@
       <description>
         
         
-        &lt;h3 id=&#34;주요-특징&#34;&gt;주요 특징&lt;/h3&gt;
+        &lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block; text-align:center;&#34;
+     data-ad-layout=&#34;in-article&#34;
+     data-ad-format=&#34;fluid&#34;
+     data-ad-client=&#34;ca-pub-12112121212&#34;
+     data-ad-slot=&#34;1221212121&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;h3 id=&#34;주요-특징&#34;&gt;주요 특징&lt;/h3&gt;
 &lt;h4 id=&#34;1-분산-시스템&#34;&gt;1. 분산 시스템&lt;/h4&gt;
 &lt;p&gt;카프카도 분산 시스템으로 유연한 리소스 확장 가능&lt;/p&gt;
 &lt;h4 id=&#34;2-페이지-캐시&#34;&gt;2. 페이지 캐시&lt;/h4&gt;
@@ -201,6 +228,16 @@
 &lt;p&gt;KRaft is in early access and should be used in development only. It is not suitable for production.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://developer.confluent.io/learn/kraft/&#34;&gt;https://developer.confluent.io/learn/kraft/&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block; text-align:center;&#34;
+     data-ad-layout=&#34;in-article&#34;
+     data-ad-format=&#34;fluid&#34;
+     data-ad-client=&#34;ca-pub-12112121212&#34;
+     data-ad-slot=&#34;1221212121&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
 
       </description>
     </item>
@@ -214,7 +251,17 @@
       <description>
         
         
-        &lt;figure&gt;
+        &lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block; text-align:center;&#34;
+     data-ad-layout=&#34;in-article&#34;
+     data-ad-format=&#34;fluid&#34;
+     data-ad-client=&#34;ca-pub-12112121212&#34;
+     data-ad-slot=&#34;1221212121&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;figure&gt;
   &lt;p&gt;
     &lt;img src=&#34;https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/producer.png&#34;&gt;
   &lt;/p&gt;
@@ -283,6 +330,19 @@
 &lt;td style=&#34;text-align:left&#34;&gt;transactional.id&lt;/td&gt;
 &lt;td style=&#34;text-align:left&#34;&gt;&amp;lsquo;정확히 한 번 전송&amp;rsquo;을 위해 사용하는 옵션. 동일한 TransactionalId에 한해 정확히 한 번을 보장. 옵션을 사용하기 전 &lt;em&gt;enable.idempotence&lt;/em&gt;를 true로 설정해야 함.&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block; text-align:center;&#34;
+     data-ad-layout=&#34;in-article&#34;
+     data-ad-format=&#34;fluid&#34;
+     data-ad-client=&#34;ca-pub-12112121212&#34;
+     data-ad-slot=&#34;1221212121&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
@@ -298,7 +358,17 @@
       <description>
         
         
-        &lt;p&gt;컨슈머는 카프카의 토픽에 저장되어 있는 메시지를 가져오는 역할을 담당. 단순하게 메시지만 가져오는 기능만 하는 것이 아니라 내부적으로는 컨슈머 그룹, 리밸런싱 등 여러 동작을 수행 함.&lt;/p&gt;
+        &lt;p&gt;&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block; text-align:center;&#34;
+     data-ad-layout=&#34;in-article&#34;
+     data-ad-format=&#34;fluid&#34;
+     data-ad-client=&#34;ca-pub-12112121212&#34;
+     data-ad-slot=&#34;1221212121&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+컨슈머는 카프카의 토픽에 저장되어 있는 메시지를 가져오는 역할을 담당. 단순하게 메시지만 가져오는 기능만 하는 것이 아니라 내부적으로는 컨슈머 그룹, 리밸런싱 등 여러 동작을 수행 함.&lt;/p&gt;
 &lt;h3 id=&#34;기본-동작&#34;&gt;기본 동작&lt;/h3&gt;
 &lt;p&gt;프로듀서가 카프카의 토픽으로 메시지를 전송하면 해당 메시지들은 브로커들의 로컬 디스크에 저장되며 컨슈머를 이용해 토픽에 저장된 메시지를 가져올 수 있음.&lt;/p&gt;
 &lt;p&gt;컨슈머 그룹은 하나 이상의 컨슈머들이 모여 있는 그룹을 의미하고, 컨슈머는 반드시 컨슈머 그룹에 속하게 됨. 그리고 컨슈머 그룹은 각 파티션의 리더에게 카프카 토픽에 저장된 메시지를 가져오기 위한 요청을 보냄.&lt;/p&gt;
@@ -371,6 +441,19 @@
 &lt;td style=&#34;text-align:left&#34;&gt;fetch.max.wait.ms&lt;/td&gt;
 &lt;td style=&#34;text-align:left&#34;&gt;&lt;em&gt;fetch.min.bytes&lt;/em&gt;에 의해 설정된 데이터보다 적은 경우 요청에 대한 응답을 기다리는 최대 시간.&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block; text-align:center;&#34;
+     data-ad-layout=&#34;in-article&#34;
+     data-ad-format=&#34;fluid&#34;
+     data-ad-client=&#34;ca-pub-12112121212&#34;
+     data-ad-slot=&#34;1221212121&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
@@ -386,7 +469,17 @@
       <description>
         
         
-        &lt;figure&gt;
+        &lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block; text-align:center;&#34;
+     data-ad-layout=&#34;in-article&#34;
+     data-ad-format=&#34;fluid&#34;
+     data-ad-client=&#34;ca-pub-12112121212&#34;
+     data-ad-slot=&#34;1221212121&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;figure&gt;
   &lt;p align=&#34;center&#34;&gt;
     &lt;img src=&#34;https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/consumer-group.png&#34;/&gt;
   &lt;/p&gt;
@@ -396,7 +489,17 @@
 위 그림과 같이 토픽의 파티션과 일대일로 매핑되어 메시지를 가져오게 됨.&lt;/p&gt;
 &lt;p&gt;왼쪽에 peter-01이라는 토픽과 3개의 파티션으로 구성되어 있고, 오른쪽에는 consumer group 01이라는 컨슈머 그룹 아이디를 가진 컨슈머 그룹이 있으며, peter-01 토픽의 파티션 수와 동일한 3개의 컨슈머가 속해 있음.&lt;/p&gt;
 &lt;p&gt;컨슈머들은 하나의 컨슈머 그룹 안에 속해 있으며, 그룹 내의 컨슈머들은 서로의 정보를 공유 함.&lt;/p&gt;
-&lt;p&gt;예를 들어 Consumer01이 문제가 생겨 종료됐다면, Consumer02 또는 Consumer03은 Consumer01이 하던 일을 대신해 peter-01 토픽의 partition0을 컨슘하기 시작 함.&lt;/p&gt;
+&lt;p&gt;예를 들어 Consumer01이 문제가 생겨 종료됐다면, Consumer02 또는 Consumer03은 Consumer01이 하던 일을 대신해 peter-01 토픽의 partition0을 컨슘하기 시작 함.
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block; text-align:center;&#34;
+     data-ad-layout=&#34;in-article&#34;
+     data-ad-format=&#34;fluid&#34;
+     data-ad-client=&#34;ca-pub-12112121212&#34;
+     data-ad-slot=&#34;1221212121&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;&lt;/p&gt;
 
       </description>
     </item>

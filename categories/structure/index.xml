@@ -23,7 +23,17 @@
       <description>
         
         
-        &lt;figure&gt;
+        &lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block; text-align:center;&#34;
+     data-ad-layout=&#34;in-article&#34;
+     data-ad-format=&#34;fluid&#34;
+     data-ad-client=&#34;ca-pub-12112121212&#34;
+     data-ad-slot=&#34;1221212121&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;figure&gt;
   &lt;p&gt;
     &lt;img src=&#34;https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/producer.png&#34;&gt;
   &lt;/p&gt;
@@ -91,6 +101,19 @@
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left&#34;&gt;transactional.id&lt;/td&gt;
 &lt;td style=&#34;text-align:left&#34;&gt;&amp;lsquo;정확히 한 번 전송&amp;rsquo;을 위해 사용하는 옵션. 동일한 TransactionalId에 한해 정확히 한 번을 보장. 옵션을 사용하기 전 &lt;em&gt;enable.idempotence&lt;/em&gt;를 true로 설정해야 함.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block; text-align:center;&#34;
+     data-ad-layout=&#34;in-article&#34;
+     data-ad-format=&#34;fluid&#34;
+     data-ad-client=&#34;ca-pub-12112121212&#34;
+     data-ad-slot=&#34;1221212121&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
