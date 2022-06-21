@@ -23,7 +23,19 @@
       <description>
         
         
-        &lt;h3 id=&#34;카프카를-구성하는-주요-요소&#34;&gt;카프카를 구성하는 주요 요소&lt;/h3&gt;
+        &lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block&#34;
+     data-ad-client=&#34;ca-pub-8842908287515174&#34;
+     data-ad-slot=&#34;6261283644&#34;
+     data-ad-format=&#34;auto&#34;
+     data-full-width-responsive=&#34;true&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;h3 id=&#34;카프카를-구성하는-주요-요소&#34;&gt;카프카를 구성하는 주요 요소&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;주키퍼(Zookeeper) : 아파치 프로젝트 애플리케이션 이름으로 &lt;U&gt;&lt;strong&gt;카프카의 메타데이터(metadata) 관리 및 브로커의 정상 상태 점검(health check)을 담당&lt;/strong&gt;&lt;/U&gt;&lt;/li&gt;
 &lt;li&gt;카프카(Kafka) 또는 카프카 클러스터(Kafka cluster) : 아파치 프로젝트 애플리케이션 이름으로 &lt;U&gt;&lt;strong&gt;여러 대의 브로커를 구성한 클러스터를 의미&lt;/strong&gt;&lt;/U&gt;&lt;/li&gt;
@@ -99,18 +111,6 @@
   &lt;/p&gt;
   &lt;figcaption align=&#34;center&#34;&gt;Topic, Partition, Segment 관계도&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174&#34;
-     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
-
-&lt;ins class=&#34;adsbygoogle&#34;
-     style=&#34;display:block&#34;
-     data-ad-client=&#34;ca-pub-8842908287515174&#34;
-     data-ad-slot=&#34;6261283644&#34;
-     data-ad-format=&#34;auto&#34;
-     data-full-width-responsive=&#34;true&#34;&gt;&lt;/ins&gt;
-&lt;script&gt;
-     (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
 - 프로듀서는 카프카의 Peter-overview01 토픽으로 메시지 전송
 - peter-overview01 토픽은 파티션이 하나뿐이므로, 프로듀서로부터 받은 메시지를 파티션0의 세그먼트 로그 파일에 저장
 - 브로커의 세그먼트 로그 파일에 저장된 메시지는 컨슈머에서 가져 감
