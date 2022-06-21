@@ -4,7 +4,7 @@
     <link>https://www.devtokki.com/categories/data-platform/</link>
     <description>Recent content in data platform on DevToKKi</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 22 Apr 2022 14:44:07 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 22 Apr 2022 15:30:43 +0900</lastBuildDate>
     
 	  <atom:link href="https://www.devtokki.com/categories/data-platform/index.xml" rel="self" type="application/rss+xml" />
     
@@ -135,6 +135,19 @@
       <pubDate>Sun, 17 Apr 2022 22:59:37 +0900</pubDate>
       
       <guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Data-Platform: 카프카 내부 동작 원리</title>
+      <link>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/</link>
+      <pubDate>Fri, 22 Apr 2022 15:30:43 +0900</pubDate>
+      
+      <guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/</guid>
       <description>
         
         

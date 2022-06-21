@@ -4,8 +4,6 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="generator" content="Hugo 0.96.0" />
-<link rel="alternate" type="text/html" href="https://www.devtokki.com/data-platform/printview/">
-<link rel="alternate" type="application/rss&#43;xml" href="https://www.devtokki.com/data-platform/index.xml">
 <meta name="robots" content="index, follow">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174" crossorigin="anonymous"></script>
 
@@ -22,24 +20,27 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Data Platform | DevToKKi</title>
+<title>Kafka Replication | DevToKKi</title>
 <meta name="description" content="
 
-
-해당 카테고리는 Data Platform 관련된 기술 정보를 제공합니다.
-
-
-
 ">
-<meta property="og:title" content="Data Platform" />
-<meta property="og:description" content="DevToKKi Blog" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.devtokki.com/data-platform/" /><meta property="og:site_name" content="DevToKKi" />
+<meta property="og:title" content="Kafka Replication" />
+<meta property="og:description" content="(adsbygoogle = window.adsbygoogle || []).push({});  고가용성 분산 스트리밍 플랫폼인 카프카는 많은 데이터 파이프라인의 정중앙에 위치하는 메인 허브 역할을 하는데 만약 하드웨어의 문제나 점검 등으로 인해 정상적으로 동작하지 못해 전체 데이터 파이프라인에 영향을 미친다면 매우 큰 문제이다. 이러한 장애가 발생하더라도 중앙 데이터 허브로서 안정적인 서비스가 운영될 수 있도록 카프카 내부에서는 리플리케이션이라는 동작을 수행한다.
+리플리케이션 동작 개요 카프카는 브로커의 장애에도 불구하고 연속적으로 안정적인 서비스 제공함으로써 데이터 유실을 방지하며 유연성을 제공한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/kafka-replication/" /><meta property="article:section" content="data-platform" />
+<meta property="article:published_time" content="2022-06-22T00:54:46+09:00" />
+<meta property="article:modified_time" content="2022-06-22T01:24:00+09:00" /><meta property="og:site_name" content="DevToKKi" />
 
-<meta itemprop="name" content="Data Platform">
-<meta itemprop="description" content="DevToKKi Blog"><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Data Platform"/>
-<meta name="twitter:description" content="DevToKKi Blog"/>
+<meta itemprop="name" content="Kafka Replication">
+<meta itemprop="description" content="(adsbygoogle = window.adsbygoogle || []).push({});  고가용성 분산 스트리밍 플랫폼인 카프카는 많은 데이터 파이프라인의 정중앙에 위치하는 메인 허브 역할을 하는데 만약 하드웨어의 문제나 점검 등으로 인해 정상적으로 동작하지 못해 전체 데이터 파이프라인에 영향을 미친다면 매우 큰 문제이다. 이러한 장애가 발생하더라도 중앙 데이터 허브로서 안정적인 서비스가 운영될 수 있도록 카프카 내부에서는 리플리케이션이라는 동작을 수행한다.
+리플리케이션 동작 개요 카프카는 브로커의 장애에도 불구하고 연속적으로 안정적인 서비스 제공함으로써 데이터 유실을 방지하며 유연성을 제공한다."><meta itemprop="datePublished" content="2022-06-22T00:54:46+09:00" />
+<meta itemprop="dateModified" content="2022-06-22T01:24:00+09:00" />
+<meta itemprop="wordCount" content="581">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kafka Replication"/>
+<meta name="twitter:description" content="(adsbygoogle = window.adsbygoogle || []).push({});  고가용성 분산 스트리밍 플랫폼인 카프카는 많은 데이터 파이프라인의 정중앙에 위치하는 메인 허브 역할을 하는데 만약 하드웨어의 문제나 점검 등으로 인해 정상적으로 동작하지 못해 전체 데이터 파이프라인에 영향을 미친다면 매우 큰 문제이다. 이러한 장애가 발생하더라도 중앙 데이터 허브로서 안정적인 서비스가 운영될 수 있도록 카프카 내부에서는 리플리케이션이라는 동작을 수행한다.
+리플리케이션 동작 개요 카프카는 브로커의 장애에도 불구하고 연속적으로 안정적인 서비스 제공함으로써 데이터 유실을 방지하며 유연성을 제공한다."/>
 
 
 
@@ -53,7 +54,7 @@
   crossorigin="anonymous"></script>
 
   </head>
-  <body class="td-section">
+  <body class="td-page">
     <header>
       
 <nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" style="background-color:#1b251c">
@@ -112,9 +113,9 @@
   <nav class="collapse td-sidebar-nav" id="td-section-nav">
     <ul class="td-sidebar-nav__section pr-md-3 ul-0">
       <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-data-platform-li">
-  <a href="/data-platform/" class="align-left pl-0 active td-sidebar-link td-sidebar-link__section tree-root" id="m-data-platform"><span class="td-sidebar-nav-active-item">Data Platform</span></a>
+  <a href="/data-platform/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-data-platform"><span class="">Data Platform</span></a>
   <ul class="ul-1">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-data-platformapache-kafka-li">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-data-platformapache-kafka-li">
   <a href="/data-platform/apache-kafka/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-kafka"><span class="">Apache Kafka</span></a>
   <ul class="ul-2 foldable">
     <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-data-platformapache-kafkakafka-basic-and-structure-li">
@@ -132,11 +133,11 @@
   <a href="/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-consumer-group"><span class="">컨슈머 그룹</span></a>
 </li>
   </ul>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-data-platformapache-kafkakafka-internals-li">
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-data-platformapache-kafkakafka-internals-li">
   <a href="/data-platform/apache-kafka/kafka-internals/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-kafkakafka-internals"><span class="">카프카 내부 동작 원리</span></a>
   <ul class="ul-3 foldable">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-internalskafka-replication-li">
-  <a href="/data-platform/apache-kafka/kafka-internals/kafka-replication/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-internalskafka-replication"><span class="">Kafka Replication</span></a>
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-data-platformapache-kafkakafka-internalskafka-replication-li">
+  <a href="/data-platform/apache-kafka/kafka-internals/kafka-replication/" class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-internalskafka-replication"><span class="td-sidebar-nav-active-item">Kafka Replication</span></a>
 </li>
   </ul>
 </li>
@@ -152,12 +153,24 @@
           <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
             
 <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
-<a id="print" href="https://www.devtokki.com/data-platform/printview/"><i class="fa fa-print fa-fw"></i> 전체 섹션 프린트</a>
+<a id="print" href="https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/printview/"><i class="fa fa-print fa-fw"></i> 전체 섹션 프린트</a>
 
 </div>
 
             
 
+
+<div class="td-toc"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#리플리케이션-동작-개요">리플리케이션 동작 개요</a></li>
+        <li><a href="#리더와-팔로워">리더와 팔로워</a></li>
+        <li><a href="#복제-유지와-커밋">복제 유지와 커밋</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
 
 
 
@@ -211,17 +224,26 @@
             
   
 
-            <nav aria-label="breadcrumb" class="td-breadcrumbs td-breadcrumbs__single">
+            <nav aria-label="breadcrumb" class="td-breadcrumbs">
   <ol class="breadcrumb">
-  <li class="breadcrumb-item active" aria-current="page">
+  <li class="breadcrumb-item">
     <a href="https://www.devtokki.com/data-platform/">Data Platform</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="https://www.devtokki.com/data-platform/apache-kafka/">Apache Kafka</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/">카프카 내부 동작 원리</a>
+  </li>
+  <li class="breadcrumb-item active" aria-current="page">
+    <a href="https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/kafka-replication/">Kafka Replication</a>
   </li>
   </ol>
 </nav>
             
 <div class="td-content">
-	<h1>Data Platform</h1>
-  
+	<h1>Kafka Replication</h1>
+	
 	<header class="article-meta">
 		
 
@@ -234,41 +256,68 @@
   
 
 		
-	</header>
+	</header>    
+	<p><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
+     crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8842908287515174"
+     data-ad-slot="6261283644"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+고가용성 분산 스트리밍 플랫폼인 카프카는 많은 데이터 파이프라인의 정중앙에 위치하는 메인 허브 역할을 하는데 만약 하드웨어의 문제나 점검 등으로 인해 정상적으로 동작하지 못해 전체 데이터 파이프라인에 영향을 미친다면 매우 큰 문제이다. 이러한 장애가 발생하더라도 중앙 데이터 허브로서 안정적인 서비스가 운영될 수 있도록 카프카 내부에서는 리플리케이션이라는 동작을 수행한다.</p>
+<h3 id="리플리케이션-동작-개요">리플리케이션 동작 개요</h3>
+<p>카프카는 브로커의 장애에도 불구하고 연속적으로 안정적인 서비스 제공함으로써 데이터 유실을 방지하며 유연성을 제공한다. 카프카의 리플리케이션 동작을 위해 토픽 생성 시 필숫값으로 <em><strong>replication factor</strong></em>라는 옵션을 설정해야 함.</p>
+<p>카프카는 해당 옵션을 이용해 관리자가 지정한 수만큼의 리플리케이션을 가질 수 있기 때문에 N개의 리플리케이션이 있는 경우 N - 1까지의 브로커 장애가 발생해도 메시지 손실 없이 안정적으로 메시지를 주고받을 수 있음.</p>
+<h3 id="리더와-팔로워">리더와 팔로워</h3>
+<p>카프카는 내부적으로 모두 동일한 리플리케이션들을 리더와 팔로워로 구분하고, 각자의 역할을 분담시킨다.</p>
+<p>리더는 리플리케이션 중 하나가 선정되며, 모든 읽기와 쓰기는 그 리더를 통해서만 가능하다. 프로듀서는 모든 리플리케이션에 메시지를 보내는 것이 아니라 리더에게만 메시지를 전송한다. 또한 컨슈머도 오직 리더로부터 메시지를 가져온다.</p>
+<figure>
+  <p align="center">
+    <img src ="/data/data-platform/apache-kafka/kafka-internals/leader-follower.png">
+  </p>
+  <figcaption align="center">리더와 팔로워 관계</figcaption>
+</figure>
+<p>위 그림에서 peter-test01 토픽의 파티션 수는 1이고, 리플리케이션 팩터 수는 3을 나타낸다. 그림에서 처럼 토픽의 파티션 번호를 함께 표시하는데, peter-test01-0은 peter-test01 토픽의 0번 파티션이라는 뜻 임.</p>
+<p>프로듀서는 peter-test01 토픽으로 메시지를 전송하는데, 파티션의 리더만 읽고 쓰기가 가능하므로 0번 파티션의 리더로 메시지를 보내며 컨슈머 동작에서도 역시 0번 파티션의 리더로부터 메시지를 가져온다.</p>
+<p>리더만 읽고 쓰기 동작을 하므로 나머지 팔로워들은 리더에 문제가 발생하거나 이슈가 있을 경우를 대비해 언제든지 새로운 리더가 될 준비를 함. 따라서 컨슈머가 토픽의 메시지를 꺼내 가는 것과 비슷한 동작으로 지속적으로 파티션의 리더가 새로운 메시지를 받았는지 확인하고, 새로운 메시지가 있다면 해당 메시지를 리더로부터 복제를 수행.</p>
+<h3 id="복제-유지와-커밋">복제 유지와 커밋</h3>
+<p>리더와 팔로워는 <strong>ISR(InSyncReplica)라는 논리적 그룹</strong>으로 묶여 있음. 이렇게 리더와 팔로워를 별도의 그룹으로 나누는 이유는 기본적으로 해당 그룹 안에 속한 팔로워들만이 새로운 리더의 자격을 가질 수 있기 때문. 즉, <strong>ISR 그룹에 속하지 못한 팔로워는 새로운 리더의 자격을 가질 수 없음.</strong></p>
+<p>ISR내의 팔로워들은 리더와의 데이터 일치를 유지하기 위해 지속적으로 리더의 테이터를 따라게가 되고, 리더는 ISR 내 모든 팔로워가 메시지를 받을 때까지 기다림. 하지만 팔로워가 네트워크 오류, 브로커 장애 등 이유로 리더로부터 리플리케이션하지 못하는 경우도 발생할 수 있음. 뒤처진 팔로워는 이미 리더와의 데이터가 불일치한 상태에 놓여 있기 때문에 만약 이 팔로워에게 새로운 리더를 넘겨준다면 데이터의 정합성이나 메시지 손실 등의 문제가 발생할 수 있음. 따라서 파티션의 리더는 팔로워들이 뒤처지지 않고 리플리케이션 동작을 잘하고 있는지 감사. 즉 리더에 뒤처지지 않고 잘 따라잡고 있는 팔로워들만이 ISR 그룹에 속하게 되며, 리더에 장애가 발생할 경우 새로운 리더의 자격을 얻을 수 있는 것임.</p>
+<p>리더는 읽고 쓰는 동작은 물론, 팔로워가 리플리케이션 동작을 잘 수행하고 있는지도 판단 함. 만약 팔로워가 특정 주기의 시간만큼 복제 요청을 하지 않는다면, 리더는 해당 팔로워가 리플리케이션 동작에 문제가 발생했다고 판단해 ISR 그룹에서 추방 함.</p>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>카프카 클러스터 운영 중 특정 토픽의 상태가 의심되거나 문제가 있다고 판단되면, 토픽 상세보기 명령을 통해 현재 ISR 상태를 점검해 봄으로써, 현재 토픽의 상태가 양호한지 불량한지 육안으로 확인 할 수 있음.</p>
+</blockquote>
+<p>ISR 내에서 모든 팔로워의 복제가 완료되면, 리더는 내부적으로 커밋되었다는 표시를 하기 됨. 마지막 커밋 오프셋 위치는 **하이워터마크(high water mark)**라고 부름.</p>
+<p>즉, 커밋되었다는 것은 리플리케이션 팩터 수의 모든 리플리케이션이 전부 메시지를 저장했음을 의미하며 <strong>커밋된 메시지만 컨슈머가 읽어갈 수 있음</strong>. 카프카에서 커밋되지 않은 메시지를 컨슈머가 읽을 수 없게 하는 이유는 바로 <strong>메시지의 일관성을 유지하기 위함</strong>.</p>
+<p>모든 브로커는 재시작될 때, 커밋된 메시지를 유지하기 위해 로컬 디스크의 **‘replication-offset-checkpoint’**라는 파일에 마지막 커밋 오프셋 위치를 저장.</p>
+<p><strong>‘replication-offset-checkpoint’</strong> 파일은 브로커 설정 파일에서 설정한 로그 디렉토리 경로에 있으며, 브로커 설정 파일의 로그 디렉토리는 /data/kafka-logs로 설정되어 있으므로, 해당 디렉토리 하위에 위치.</p>
+<blockquote>
+<p>🛠 만약 특정 토픽 또는 파티션에 복제가 되지 않거나 문제가 있다고 판단되는 경우, ‘<em>replication-offset-checkpoint’</em> 라는 파일의 내용을 확인하고 리플리케이션되고 있는 다른 브로커들과 비교해 살펴보면, 어떤 브로커, 토픽, 파티션에 문제가 있는지 파악 할 수 있음.</p>
+</blockquote>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
+     crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8842908287515174"
+     data-ad-slot="6261283644"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 	
-
-<div class="pageinfo pageinfo-primary">
-<p>해당 카테고리는 Data Platform 관련된 기술 정보를 제공합니다.</p>
-
+	
+	
 </div>
 
-
-        <div class="section-index">
-    
-    
-    
-    
-    
-    
-    
-    
-    <hr class="panel-line">
-        
-            
-            <div class="entry">
-                <h5>
-                    <a href="/data-platform/apache-kafka/">Apache Kafka</a>
-                </h5>
-                <p></p>
-            </div>
-        
-    
-</div>
-
-	
-	
-	
-</div>
 
           </main>
         </div>
