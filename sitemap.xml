@@ -33,6 +33,11 @@
   </url>
 
   <url>
+    <loc>https://www.devtokki.com/data-platform/apache-spark/tips/dataframe-column-present-check/</loc>
+    <lastmod>2022-06-22T14:48:23+09:00</lastmod>
+  </url>
+
+  <url>
     <loc>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/kafka-replication/</loc>
     <lastmod>2022-06-22T01:30:56+09:00</lastmod>
   </url>
