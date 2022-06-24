@@ -15,47 +15,7 @@
     
     
     <item>
-      <title>Data-Platform: Tips</title>
-      <link>https://www.devtokki.com/data-platform/apache-spark/tips/</link>
-      <pubDate>Wed, 22 Jun 2022 09:16:35 +0900</pubDate>
-      
-      <guid>https://www.devtokki.com/data-platform/apache-spark/tips/</guid>
-      <description>
-        
-        
-        
-
-&lt;div class=&#34;pageinfo pageinfo-primary&#34;&gt;
-&lt;p&gt;본 페이지는 Apache Spark 관련 Tip에 대해 정리한 내용을 제공합니다.&lt;/p&gt;
-
-&lt;/div&gt;
-
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Data-Platform: Apache Spark</title>
-      <link>https://www.devtokki.com/data-platform/apache-spark/</link>
-      <pubDate>Wed, 22 Jun 2022 09:16:35 +0900</pubDate>
-      
-      <guid>https://www.devtokki.com/data-platform/apache-spark/</guid>
-      <description>
-        
-        
-        
-
-&lt;div class=&#34;pageinfo pageinfo-primary&#34;&gt;
-&lt;p&gt;본 페이지는 Apache Spark에 대해 공부한 내용을 제공합니다.&lt;/p&gt;
-
-&lt;/div&gt;
-
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Data-Platform: DataFrame에서 Column 체크</title>
+      <title>Data-Platform: DataFrame에서 Column 유무 체크 방법</title>
       <link>https://www.devtokki.com/data-platform/apache-spark/tips/dataframe-column-present-check/</link>
       <pubDate>Wed, 22 Jun 2022 12:51:21 +0900</pubDate>
       
@@ -244,6 +204,46 @@ Column의 유무를 check하기 위해 &lt;span style=&#34;background-color:#BDB
 &lt;script&gt;
      (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Data-Platform: Tips</title>
+      <link>https://www.devtokki.com/data-platform/apache-spark/tips/</link>
+      <pubDate>Wed, 22 Jun 2022 09:16:35 +0900</pubDate>
+      
+      <guid>https://www.devtokki.com/data-platform/apache-spark/tips/</guid>
+      <description>
+        
+        
+        
+
+&lt;div class=&#34;pageinfo pageinfo-primary&#34;&gt;
+&lt;p&gt;본 페이지는 Apache Spark 관련 Tip에 대해 정리한 내용을 제공합니다.&lt;/p&gt;
+
+&lt;/div&gt;
+
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Data-Platform: Apache Spark</title>
+      <link>https://www.devtokki.com/data-platform/apache-spark/</link>
+      <pubDate>Wed, 22 Jun 2022 09:16:35 +0900</pubDate>
+      
+      <guid>https://www.devtokki.com/data-platform/apache-spark/</guid>
+      <description>
+        
+        
+        
+
+&lt;div class=&#34;pageinfo pageinfo-primary&#34;&gt;
+&lt;p&gt;본 페이지는 Apache Spark에 대해 공부한 내용을 제공합니다.&lt;/p&gt;
+
+&lt;/div&gt;
+
 
       </description>
     </item>

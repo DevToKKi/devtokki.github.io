@@ -4,8 +4,6 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="generator" content="Hugo 0.94.0" />
-<link rel="alternate" type="text/html" href="https://www.devtokki.com/data-platform/apache-spark/tips/printview/">
-<link rel="alternate" type="application/rss&#43;xml" href="https://www.devtokki.com/data-platform/apache-spark/tips/index.xml">
 <meta name="robots" content="index, follow">
 
 
@@ -20,24 +18,22 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Tips | DevToKKi</title>
-<meta name="description" content="
+<title>Dataframe 에서 그룹 별 첫 번째 행 추출하는 방법 | DevToKKi</title>
+<meta name="description" content="데이터 프레임에서 그룹별 첫 번째 행 추출하는 방법을 설명합니다.">
+<meta property="og:title" content="Dataframe 에서 그룹 별 첫 번째 행 추출하는 방법" />
+<meta property="og:description" content="데이터 프레임에서 그룹별 첫 번째 행 추출하는 방법을 설명합니다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.devtokki.com/data-platform/apache-spark/tips/dataframe-select-first-row-of-each-group/" /><meta property="article:section" content="data-platform" />
+<meta property="article:published_time" content="2022-06-23T13:04:46+09:00" />
+<meta property="article:modified_time" content="2022-06-23T13:04:46+09:00" /><meta property="og:site_name" content="DevToKKi" />
 
-
-본 페이지는 Apache Spark 관련 Tip에 대해 정리한 내용을 제공합니다.
-
-
-
-">
-<meta property="og:title" content="Tips" />
-<meta property="og:description" content="DevToKKi Blog" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.devtokki.com/data-platform/apache-spark/tips/" /><meta property="og:site_name" content="DevToKKi" />
-
-<meta itemprop="name" content="Tips">
-<meta itemprop="description" content="DevToKKi Blog"><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Tips"/>
-<meta name="twitter:description" content="DevToKKi Blog"/>
+<meta itemprop="name" content="Dataframe 에서 그룹 별 첫 번째 행 추출하는 방법">
+<meta itemprop="description" content="데이터 프레임에서 그룹별 첫 번째 행 추출하는 방법을 설명합니다."><meta itemprop="datePublished" content="2022-06-23T13:04:46+09:00" />
+<meta itemprop="dateModified" content="2022-06-23T13:04:46+09:00" />
+<meta itemprop="wordCount" content="307">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Dataframe 에서 그룹 별 첫 번째 행 추출하는 방법"/>
+<meta name="twitter:description" content="데이터 프레임에서 그룹별 첫 번째 행 추출하는 방법을 설명합니다."/>
 
 
 
@@ -51,7 +47,7 @@
   crossorigin="anonymous"></script>
 
   </head>
-  <body class="td-section">
+  <body class="td-page">
     <header>
       
 <nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" style="background-color:#1b251c">
@@ -143,12 +139,12 @@
   <a href="/data-platform/apache-spark/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-spark"><span class="">Apache Spark</span></a>
   <ul class="ul-2 foldable">
     <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-data-platformapache-sparktips-li">
-  <a href="/data-platform/apache-spark/tips/" class="align-left pl-0 active td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-sparktips"><span class="td-sidebar-nav-active-item">Tips</span></a>
+  <a href="/data-platform/apache-spark/tips/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-sparktips"><span class="">Tips</span></a>
   <ul class="ul-3 foldable">
     <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-sparktipsdataframe-column-present-check-li">
   <a href="/data-platform/apache-spark/tips/dataframe-column-present-check/" title="DataFrame에서 Column 유무 체크 방법" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-sparktipsdataframe-column-present-check"><span class="">DataFrame에서 Column 체크</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-sparktipsdataframe-select-first-row-of-each-group-li">
-  <a href="/data-platform/apache-spark/tips/dataframe-select-first-row-of-each-group/" title="Dataframe 에서 그룹 별 첫 번째 행 추출하는 방법" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-sparktipsdataframe-select-first-row-of-each-group"><span class="">그룹 별 첫 번째 행 추출하기</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-data-platformapache-sparktipsdataframe-select-first-row-of-each-group-li">
+  <a href="/data-platform/apache-spark/tips/dataframe-select-first-row-of-each-group/" title="Dataframe 에서 그룹 별 첫 번째 행 추출하는 방법" class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-sparktipsdataframe-select-first-row-of-each-group"><span class="td-sidebar-nav-active-item">그룹 별 첫 번째 행 추출하기</span></a>
 </li>
   </ul>
 </li>
@@ -170,6 +166,17 @@
 
             
 
+
+<div class="td-toc"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#테스트-셋-준비">테스트 셋 준비</a></li>
+        <li><a href="#brand-그룹-별-price-가-가장-높은-행-추출"><em>&lsquo;brand&rsquo;</em> 그룹 별 <em>&lsquo;price&rsquo;</em> 가 가장 높은 행 추출</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
 
 
 
@@ -243,15 +250,18 @@
   <li class="breadcrumb-item">
     <a href="https://www.devtokki.com/data-platform/apache-spark/">Apache Spark</a>
   </li>
-  <li class="breadcrumb-item active" aria-current="page">
+  <li class="breadcrumb-item">
     <a href="https://www.devtokki.com/data-platform/apache-spark/tips/">Tips</a>
+  </li>
+  <li class="breadcrumb-item active" aria-current="page">
+    <a href="https://www.devtokki.com/data-platform/apache-spark/tips/dataframe-select-first-row-of-each-group/">그룹 별 첫 번째 행 추출하기</a>
   </li>
   </ol>
 </nav>
             
 <div class="td-content">
-	<h1>Tips</h1>
-  
+	<h1>Dataframe 에서 그룹 별 첫 번째 행 추출하는 방법</h1>
+	<div class="lead">데이터 프레임에서 그룹별 첫 번째 행 추출하는 방법을 설명합니다.</div>
 	<header class="article-meta">
 		
 
@@ -260,66 +270,95 @@
       
 
 
-<div class="taxonomy taxonomy-terms-article taxo-categories">
-  <h5 class="taxonomy-title">Categories:</h5>
-  <ul class="taxonomy-terms">
-    
-      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/data-platform/" data-taxonomy-term="data-platform"><span class="taxonomy-label">data platform</span></a></li>
-    
-      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/spark/" data-taxonomy-term="spark"><span class="taxonomy-label">spark</span></a></li>
-    
-      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/tips/" data-taxonomy-term="tips"><span class="taxonomy-label">tips</span></a></li>
-    
-  </ul>
-</div>
-
     
   
 
 		
-	</header>
+	</header>    
+	<p><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
+     crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8842908287515174"
+     data-ad-slot="6261283644"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+SparkSQL의 window 함수를 이용해 DataFrame 에서 각 그룹별 최상위 행을 추출하는 방법을 설명합니다.</p>
+<h3 id="테스트-셋-준비">테스트 셋 준비</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">val</span> <span style="color:#000">testData</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">Seq</span><span style="color:#ce5c00;font-weight:bold">(</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Nike Dunk Low Retro Black&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;Nike&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;179,000&#34;</span><span style="color:#ce5c00;font-weight:bold">),</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Nike x Off-White Air Force 1 Mid SP White&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;Nike&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;234,000&#34;</span><span style="color:#ce5c00;font-weight:bold">),</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Nike Air Force 1 &#39;07 Low White&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;Nike&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;127,000&#34;</span><span style="color:#ce5c00;font-weight:bold">),</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Nike Dunk Low Retro Valerian Blue&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;Nike&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;166,000&#34;</span><span style="color:#ce5c00;font-weight:bold">),</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Adidas Yeezy Foam RNNR Onyx&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;Adidas&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;190,000&#34;</span><span style="color:#ce5c00;font-weight:bold">),</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Adidas Yeezy Foam RNNR Stone Sage&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;Adidas&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;197,000&#34;</span><span style="color:#ce5c00;font-weight:bold">),</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Adidas Yeezy Boost 350 V2 Onyx&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;Adidas&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;322,000&#34;</span><span style="color:#ce5c00;font-weight:bold">),</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Adidas Yeezy Slide Pure - Re-Release Ver.&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;Adidas&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;161,000&#34;</span><span style="color:#ce5c00;font-weight:bold">),</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Puma x Maison Kitsune Roma White&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;Puma&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;200,000&#34;</span><span style="color:#ce5c00;font-weight:bold">),</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Puma x Rick and Morty MB.01 Jasmine Green Energy Rose&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;Puma&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;319,000&#34;</span><span style="color:#ce5c00;font-weight:bold">),</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Puma x Ader Error Vaderon White&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;Puma&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;277,000&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ce5c00;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">spark.implicits._</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">val</span> <span style="color:#000">df</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">testData</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">toDF</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;model&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;brand&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;price&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">df</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">show</span><span style="color:#ce5c00;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// +--------------------+------+-------+
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// |               model| brand|  price|
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// +--------------------+------+-------+
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// |Nike Dunk Low Ret...|  Nike|179,000|
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// |Nike x Off-White ...|  Nike|234,000|
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// |Nike Air Force 1 ...|  Nike|127,000|
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// |Nike Dunk Low Ret...|  Nike|166,000|
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// |Adidas Yeezy Foam...|Adidas|190,000|
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// |Adidas Yeezy Foam...|Adidas|197,000|
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// |Adidas Yeezy Boos...|Adidas|322,000|
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// |Adidas Yeezy Slid...|Adidas|161,000|
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// |Puma x Maison Kit...|  Puma|200,000|
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// |Puma x Rick and M...|  Puma|319,000|
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// |Puma x Ader Error...|  Puma|277,000|
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// +--------------------+------+-------+
+</span></span></span></code></pre></div><p>위 테스트 셋은 스포츠웨어 브랜드의 모델별 가격을 정리한 데이터 셋으로 각 브랜드 별 최고 모델에 대해 추출해 봅니다.</p>
+<h3 id="brand-그룹-별-price-가-가장-높은-행-추출"><em>&lsquo;brand&rsquo;</em> 그룹 별 <em>&lsquo;price&rsquo;</em> 가 가장 높은 행 추출</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">org.apache.spark.sql.expressions.Window</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">val</span> <span style="color:#000">window</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">Window</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">partitionBy</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;brand&#34;</span><span style="color:#ce5c00;font-weight:bold">).</span><span style="color:#000">orderBy</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">col</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;price&#34;</span><span style="color:#ce5c00;font-weight:bold">).</span><span style="color:#000">desc</span><span style="color:#ce5c00;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">val</span> <span style="color:#000">extractedDF</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">df</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">withColumn</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;row&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">row_number</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">over</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">window</span><span style="color:#ce5c00;font-weight:bold">)).</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">where</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">col</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;row&#34;</span><span style="color:#ce5c00;font-weight:bold">).</span><span style="color:#000">equalTo</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#ce5c00;font-weight:bold">)).</span><span style="color:#000">drop</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;row&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">extractedDF</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">show</span><span style="color:#ce5c00;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// +--------------------+------+-------+
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// |               model| brand|  price|
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// +--------------------+------+-------+
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// |Nike x Off-White ...|  Nike|234,000|
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// |Puma x Rick and M...|  Puma|319,000|
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// |Adidas Yeezy Boos...|Adidas|322,000|
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// +--------------------+------+-------+
+</span></span></span></code></pre></div><p>먼저  &lsquo;brand&rsquo; 그룹을 지정하고 &lsquo;price&rsquo; 컬럼에 대해 오름차순으로 정리하는 windowSpec을 생성합니다.
+DataFrame에서 window 함수인 row_number를 이용하여 새로운 컬럼 &lsquo;row&rsquo;를 추가합니다.
+where 조건을 통해 &lsquo;row&rsquo; == 1 조건의 행만 추출한 후, &ldquo;row&rdquo; 컬럼을 삭제합니다.
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
+     crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8842908287515174"
+     data-ad-slot="6261283644"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
 	
-
-<div class="pageinfo pageinfo-primary">
-<p>본 페이지는 Apache Spark 관련 Tip에 대해 정리한 내용을 제공합니다.</p>
-
+	
+	
 </div>
 
-
-        <div class="section-index">
-    
-    
-    
-    
-    
-    
-    
-    
-    <hr class="panel-line">
-        
-            
-            <div class="entry">
-                <h5>
-                    <a href="/data-platform/apache-spark/tips/dataframe-column-present-check/">DataFrame에서 Column 유무 체크 방법</a>
-                </h5>
-                <p>DataFrame에서 Column 체크하는 방법을 설명합니다.</p>
-            </div>
-        
-            
-            <div class="entry">
-                <h5>
-                    <a href="/data-platform/apache-spark/tips/dataframe-select-first-row-of-each-group/">Dataframe 에서 그룹 별 첫 번째 행 추출하는 방법</a>
-                </h5>
-                <p>데이터 프레임에서 그룹별 첫 번째 행 추출하는 방법을 설명합니다.</p>
-            </div>
-        
-    
-</div>
-
-	
-	
-	
-</div>
 
           </main>
         </div>
