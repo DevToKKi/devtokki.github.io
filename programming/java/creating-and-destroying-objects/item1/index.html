@@ -18,25 +18,25 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>카프카의 핵심 개념 | DevToKKi</title>
-<meta name="description" content="카프카가 높은 처리량과 안정성을 지니게 된 특성들에 대해 설명
+<title>Item1 :생성자 대신 정적 팩터리 메서드를 고려하라 | DevToKKi</title>
+<meta name="description" content="일반적인 클래스의 인스턴스를 생성하는 방법은 public 생성자를 호출하는 방법이다.  하지만 생성자와 별도로 정적 팩터리 메서드(static factory method)를 제공할 수 있다. 해당 클래스의 인스턴스를 반환하는 단순한 정적 메서드에 대해 알아본다.
 ">
-<meta property="og:title" content="카프카의 핵심 개념" />
-<meta property="og:description" content="카프카가 높은 처리량과 안정성을 지니게 된 특성들에 대해 설명
+<meta property="og:title" content="Item1 :생성자 대신 정적 팩터리 메서드를 고려하라" />
+<meta property="og:description" content="일반적인 클래스의 인스턴스를 생성하는 방법은 public 생성자를 호출하는 방법이다.  하지만 생성자와 별도로 정적 팩터리 메서드(static factory method)를 제공할 수 있다. 해당 클래스의 인스턴스를 반환하는 단순한 정적 메서드에 대해 알아본다.
 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/" /><meta property="article:section" content="data-platform" />
-<meta property="article:published_time" content="2022-04-21T11:05:08+09:00" />
-<meta property="article:modified_time" content="2022-06-21T15:53:50+09:00" /><meta property="og:site_name" content="DevToKKi" />
+<meta property="og:url" content="https://www.devtokki.com/programming/java/creating-and-destroying-objects/item1/" /><meta property="article:section" content="programming" />
+<meta property="article:published_time" content="2022-09-06T01:17:44+09:00" />
+<meta property="article:modified_time" content="2022-09-06T01:17:44+09:00" /><meta property="og:site_name" content="DevToKKi" />
 
-<meta itemprop="name" content="카프카의 핵심 개념">
-<meta itemprop="description" content="카프카가 높은 처리량과 안정성을 지니게 된 특성들에 대해 설명
-"><meta itemprop="datePublished" content="2022-04-21T11:05:08+09:00" />
-<meta itemprop="dateModified" content="2022-06-21T15:53:50+09:00" />
-<meta itemprop="wordCount" content="460">
+<meta itemprop="name" content="Item1 :생성자 대신 정적 팩터리 메서드를 고려하라">
+<meta itemprop="description" content="일반적인 클래스의 인스턴스를 생성하는 방법은 public 생성자를 호출하는 방법이다.  하지만 생성자와 별도로 정적 팩터리 메서드(static factory method)를 제공할 수 있다. 해당 클래스의 인스턴스를 반환하는 단순한 정적 메서드에 대해 알아본다.
+"><meta itemprop="datePublished" content="2022-09-06T01:17:44+09:00" />
+<meta itemprop="dateModified" content="2022-09-06T01:17:44+09:00" />
+<meta itemprop="wordCount" content="521">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="카프카의 핵심 개념"/>
-<meta name="twitter:description" content="카프카가 높은 처리량과 안정성을 지니게 된 특성들에 대해 설명
+<meta name="twitter:title" content="Item1 :생성자 대신 정적 팩터리 메서드를 고려하라"/>
+<meta name="twitter:description" content="일반적인 클래스의 인스턴스를 생성하는 방법은 public 생성자를 호출하는 방법이다.  하지만 생성자와 별도로 정적 팩터리 메서드(static factory method)를 제공할 수 있다. 해당 클래스의 인스턴스를 반환하는 단순한 정적 메서드에 대해 알아본다.
 "/>
 
 
@@ -83,7 +83,7 @@
 				
 				
 				
-				<a class="nav-link active" href="/data-platform/" ><span class="active">Data Platform</span></a>
+				<a class="nav-link" href="/data-platform/" ><span>Data Platform</span></a>
 			</li>
 			
 			<li class="nav-item mr-4 mb-2 mb-lg-0">
@@ -95,7 +95,7 @@
 				
 				
 				
-				<a class="nav-link" href="/programming/" ><span>Programming</span></a>
+				<a class="nav-link active" href="/programming/" ><span class="active">Programming</span></a>
 			</li>
 			
 			
@@ -121,46 +121,17 @@
   </form>
   <nav class="collapse td-sidebar-nav" id="td-section-nav">
     <ul class="td-sidebar-nav__section pr-md-3 ul-0">
-      <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-data-platform-li">
-  <a href="/data-platform/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-data-platform"><span class="">Data Platform</span></a>
+      <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-programming-li">
+  <a href="/programming/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-programming"><span class="">Programming</span></a>
   <ul class="ul-1">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-data-platformapache-kafka-li">
-  <a href="/data-platform/apache-kafka/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-kafka"><span class="">Apache Kafka</span></a>
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-programmingjava-li">
+  <a href="/programming/java/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-programmingjava"><span class="">Java</span></a>
   <ul class="ul-2 foldable">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-data-platformapache-kafkakafka-basic-and-structure-li">
-  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-kafkakafka-basic-and-structure"><span class="">카프카 기본 개념과 구조</span></a>
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-programmingjavacreating-and-destroying-objects-li">
+  <a href="/programming/java/creating-and-destroying-objects/" title="Creating and Destroying Objects" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-programmingjavacreating-and-destroying-objects"><span class="">객체 생성과 파괴</span></a>
   <ul class="ul-3 foldable">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-basic-and-structurebasic-li">
-  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/basic/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurebasic"><span class="">카프카 기초 다지기</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-data-platformapache-kafkakafka-basic-and-structurekey-concept-li">
-  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/" class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekey-concept"><span class="td-sidebar-nav-active-item">카프카의 핵심 개념</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-producer-overview-li">
-  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-producer-overview"><span class="">프로듀서 기본 동작 및 주요 옵션</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-consumer-overview-li">
-  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-overview/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-consumer-overview"><span class="">컨슈머 기본 동작 및 주요 옵션</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-consumer-group-li">
-  <a href="/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-basic-and-structurekafka-consumer-group"><span class="">컨슈머 그룹</span></a>
-</li>
-  </ul>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-data-platformapache-kafkakafka-internals-li">
-  <a href="/data-platform/apache-kafka/kafka-internals/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-kafkakafka-internals"><span class="">카프카 내부 동작 원리</span></a>
-  <ul class="ul-3 foldable">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-kafkakafka-internalskafka-replication-li">
-  <a href="/data-platform/apache-kafka/kafka-internals/kafka-replication/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-kafkakafka-internalskafka-replication"><span class="">카프카 리플리케이션(Replication)</span></a>
-</li>
-  </ul>
-</li>
-  </ul>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-data-platformapache-spark-li">
-  <a href="/data-platform/apache-spark/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-spark"><span class="">Apache Spark</span></a>
-  <ul class="ul-2 foldable">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-data-platformapache-sparktips-li">
-  <a href="/data-platform/apache-spark/tips/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-data-platformapache-sparktips"><span class="">Tips</span></a>
-  <ul class="ul-3 foldable">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-sparktipsdataframe-column-present-check-li">
-  <a href="/data-platform/apache-spark/tips/dataframe-column-present-check/" title="DataFrame에서 Column 유무 체크 방법" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-sparktipsdataframe-column-present-check"><span class="">DataFrame에서 Column 체크</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-data-platformapache-sparktipsdataframe-select-first-row-of-each-group-li">
-  <a href="/data-platform/apache-spark/tips/dataframe-select-first-row-of-each-group/" title="Dataframe 에서 그룹 별 첫 번째 행 추출하는 방법" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-data-platformapache-sparktipsdataframe-select-first-row-of-each-group"><span class="">그룹 별 첫 번째 행 추출하기</span></a>
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-programmingjavacreating-and-destroying-objectsitem1-li">
+  <a href="/programming/java/creating-and-destroying-objects/item1/" title="Item1 :생성자 대신 정적 팩터리 메서드를 고려하라" class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id="m-programmingjavacreating-and-destroying-objectsitem1"><span class="td-sidebar-nav-active-item">Item1</span></a>
 </li>
   </ul>
 </li>
@@ -176,7 +147,7 @@
           <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
             
 <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
-<a id="print" href="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/printview/"><i class="fa fa-print fa-fw"></i> 전체 섹션 프린트</a>
+<a id="print" href="https://www.devtokki.com/programming/java/creating-and-destroying-objects/printview/"><i class="fa fa-print fa-fw"></i> 전체 섹션 프린트</a>
 
 </div>
 
@@ -260,23 +231,23 @@
             <nav aria-label="breadcrumb" class="td-breadcrumbs">
   <ol class="breadcrumb">
   <li class="breadcrumb-item">
-    <a href="https://www.devtokki.com/data-platform/">Data Platform</a>
+    <a href="https://www.devtokki.com/programming/">Programming</a>
   </li>
   <li class="breadcrumb-item">
-    <a href="https://www.devtokki.com/data-platform/apache-kafka/">Apache Kafka</a>
+    <a href="https://www.devtokki.com/programming/java/">Java</a>
   </li>
   <li class="breadcrumb-item">
-    <a href="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/">카프카 기본 개념과 구조</a>
+    <a href="https://www.devtokki.com/programming/java/creating-and-destroying-objects/">객체 생성과 파괴</a>
   </li>
   <li class="breadcrumb-item active" aria-current="page">
-    <a href="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/">카프카의 핵심 개념</a>
+    <a href="https://www.devtokki.com/programming/java/creating-and-destroying-objects/item1/">Item1</a>
   </li>
   </ol>
 </nav>
             
 <div class="td-content">
-	<h1>카프카의 핵심 개념</h1>
-	<div class="lead">카프카가 높은 처리량과 안정성을 지니게 된 특성들에 대해 설명</div>
+	<h1>Item1 :생성자 대신 정적 팩터리 메서드를 고려하라</h1>
+	<div class="lead">일반적인 클래스의 인스턴스를 생성하는 방법은 public 생성자를 호출하는 방법이다.  하지만 생성자와 별도로 정적 팩터리 메서드(static factory method)를 제공할 수 있다. 해당 클래스의 인스턴스를 반환하는 단순한 정적 메서드에 대해 알아본다.</div>
 	<header class="article-meta">
 		
 
@@ -289,11 +260,13 @@
   <h5 class="taxonomy-title">Categories:</h5>
   <ul class="taxonomy-terms">
     
-      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/data-platform/" data-taxonomy-term="data-platform"><span class="taxonomy-label">data platform</span></a></li>
+      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/programming/" data-taxonomy-term="programming"><span class="taxonomy-label">programming</span></a></li>
     
-      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/kafka/" data-taxonomy-term="kafka"><span class="taxonomy-label">kafka</span></a></li>
+      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/effective/" data-taxonomy-term="effective"><span class="taxonomy-label">effective</span></a></li>
     
-      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/basic/" data-taxonomy-term="basic"><span class="taxonomy-label">basic</span></a></li>
+      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/java/" data-taxonomy-term="java"><span class="taxonomy-label">java</span></a></li>
+    
+      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/constructor/" data-taxonomy-term="constructor"><span class="taxonomy-label">constructor</span></a></li>
     
   </ul>
 </div>
@@ -303,89 +276,108 @@
 
 		
 	</header>    
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
-     crossorigin="anonymous"></script>
-
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8842908287515174"
-     data-ad-slot="6261283644"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<h3 id="주요-특징">주요 특징</h3>
-<h4 id="1-분산-시스템">1. 분산 시스템</h4>
-<p>카프카도 분산 시스템으로 유연한 리소스 확장 가능</p>
-<h4 id="2-페이지-캐시">2. 페이지 캐시</h4>
-<p align="center">
-  <img src="/data/data-platform/apache-kafka/kafka-basic-and-structure/page-cache.png">
-</p>
-<p>직접 디스크에 읽고 쓰는 대신 물리 메모리 중 애플리케이션이 사용하지 않는 일부 잔여 메모리를 활용하여 디스크 I/O에 대한 접근을 줄여 성능을 높일 수 있음</p>
-<h4 id="3-배치-전송-처리">3. 배치 전송 처리</h4>
-<p>카프카는 프로듀서, 컨슈머 클라이언트들과 서로 통신하면서 수 많은 메시지를 주고 받음.
-이 때 발생하는 많은 통신을 묶어서 처리 할 수 있다면, 단건으로 통신할 때에 비해 네트워크 오버헤드를 줄일 수 있음.
-뿐만 아니라 장기적으로는 더욱 빠르고 효율적으로 처리 할 수 있음.</p>
-<p>처리해야할 데이터 특성에 따라 실시간 또는 배치 작업으로 처리</p>
+	<p>해당 설명에서 정적 팩터리 메서드는  <strong>디자인 패턴에서의 팩터리 메서드 패턴을 의미하는 것이 아님!!!</strong> 주의!!</p>
+<p>&lsquo;생성자 대신 정적 팩터리 메서드를 고려하라&rsquo; 예를 들어 아래와 같은 경우이다</p>
 <ul>
-<li>상품 재고 수량 데이터 → 실시간 처리</li>
-<li>구매 이력 정보 로그 → 배치 처리</li>
-</ul>
-<h4 id="4-압축-전송">4. 압축 전송</h4>
-<ul>
-<li>카프카는 메시지 전송 시 좀 더 성능이 높은 압축 전송을 사용하는 것을 권장하나 메시지의 형식이나 크기에 따라 또 다른 결과를 나타낼 수 있으니 실제로 메시지를 전송해보면서 압축 타입별로 테스트 후 결정을 추천</li>
-<li>지원하는 압축 타입
-<ul>
-<li>높은 압축률 : gzip, zstd</li>
-<li>빠른 응답 속도 : snappy, lz4</li>
-</ul>
-</li>
-<li>압축 전송 이점
-<ul>
-<li>네트워크 대역폭 및 회선 비용 절감</li>
-<li>배치 전송과 결합해 사용할 경우 더욱 높은 효과를 얻을 수 있음</li>
-</ul>
-</li>
-</ul>
-<h4 id="5-토픽-파티션-오프셋">5. 토픽, 파티션, 오프셋</h4>
-<p>카프카는 토픽(topic)이라는 곳에 데이터를 저장하는데 메일 전송 시스템의 이메일 주소 정도의 개념으로 이해하면 됨.</p>
-<p>토픽은 병렬 처리를 위해 여러개의 파티션이라는 단위로 나뉨</p>
-<p>파티션의 메시지가 저장되는 위치를 오프셋이라고 부르며, 순차적으로 증가하는 숫자(64비트 정수) 형태</p>
-<figure>
-  <p align="center"> 
-    <img src="https://sookocheff.com/post/kafka/kafka-in-a-nutshell/log-anatomy.png">
-  </p>
-  <figcaption align="center">파티션과 오프셋(출처: https://sookocheff.com/post/kafka/kafka-in-a-nutshell/)</figcaption>
-</figure>
-<p>위 그림에서는 하나의 토픽이 3개의 파티션으로 나뉘며 프로듀스로부터 전송되는 메시지들의 쓰기 동작이 각 파티션별로 이뤄짐을 볼 수 있음.</p>
-<p>각 파티션마다 순차적으로 증가하는 숫자들은 오프셋 임</p>
-<p>각 파티션에서의 오프셋은 고유한 숫자로, 카프카에서는 <strong>오프셋을 통해 메시지의 순서를 보장</strong>하고 <strong>컨슈머에서는 마지막까지 읽은 위치를 알 수 있음</strong>.</p>
-<h4 id="6-고가용성-보장">6. 고가용성 보장</h4>
-<p>카프카는 분산 시스템이기 때문에 하나의 서버 또는 노드가 다운되어도 다른 서버 또는 노드가 장애가 발생한 서버의 역할을 대신해 안정적인 서비스 가능</p>
-<p>이런 <strong>고가용성을 보장하기 위해 리플리케이션 기능을 제공</strong></p>
-<p>토픽 자체를 복제하는 것이 아니라 토픽의 파티션을 복제하는 것임</p>
-<p>토픽을 생성할 때 옵션으로 리플리케이션 팩터 수를 지정할 수 있음</p>
-<p>원본과 리플리케이션을 구분하기 위해 리더(leader)와 팔로워(follower)라고 구분을 함</p>
-<ul>
-<li>리더(leader)는 프로듀서, 컨슈머로부터 오는 모든 읽기와 쓰기 요청을 처리</li>
-<li>팔로워(follower)는 오직 리더로부터 리플리케이션</li>
-</ul>
-<p>팔로워 수가 많을 수록 브로커의 디스크 공간도 소비되므로 이상적인 리플리케이션 팩터 수를 유지할 필요가 있으며 일반적으로 3으로 구성하도록 권장</p>
-<h4 id="7-주키퍼의-의존성">7. 주키퍼의 의존성</h4>
-<p>주키퍼는 많은 분산 애플리케이션에서 코디네이터 역할을 하는 애플리케이션으로 사용 됨</p>
-<p>여러 대의 서버를 앙상블(클러스터)로 구성하고, 살아 있는 노드 수가 과반수 이상 유지된다면 지속적인 서비스가 가능한 구조</p>
-<p>즉, 주키퍼는 반드시 홀수로 구성해야 함</p>
-<p>지노드(znode)를 이용해 카프카의 메타 정보가 주키퍼에 기록되며, 주키퍼는 이러한 지노드를 이용해 브로커의 노드 관리, 토픽 관리, 컨트롤러 관리 등을 수행</p>
-<p>최근 카프카에서 주키퍼에 대한 의존성을 제거하려는 움직임이 진행 중임</p>
-<ul>
-<li>Apache Kafka 2.8 버전부터 주키퍼 대신 kraft 를 사용할 수 있으나 아직은 개발 단계로 문서에서도 표기 되어 있음</li>
+<li>NG : BigInteger(int, int, Random) → <em>다양한 매개 변수에 따라 반환 객체에 대한 특성을 이해하기 어려움</em></li>
+<li>OK : BigInteger.probablePrime     → <em>반환 객체 특성을 이해하기 쉬움</em></li>
 </ul>
 <blockquote>
-<p><strong>Note</strong></p>
-<p>KRaft is in early access and should be used in development only. It is not suitable for production.</p>
-<p><a href="https://developer.confluent.io/learn/kraft/">https://developer.confluent.io/learn/kraft/</a></p>
+<p>정적 팩터리 메서드와 public 생성자는 각각의 쓰임새가 있으니 상대적인 장단점을 이해하고 사용하는 것이 좋음. 그래도 정적 팩터리를 사용하는 게 유리한 경우가 더 많으므로 무작정 public 생성자를 제공하는 습관이 있다면 고치자!!</p>
 </blockquote>
+<hr>
+<h4 id="정적-팩터리-메서드가-생성자보다-좋은-장점-다섯-가지">정적 팩터리 메서드가 생성자보다 좋은 장점 다섯 가지</h4>
+<h5 id="1-이해하기-쉬운-이름을-짓는게-가능">1. 이해하기 쉬운 이름을 짓는게 가능.</h5>
+<ul>
+<li>
+<p>생성자의 이름은 한개(클래스 며) 한정되어 있음.</p>
+</li>
+<li>
+<p>생성자를 구별하는 것은 매개변수 차이 뿐. 결국 사용자는 생성자의 차이를 이해하기 어려움.</p>
+<p>→ 정적 팩터리의 경우 이름만 잘 지으면 반환될 객체의 특성을 쉬이 표현 할 수 있다.</p>
+</li>
+</ul>
+<h5 id="2새로운-오브젝트를-생성할-필요가-없음-동일한-오브젝트를-사용">2.새로운 오브젝트를 생성할 필요가 없음. 동일한 오브젝트를 사용.</h5>
+<ul>
+<li>
+<p>이러한 특성으로 불변 클래스(immutable class)는 인스턴스를 미리 만들어 놓거나 새로 생성한 인스턴스를 캐싱해 재활용하는 식으로 불필요한 객체 생성을 피할 수 있음.</p>
+<p>→ 생성 비용이 큰 객체가 자주 요청되는 상황에 적용할 경우 성능을 상당히 끌여올려 줄 수 있는 방법!!(<strong>Flyweight pattern</strong>과 유사한 방법)</p>
+</li>
+<li>
+<p>반복되는 요청에 같은 객체를 반환하는 경우 정적 팩터리 방식의 클래스는 언제 어느 인스턴스를 살아 있게 할지 통제 할 수 있음</p>
+<p>→ 인스턴스 통제(instance-cotrolled) 클래스라 함. 인스턴스를 통제를 하면 클래스를 싱글턴으로 만들 수도 있고, 인스턴스화 불가로 만들 수 있으며, 불변 값 클래스에서 동일한 인스턴스가 단 하나뿐임을 보장할 수 있음.</p>
+</li>
+</ul>
+<h5 id="3-반환-타입의-하위-타입-객체를-반환할-수-있다">3. 반환 타입의 하위 타입 객체를 반환할 수 있다.</h5>
+<p>예를 들어, java.util.Collection에는 emptyList()라는 정적 팩터리 메서드가 있음. 다음과 같은 특징을 가짐.</p>
+<ul>
+<li>emptyList()는 내부 클래스 EmptyList의 인스턴스를 반환 함. 내부 클래스 EmptyList는, public이 아니기 때문에 외부로 부터 감춰짐.</li>
+<li>emptyList()의 반환 타입은 List 인터페이스임.</li>
+</ul>
+<p>그래서 Collection의 API는 매우 간결함. 프로그래머는 명시한 인터페이스대로 동작하는 객체를 얻을 것임을 알기에 굳이 알아보지 않아도 됨.
+그저 인터페이스의 사용 방법만 알아두면 됨.</p>
+<h5 id="4-입력-매개변수에-따라-매번-다른-클래스의-객체를-반환할-수-있다">4. 입력 매개변수에 따라 매번 다른 클래스의 객체를 반환할 수 있다.</h5>
+<p>반환 타입의 하위 타입이기만 하면 어떤 클래스의 객체를 반환하든 상관없음.</p>
+<h5 id="5-정적-팩터리-메서드를-작성하는-시점에는-반환할-객체의-클래스가-존재하지-않아도-된다-rarr-반환-서브타입은-런타임에-정해져도-ok">5. 정적 팩터리 메서드를 작성하는 시점에는 반환할 객체의 클래스가 존재하지 않아도 된다. (→ 반환 서브타입은 런타임에 정해져도 OK!)</h5>
+<p>예를 들어, JDBC의 DriverManager.getConnection()의 경우 해당.
+결과적으로 API로서의 유연성이 향상 됨.</p>
+<h4 id="단점-두-가지">단점 두 가지</h4>
+<h5 id="1-상속하려면-public이나-protected-생성자가-필요하니-정적-팩터리-메서드만-제공하면-하위-클래스를-만들-수-없다">1. 상속하려면 public이나 protected 생성자가 필요하니 정적 팩터리 메서드만 제공하면 하위 클래스를 만들 수 없다.</h5>
+<p>→ Collection 프레임워크의 유틸리티 구현 클래스들을 상속할 수 없음.
+예를 들어, java.util.Collections의 emtpyList()는 EmptyList를 반환되는데 private이기 때문에 EmptyList의 서브 클래스를 만들 수 없음.</p>
+<h5 id="2-정적-팩터리-메서드는-프로그래머가-찾기-어렵다">2. 정적 팩터리 메서드는 프로그래머가 찾기 어렵다.</h5>
+<p>→ 생성자처럼 API 설명에 명확히 드러나지 않아 정적 팩터리 메서드 방식 클래스를 인스턴스화할 방법을 알아내야 함. 아래와 같은 정적 팩터리 메서드에 사용하는 명명 방식을 이용하여 해당 문제를 완화해줘야 함.</p>
+<table>
+<thead>
+<tr>
+<th>명명 패턴</th>
+<th>예</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>from</td>
+<td>Date d = Date.from(instant);</td>
+<td>형변환</td>
+</tr>
+<tr>
+<td>of</td>
+<td>Set<Rank> faceCards = EnumSet.of(JACK, QUEEN, KING);</td>
+<td>적합 타입 반환하는 집계 메서드</td>
+</tr>
+<tr>
+<td>valueOf</td>
+<td>BigInteger prime = BigInteger.valueOf(Integer.MAX_VALUE);</td>
+<td>from과 of의 더 자세한 버전</td>
+</tr>
+<tr>
+<td>instnace / getInstacne</td>
+<td>StackWalker luke = StackWalker.getInstance(options);</td>
+<td>매개변수로 명시한 인스턴스 반환(같은 인스턴스임을 보장하지 않음)</td>
+</tr>
+<tr>
+<td>create / newInstance</td>
+<td>Object newArray = Array.newInstance(classObject, arrayLen);</td>
+<td>새로운 인스턴스 반환</td>
+</tr>
+<tr>
+<td>get<em>Type</em></td>
+<td>FileStore fs = Files.getFileStore(path);</td>
+<td>getInstance와 동일하나 생성할 클래스가 아닌 다른 클래스에 팩터리 메서드를 정의할 떄 씀</td>
+</tr>
+<tr>
+<td>new<em>Type</em></td>
+<td>BufferedReader br = Files.newBufferedReader(path);</td>
+<td>newInstance와 동일하나 생성할 클래스가 아닌 다른 클래스에 팩터리 메서드를 정의할 떄 씀</td>
+</tr>
+<tr>
+<td><em>type</em></td>
+<td>List<Complaint> litany = Collections.list(legacyLitany);</td>
+<td>get<em>Type</em>, new<em>Type</em> 심플 버전</td>
+</tr>
+</tbody>
+</table>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
      crossorigin="anonymous"></script>
 

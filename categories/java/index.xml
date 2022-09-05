@@ -15,11 +15,11 @@
     
     
     <item>
-      <title>Programming: Item1: 생성자 대신 정적 팩터리 메서드를 고려하라</title>
-      <link>https://www.devtokki.com/programming/java/item1/</link>
+      <title>Programming: Item1 :생성자 대신 정적 팩터리 메서드를 고려하라</title>
+      <link>https://www.devtokki.com/programming/java/creating-and-destroying-objects/item1/</link>
       <pubDate>Tue, 06 Sep 2022 01:17:44 +0900</pubDate>
       
-      <guid>https://www.devtokki.com/programming/java/item1/</guid>
+      <guid>https://www.devtokki.com/programming/java/creating-and-destroying-objects/item1/</guid>
       <description>
         
         
@@ -154,6 +154,26 @@
 
 &lt;div class=&#34;pageinfo pageinfo-primary&#34;&gt;
 &lt;p&gt;본 페이지는 java에 대해 공부한 내용을 제공합니다.&lt;/p&gt;
+
+&lt;/div&gt;
+
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Programming: Creating and Destroying Objects</title>
+      <link>https://www.devtokki.com/programming/java/creating-and-destroying-objects/</link>
+      <pubDate>Sun, 17 Apr 2022 03:40:29 +0900</pubDate>
+      
+      <guid>https://www.devtokki.com/programming/java/creating-and-destroying-objects/</guid>
+      <description>
+        
+        
+        
+
+&lt;div class=&#34;pageinfo pageinfo-primary&#34;&gt;
+&lt;p&gt;본 페이지는 객체에 대해 올바른 생성과 파괴 방법에 대해 공부한 내용을 정리합니다.&lt;/p&gt;
 
 &lt;/div&gt;
 
