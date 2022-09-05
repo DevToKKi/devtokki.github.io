@@ -33,7 +33,7 @@
 <meta itemprop="description" content="일반적인 클래스의 인스턴스를 생성하는 방법은 public 생성자를 호출하는 방법이다.  하지만 생성자와 별도로 정적 팩터리 메서드(static factory method)를 제공할 수 있다. 해당 클래스의 인스턴스를 반환하는 단순한 정적 메서드에 대해 알아본다.
 "><meta itemprop="datePublished" content="2022-09-06T01:17:44+09:00" />
 <meta itemprop="dateModified" content="2022-09-06T03:10:48+09:00" />
-<meta itemprop="wordCount" content="500">
+<meta itemprop="wordCount" content="521">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Item1: 생성자 대신 정적 팩터리 메서드를 고려하라"/>
 <meta name="twitter:description" content="일반적인 클래스의 인스턴스를 생성하는 방법은 public 생성자를 호출하는 방법이다.  하지만 생성자와 별도로 정적 팩터리 메서드(static factory method)를 제공할 수 있다. 해당 클래스의 인스턴스를 반환하는 단순한 정적 메서드에 대해 알아본다.
@@ -272,7 +272,10 @@
 <li>NG : BigInteger(int, int, Random) → <em>다양한 매개 변수에 따라 반환 객체에 대한 특성을 이해하기 어려움</em></li>
 <li>OK : BigInteger.probablePrime     → <em>반환 객체 특성을 이해하기 쉬움</em></li>
 </ul>
-<p>일단, static method를 검토해보고 애매하면 생성자를 선택하는 것을 추천.</p>
+<blockquote>
+<p>정적 팩터리 메서드와 public 생성자는 각각의 쓰임새가 있으니 상대적인 장단점을 이해하고 사용하는 것이 좋음. 그래도 정적 팩터리를 사용하는 게 유리한 경우가 더 많으므로 무작정 public 생성자를 제공하는 습관이 있다면 고치자!!</p>
+</blockquote>
+<hr>
 <h4 id="정적-팩터리-메서드가-생성자보다-좋은-장점-다섯-가지">정적 팩터리 메서드가 생성자보다 좋은 장점 다섯 가지</h4>
 <h5 id="1-이해하기-쉬운-이름을-짓는게-가능">1. 이해하기 쉬운 이름을 짓는게 가능.</h5>
 <ul>

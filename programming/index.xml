@@ -28,7 +28,10 @@
 &lt;li&gt;NG : BigInteger(int, int, Random) → &lt;em&gt;다양한 매개 변수에 따라 반환 객체에 대한 특성을 이해하기 어려움&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;OK : BigInteger.probablePrime     → &lt;em&gt;반환 객체 특성을 이해하기 쉬움&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;일단, static method를 검토해보고 애매하면 생성자를 선택하는 것을 추천.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;정적 팩터리 메서드와 public 생성자는 각각의 쓰임새가 있으니 상대적인 장단점을 이해하고 사용하는 것이 좋음. 그래도 정적 팩터리를 사용하는 게 유리한 경우가 더 많으므로 무작정 public 생성자를 제공하는 습관이 있다면 고치자!!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
 &lt;h4 id=&#34;정적-팩터리-메서드가-생성자보다-좋은-장점-다섯-가지&#34;&gt;정적 팩터리 메서드가 생성자보다 좋은 장점 다섯 가지&lt;/h4&gt;
 &lt;h5 id=&#34;1-이해하기-쉬운-이름을-짓는게-가능&#34;&gt;1. 이해하기 쉬운 이름을 짓는게 가능.&lt;/h5&gt;
 &lt;ul&gt;
