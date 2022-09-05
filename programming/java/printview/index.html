@@ -4,8 +4,9 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="generator" content="Hugo 0.96.0" />
-<link rel="alternate" type="application/rss&#43;xml" href="https://www.devtokki.com/categories/schema/index.xml">
-<meta name="robots" content="index, follow">
+<link rel="canonical" type="text/html" href="https://www.devtokki.com/programming/java/">
+<link rel="alternate" type="application/rss&#43;xml" href="https://www.devtokki.com/programming/java/index.xml">
+<meta name="robots" content="noindex, nofollow">
 
 
 <link rel="shortcut icon" href="/favicons/favicon.ico" >
@@ -19,16 +20,23 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>schema | DevToKKi</title>
-<meta name="description" content="">
-<meta property="og:title" content="schema" />
+<title>Java | DevToKKi</title>
+<meta name="description" content="
+
+
+본 페이지는 java에 대해 공부한 내용을 제공합니다.
+
+
+
+">
+<meta property="og:title" content="Java" />
 <meta property="og:description" content="DevToKKi Blog" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.devtokki.com/categories/schema/" /><meta property="og:site_name" content="DevToKKi" />
+<meta property="og:url" content="https://www.devtokki.com/programming/java/" /><meta property="og:site_name" content="DevToKKi" />
 
-<meta itemprop="name" content="schema">
+<meta itemprop="name" content="Java">
 <meta itemprop="description" content="DevToKKi Blog"><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="schema"/>
+<meta name="twitter:title" content="Java"/>
 <meta name="twitter:description" content="DevToKKi Blog"/>
 
 
@@ -43,7 +51,7 @@
   crossorigin="anonymous"></script>
 
   </head>
-  <body class="td-term">
+  <body class="td-section">
     <header>
       
 <nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" style="background-color:#1b251c">
@@ -87,7 +95,7 @@
 				
 				
 				
-				<a class="nav-link" href="/programming/" ><span>Programming</span></a>
+				<a class="nav-link active" href="/programming/" ><span class="active">Programming</span></a>
 			</li>
 			
 			
@@ -99,57 +107,190 @@
 </nav>
 
     </header>
-    <div class="container-fluid td-default td-outer">
-      <main role="main" class="td-main">
-        
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap">
+          <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
+            
+
+
+
+
 <div class="td-content">
-  <main class="taxonomy-taxonomy-page">
-    <h1>Category: <span>schema</span></h1>
-    <div>
+<div class="pageinfo pageinfo-primary d-print-none">
+<p>
+이 섹션의 다중 페이지 출력 화면임.
+<a href="#" onclick="print();return false;">여기를 클릭하여 프린트</a>.
+</p><p>
+<a href="/programming/java/">이 페이지의 일반 화면으로 돌아가기</a>.
+</p>
+</div>
+
+
+
+<h1 class="title">Java</h1>
+
+
+
+
+
+
+<div class="content">
       
-    </div>
-    <div>
-      
-        
-        <article class="article-teaser article-type-data-platform">
-          <h3><a href="/data-platform/apache-spark/tips/dataframe-column-present-check/">DataFrame에서 Column 유무 체크 방법</a></h3>
-          <p>DataFrame에서 Column 체크하는 방법을 설명합니다.</p>
-          <header class="article-meta">
-            
+
+<div class="pageinfo pageinfo-primary">
+<p>본 페이지는 java에 대해 공부한 내용을 제공합니다.</p>
+
+</div>
+
+
+</div>
+</div>
+
+
+  
+  
+  
+  
+
+  
+  
 
   
     
-      
+    
+	
+    
 
+<div class="td-content" style="">
+    
+	<h1 id="pg-3c2977acd1237089a2a2e9ce6e72af92">1 - Item1: 생성자 대신 정적 팩터리 메서드를 고려하라</h1>
+    <div class="lead">일반적인 클래스의 인스턴스를 생성하는 방법은 public 생성자를 호출하는 방법이다.  하지만 생성자와 별도로 정적 팩터리 메서드(static factory method)를 제공할 수 있다. 해당 클래스의 인스턴스를 반환하는 단순한 정적 메서드에 대해 알아본다.</div>
+	<p>해당 설명에서 정적 팩터리 메서드는  <strong>디자인 패턴에서의 팩터리 메서드 패턴을 의미하는 것이 아님!!!</strong> 주의!!</p>
+<p>&lsquo;생성자 대신 정적 팩터리 메서드를 고려하라&rsquo; 예를 들어 아래와 같은 경우이다</p>
+<ul>
+<li>NG : BigInteger(int, int, Random) → <em>다양한 매개 변수에 따라 반환 객체에 대한 특성을 이해하기 어려움</em></li>
+<li>OK : BigInteger.probablePrime     → <em>반환 객체 특성을 이해하기 쉬움</em></li>
+</ul>
+<p>일단, static method를 검토해보고 애매하면 생성자를 선택하는 것을 추천.</p>
+<h4 id="정적-팩터리-메서드가-생성자보다-좋은-장점-다섯-가지">정적 팩터리 메서드가 생성자보다 좋은 장점 다섯 가지</h4>
+<h5 id="1-이해하기-쉬운-이름을-짓는게-가능">1. 이해하기 쉬운 이름을 짓는게 가능.</h5>
+<ul>
+<li>
+<p>생성자의 이름은 한개(클래스 며) 한정되어 있음.</p>
+</li>
+<li>
+<p>생성자를 구별하는 것은 매개변수 차이 뿐. 결국 사용자는 생성자의 차이를 이해하기 어려움.</p>
+<p>→ 정적 팩터리의 경우 이름만 잘 지으면 반환될 객체의 특성을 쉬이 표현 할 수 있다.</p>
+</li>
+</ul>
+<h5 id="2새로운-오브젝트를-생성할-필요가-없음-동일한-오브젝트를-사용">2.새로운 오브젝트를 생성할 필요가 없음. 동일한 오브젝트를 사용.</h5>
+<ul>
+<li>
+<p>이러한 특성으로 불변 클래스(immutable class)는 인스턴스를 미리 만들어 놓거나 새로 생성한 인스턴스를 캐싱해 재활용하는 식으로 불필요한 객체 생성을 피할 수 있음.</p>
+<p>→ 생성 비용이 큰 객체가 자주 요청되는 상황에 적용할 경우 성능을 상당히 끌여올려 줄 수 있는 방법!!(<strong>Flyweight pattern</strong>과 유사한 방법)</p>
+</li>
+<li>
+<p>반복되는 요청에 같은 객체를 반환하는 경우 정적 팩터리 방식의 클래스는 언제 어느 인스턴스를 살아 있게 할지 통제 할 수 있음</p>
+<p>→ 인스턴스 통제(instance-cotrolled) 클래스라 함. 인스턴스를 통제를 하면 클래스를 싱글턴으로 만들 수도 있고, 인스턴스화 불가로 만들 수 있으며, 불변 값 클래스에서 동일한 인스턴스가 단 하나뿐임을 보장할 수 있음.</p>
+</li>
+</ul>
+<h5 id="3-반환-타입의-하위-타입-객체를-반환할-수-있다">3. 반환 타입의 하위 타입 객체를 반환할 수 있다.</h5>
+<p>예를 들어, java.util.Collection에는 emptyList()라는 정적 팩터리 메서드가 있음. 다음과 같은 특징을 가짐.</p>
+<ul>
+<li>emptyList()는 내부 클래스 EmptyList의 인스턴스를 반환 함. 내부 클래스 EmptyList는, public이 아니기 때문에 외부로 부터 감춰짐.</li>
+<li>emptyList()의 반환 타입은 List 인터페이스임.</li>
+</ul>
+<p>그래서 Collection의 API는 매우 간결함. 프로그래머는 명시한 인터페이스대로 동작하는 객체를 얻을 것임을 알기에 굳이 알아보지 않아도 됨.
+그저 인터페이스의 사용 방법만 알아두면 됨.</p>
+<h5 id="4-입력-매개변수에-따라-매번-다른-클래스의-객체를-반환할-수-있다">4. 입력 매개변수에 따라 매번 다른 클래스의 객체를 반환할 수 있다.</h5>
+<p>반환 타입의 하위 타입이기만 하면 어떤 클래스의 객체를 반환하든 상관없음.</p>
+<h5 id="5-정적-팩터리-메서드를-작성하는-시점에는-반환할-객체의-클래스가-존재하지-않아도-된다-rarr-반환-서브타입은-런타임에-정해져도-ok">5. 정적 팩터리 메서드를 작성하는 시점에는 반환할 객체의 클래스가 존재하지 않아도 된다. (→ 반환 서브타입은 런타임에 정해져도 OK!)</h5>
+<p>예를 들어, JDBC의 DriverManager.getConnection()의 경우 해당.
+결과적으로 API로서의 유연성이 향상 됨.</p>
+<h4 id="단점-두-가지">단점 두 가지</h4>
+<h5 id="1-상속하려면-public이나-protected-생성자가-필요하니-정적-팩터리-메서드만-제공하면-하위-클래스를-만들-수-없다">1. 상속하려면 public이나 protected 생성자가 필요하니 정적 팩터리 메서드만 제공하면 하위 클래스를 만들 수 없다.</h5>
+<p>→ Collection 프레임워크의 유틸리티 구현 클래스들을 상속할 수 없음.
+예를 들어, java.util.Collections의 emtpyList()는 EmptyList를 반환되는데 private이기 때문에 EmptyList의 서브 클래스를 만들 수 없음.</p>
+<h5 id="2-정적-팩터리-메서드는-프로그래머가-찾기-어렵다">2. 정적 팩터리 메서드는 프로그래머가 찾기 어렵다.</h5>
+<p>→ 생성자처럼 API 설명에 명확히 드러나지 않아 정적 팩터리 메서드 방식 클래스를 인스턴스화할 방법을 알아내야 함. 아래와 같은 정적 팩터리 메서드에 사용하는 명명 방식을 이용하여 해당 문제를 완화해줘야 함.</p>
+<table>
+<thead>
+<tr>
+<th>명명 패턴</th>
+<th>예</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>from</td>
+<td>Date d = Date.from(instant);</td>
+<td>형변환</td>
+</tr>
+<tr>
+<td>of</td>
+<td>Set<Rank> faceCards = EnumSet.of(JACK, QUEEN, KING);</td>
+<td>적합 타입 반환하는 집계 메서드</td>
+</tr>
+<tr>
+<td>valueOf</td>
+<td>BigInteger prime = BigInteger.valueOf(Integer.MAX_VALUE);</td>
+<td>from과 of의 더 자세한 버전</td>
+</tr>
+<tr>
+<td>instnace / getInstacne</td>
+<td>StackWalker luke = StackWalker.getInstance(options);</td>
+<td>매개변수로 명시한 인스턴스 반환(같은 인스턴스임을 보장하지 않음)</td>
+</tr>
+<tr>
+<td>create / newInstance</td>
+<td>Object newArray = Array.newInstance(classObject, arrayLen);</td>
+<td>새로운 인스턴스 반환</td>
+</tr>
+<tr>
+<td>get<em>Type</em></td>
+<td>FileStore fs = Files.getFileStore(path);</td>
+<td>getInstance와 동일하나 생성할 클래스가 아닌 다른 클래스에 팩터리 메서드를 정의할 떄 씀</td>
+</tr>
+<tr>
+<td>new<em>Type</em></td>
+<td>BufferedReader br = Files.newBufferedReader(path);</td>
+<td>newInstance와 동일하나 생성할 클래스가 아닌 다른 클래스에 팩터리 메서드를 정의할 떄 씀</td>
+</tr>
+<tr>
+<td><em>type</em></td>
+<td>List<Complaint> litany = Collections.list(legacyLitany);</td>
+<td>get<em>Type</em>, new<em>Type</em> 심플 버전</td>
+</tr>
+</tbody>
+</table>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
+     crossorigin="anonymous"></script>
 
-<div class="taxonomy taxonomy-terms-article taxo-categories">
-  <h5 class="taxonomy-title">Categories:</h5>
-  <ul class="taxonomy-terms">
-    
-      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/spark/" data-taxonomy-term="spark"><span class="taxonomy-label">spark</span></a></li>
-    
-      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/column/" data-taxonomy-term="column"><span class="taxonomy-label">column</span></a></li>
-    
-      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/type/" data-taxonomy-term="type"><span class="taxonomy-label">type</span></a></li>
-    
-      <li><a class="taxonomy-term" href="https://www.devtokki.com/categories/schema/" data-taxonomy-term="schema"><span class="taxonomy-label">schema</span></a></li>
-    
-  </ul>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8842908287515174"
+     data-ad-slot="6261283644"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 </div>
 
+
+
     
+	
   
 
-            
-          </header>
-        </article>
-      
-    </div>
-    <a href="https://www.devtokki.com/categories/" class="all-taxonomy-terms">[I18n] ui all Categories</a>
-  </main>
-</div>
 
-      </main>
+
+          </main>
+        </div>
+      </div>
       
 <footer class="py-5 row d-print-none" style="background-color:#1b251c">
   <div class="container-fluid mx-sm-5">

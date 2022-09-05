@@ -1,11 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>DevToKKi – Programming</title>
-    <link>https://www.devtokki.com/programming/</link>
-    <description>Recent content in Programming on DevToKKi</description>
+    <title>DevToKKi – constructor</title>
+    <link>https://www.devtokki.com/categories/constructor/</link>
+    <description>Recent content in constructor on DevToKKi</description>
     <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 06 Sep 2022 01:17:44 +0900</lastBuildDate>
     
-	  <atom:link href="https://www.devtokki.com/programming/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://www.devtokki.com/categories/constructor/index.xml" rel="self" type="application/rss+xml" />
     
     
       
