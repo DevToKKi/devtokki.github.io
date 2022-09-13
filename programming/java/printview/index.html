@@ -196,7 +196,7 @@
 
 <div class="td-content" style="">
     
-	<h1 id="pg-7d651736e4cf2628b58eafab38274c9a">1.1 - Item1 :생성자 대신 정적 팩터리 메서드를 고려하라</h1>
+	<h1 id="pg-7d651736e4cf2628b58eafab38274c9a">1.1 - Item1: 생성자 대신 정적 팩터리 메서드를 고려하라</h1>
     <div class="lead">일반적인 클래스의 인스턴스를 생성하는 방법은 public 생성자를 호출하는 방법이다.  하지만 생성자와 별도로 정적 팩터리 메서드(static factory method)를 제공할 수 있다. 해당 클래스의 인스턴스를 반환하는 단순한 정적 메서드에 대해 알아본다.</div>
 	<p>해당 설명에서 정적 팩터리 메서드는  <strong>디자인 패턴에서의 팩터리 메서드 패턴을 의미하는 것이 아님!!!</strong> 주의!!</p>
 <p>&lsquo;생성자 대신 정적 팩터리 메서드를 고려하라&rsquo; 예를 들어 아래와 같은 경우이다</p>
@@ -205,6 +205,7 @@
 <li>OK : BigInteger.probablePrime     → <em>반환 객체 특성을 이해하기 쉬움</em></li>
 </ul>
 <blockquote>
+<h6 id="핵심-정리">핵심 정리</h6>
 <p>정적 팩터리 메서드와 public 생성자는 각각의 쓰임새가 있으니 상대적인 장단점을 이해하고 사용하는 것이 좋음. 그래도 정적 팩터리를 사용하는 게 유리한 경우가 더 많으므로 무작정 public 생성자를 제공하는 습관이 있다면 고치자!!</p>
 </blockquote>
 <hr>
@@ -301,6 +302,161 @@
 </tr>
 </tbody>
 </table>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
+     crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8842908287515174"
+     data-ad-slot="6261283644"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+    
+	
+  
+    
+    
+	
+    
+
+<div class="td-content" style="page-break-before: always">
+    
+	<h1 id="pg-36d448312a7d4ec9c5d2216ff9b4fc83">1.2 - Item2: 생성자에 매개변수가 많다면 빌더를 고려하라</h1>
+    <div class="lead">정적 팩터리와 생성자는 선택적 매개변수가 많을 경우 적절히 대응하기 어려운 제약을 가진다. 즉, 매개변수 개수가 많아지면 클라이언트 코드를 작성하거나 읽기가 어렵다. 이러한 경우에 활용할 수 있는 자바빈즈 패턴(JavaBeans pattern)과 더 나아가 해당 패턴의 단점을 개선한 빌더 패턴(Builder pattern)에 대해 알아본다.</div>
+	<blockquote>
+<h6 id="핵심-정리">핵심 정리</h6>
+<p><strong>생성자나 정적 팩터리가 처리해야 할 매개변수가 많다면 빌더 패턴을 선택하는게 더 낫다.</strong>
+매개변수 중 다수가 필수가 아니거나 같은 타입이면 특히 더 그렇다. 빌더는 점층적 생성자보다 클라이언트 코드를 읽고 쓰기가 훨씬 간결하고, 자바빈즈보다 훨씬 안전하다.</p>
+</blockquote>
+<h3 id="no-good--telescoping-constructor-pattern">No Good : Telescoping constructor pattern</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">NutritionFacts</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">// 멤버 변수 정의 생략...
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">NutritionFacts</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">servingSize</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">servings</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">servingSize</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">servings</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">0</span><span style="color:#ce5c00;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ce5c00;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">NutritionFacts</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">servingSize</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">servings</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">calories</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">servingSize</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">servings</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">calories</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">0</span><span style="color:#ce5c00;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ce5c00;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">// 위와 같은 흐름으로 끊임없이 생성자 정의
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"></span><span style="color:#ce5c00;font-weight:bold">}</span>
+</span></span></code></pre></div><ul>
+<li>사용자에게 설정하길 원치 않는 매개 변수까지 강제로 값을 지정해야 함.</li>
+<li>매개 변수 조합에 따라 생성자 수가 많이 늘어 날 수 있음</li>
+<li>매개 변수가 늘어남에 따라 코드 작성 및 가독성이 저하 됨.</li>
+<li><span style="color:red">타입만 맞으면 컴파일 에러가 발생하지 않기 때문에 같은 타입의 매개변수를 잘못된 순서로 지정할 경우 실수를 눈치 챌 수 없음</span>.
+<ul>
+<li>올바른 매개 변수를 입력하고 있는지 계속 체크해야 하는 불편함.</li>
+</ul>
+</li>
+</ul>
+<h3 id="대안1--javabean-pattern">대안1 : JavaBean Pattern</h3>
+<blockquote>
+<p>매개 변수가 없는 생성자로 객체를 생성 후, setter 메서드를 호출해 원하는 매개변수의 값을 설정하는 방식!!</p>
+</blockquote>
+<h3 id="no-good--javabeans-pattern">No Good : JavaBeans Pattern</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">NutritionFacts</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">// 멤버 변수 정의 생략
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">NutritionFats</span><span style="color:#ce5c00;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">{}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">setServingSize</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">val</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 생략 }
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">setServings</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">val</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 생략 }
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">setCalories</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">val</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 생략 }
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#8f5902;font-style:italic">// 멤버 변수의 setter 함수 정의 계속...
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"></span><span style="color:#ce5c00;font-weight:bold">}</span>
+</span></span></code></pre></div><h4 id="javabeans-pattern-단점">JavaBeans Pattern 단점</h4>
+<ul>
+<li>객체 하나를 만들려면 메서드를 여러 개 호출해야 함.</li>
+<li>객체 생성 후, 매개 변수 간 불 일치가 발생할 수 있음. → 객체 생성하기 전에 불일치를 감지해야 함.</li>
+<li>객체가 완전히 생성되기 전까지 일관성(consistency)이 무너진 상태에 놓이게 됨.
+<ul>
+<li>setter에서 내부 상태를 변경 할 수 있음. 또한 클래스를 불변(immutable)으로 만들 수 없음. → 스레드 안전성을 얻기 위해 추가 작업 필요.</li>
+<li>생성이 끝난 객체를 직접 &lsquo;freezing&rsquo; 작업 후 사용하는 방법이 있으나 실무에서는 거의 쓰이지 않음. 또한, freezing 메서드 호출해줬는지 컴파일러가 보증 할 수 없음. → 런타임 오류에 취약</li>
+</ul>
+</li>
+</ul>
+<h3 id="대안2-builder-pattern">대안2: Builder Pattern</h3>
+<blockquote>
+<p>점층적 생성자 패턴의 안정성과 자바빈즈 패턴의 가독성을 겸비한 패턴으로 클라이언트는 필요한 객체를 직접 만드는 대신, 필수 매개변수만으로 생성자(혹은 정적 팩터리)를 호출해 빌더 객체를 얻어 빌더 객체가 제공하는 세터 메서드들로 원하는 선택 매개변수들을 설정하는 패턴</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">NutritionFacts</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#204a87;font-weight:bold">final</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">servingSize</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#204a87;font-weight:bold">final</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">servings</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#204a87;font-weight:bold">final</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">calories</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#204a87;font-weight:bold">final</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">fat</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#204a87;font-weight:bold">final</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">sodium</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#204a87;font-weight:bold">final</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">carbohydrate</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">static</span> <span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Builder</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic">// 필수 매개변수
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"></span>        <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#204a87;font-weight:bold">final</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">servingSize</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#204a87;font-weight:bold">final</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">servings</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic">// 선택 매개변후 - 기본값으로 초기화
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"></span>        <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">calories</span>     <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">0</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">fat</span>          <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">0</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">sodium</span>       <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">0</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">carbohydrate</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">0</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Builder</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">servingSize</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">servings</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">servingSize</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">servingSize</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">servings</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">servings</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ce5c00;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Builder</span> <span style="color:#000">calories</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">val</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span> 
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">calories</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">val</span><span style="color:#ce5c00;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ce5c00;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Builder</span> <span style="color:#000">fat</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">val</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span> 
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">fat</span><span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">val</span><span style="color:#ce5c00;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ce5c00;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Builder</span> <span style="color:#000">sodium</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">val</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span> 
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">sodium</span><span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">val</span><span style="color:#ce5c00;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ce5c00;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Builder</span> <span style="color:#000">carbohydrate</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">val</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span> 
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">carbohydrate</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">val</span><span style="color:#ce5c00;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ce5c00;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">NutritionFacts</span> <span style="color:#000">build</span><span style="color:#ce5c00;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">NutritionFacts</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ce5c00;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ce5c00;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#000">NutritionFacts</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">Builder</span> <span style="color:#000">builder</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">servingSize</span>  <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">builder</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">servingSize</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">servings</span>     <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">builder</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">servings</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">calories</span>     <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">builder</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">calories</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">fat</span>          <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">builder</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">fat</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">sodium</span>       <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">builder</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">sodium</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">this</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">carbohydrate</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">builder</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">carbohydrate</span><span style="color:#ce5c00;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ce5c00;font-weight:bold">}</span> 
+</span></span><span style="display:flex;"><span><span style="color:#ce5c00;font-weight:bold">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000">NutritionFacts</span> <span style="color:#000">cocaCola</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">NutritionFacts</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">Builder</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">240</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">8</span><span style="color:#ce5c00;font-weight:bold">).</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">calories</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">100</span><span style="color:#ce5c00;font-weight:bold">).</span><span style="color:#c4a000">sodium</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">35</span><span style="color:#ce5c00;font-weight:bold">).</span><span style="color:#c4a000">carbohydrate</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">27</span><span style="color:#ce5c00;font-weight:bold">).</span><span style="color:#c4a000">build</span><span style="color:#ce5c00;font-weight:bold">();</span>
+</span></span></code></pre></div><h4 id="장점">장점</h4>
+<ul>
+<li>구현하기 쉬움</li>
+<li>읽기 쉬움</li>
+<li>builder()로 객체 생성하기 전에 매개변수 간 불일치 감지 가능</li>
+<li>클래스가 계증 구조로 되어 있어도 적용 가능</li>
+<li>API가 유연해짐. 예를 들어 하나의 builder 하나로 여러 객체를 순회하면서 만들수 있고, 빌더에 넘기는 매개 변수에 따라 다른 객체를 만들 수도 있음.</li>
+</ul>
+<h4 id="단점">단점</h4>
+<ul>
+<li>객체를 만들려면 빌더부터 만들어야 함. → 빌더 생성 비용이 크지는 않지만 성능에 민감한 상황에서는 문제가 될 수 있음.</li>
+<li>점층적 생성자 패턴보다는 코드가 길기 때문에 매개변수가 4개 이상은 되어야 값어치를 한다.</li>
+<li>but!! API는 시간이 지날수록 매개변수가 많아지는 경향이 있기 때문에 애초에 빌도로 시작하는 편이 나음.</li>
+</ul>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
      crossorigin="anonymous"></script>
 

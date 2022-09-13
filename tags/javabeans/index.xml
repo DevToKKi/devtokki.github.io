@@ -1,146 +1,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>DevToKKi – Programming</title>
-    <link>https://www.devtokki.com/programming/</link>
-    <description>Recent content in Programming on DevToKKi</description>
+    <title>DevToKKi – javabeans</title>
+    <link>https://www.devtokki.com/tags/javabeans/</link>
+    <description>Recent content in javabeans on DevToKKi</description>
     <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 14 Sep 2022 04:14:42 +0900</lastBuildDate>
     
-	  <atom:link href="https://www.devtokki.com/programming/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://www.devtokki.com/tags/javabeans/index.xml" rel="self" type="application/rss+xml" />
     
     
       
         
       
     
-    
-    <item>
-      <title>Programming: Item1: 생성자 대신 정적 팩터리 메서드를 고려하라</title>
-      <link>https://www.devtokki.com/programming/java/creating-and-destroying-objects/item1/</link>
-      <pubDate>Tue, 06 Sep 2022 01:17:44 +0900</pubDate>
-      
-      <guid>https://www.devtokki.com/programming/java/creating-and-destroying-objects/item1/</guid>
-      <description>
-        
-        
-        &lt;p&gt;해당 설명에서 정적 팩터리 메서드는  &lt;strong&gt;디자인 패턴에서의 팩터리 메서드 패턴을 의미하는 것이 아님!!!&lt;/strong&gt; 주의!!&lt;/p&gt;
-&lt;p&gt;&amp;lsquo;생성자 대신 정적 팩터리 메서드를 고려하라&amp;rsquo; 예를 들어 아래와 같은 경우이다&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;NG : BigInteger(int, int, Random) → &lt;em&gt;다양한 매개 변수에 따라 반환 객체에 대한 특성을 이해하기 어려움&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;OK : BigInteger.probablePrime     → &lt;em&gt;반환 객체 특성을 이해하기 쉬움&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;h6 id=&#34;핵심-정리&#34;&gt;핵심 정리&lt;/h6&gt;
-&lt;p&gt;정적 팩터리 메서드와 public 생성자는 각각의 쓰임새가 있으니 상대적인 장단점을 이해하고 사용하는 것이 좋음. 그래도 정적 팩터리를 사용하는 게 유리한 경우가 더 많으므로 무작정 public 생성자를 제공하는 습관이 있다면 고치자!!&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;장점&#34;&gt;장점&lt;/h3&gt;
-&lt;h4 id=&#34;1-이해하기-쉬운-이름을-짓는게-가능&#34;&gt;1. 이해하기 쉬운 이름을 짓는게 가능.&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;생성자의 이름은 한개(클래스 명) 한정되어 있음.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;생성자를 구별하는 것은 매개변수 차이 뿐. 결국 사용자는 생성자의 차이를 이해하기 어려움.&lt;/p&gt;
-&lt;p&gt;→ 정적 팩터리의 경우 이름만 잘 지으면 반환될 객체의 특성을 쉬이 표현 할 수 있다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;2새로운-오브젝트를-생성할-필요가-없음-동일한-오브젝트를-사용&#34;&gt;2.새로운 오브젝트를 생성할 필요가 없음. 동일한 오브젝트를 사용.&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;이러한 특성으로 불변 클래스(immutable class)는 인스턴스를 미리 만들어 놓거나 새로 생성한 인스턴스를 캐싱해 재활용하는 식으로 불필요한 객체 생성을 피할 수 있음.&lt;/p&gt;
-&lt;p&gt;→ 생성 비용이 큰 객체가 자주 요청되는 상황에 적용할 경우 성능을 상당히 끌여올려 줄 수 있는 방법!!(&lt;strong&gt;Flyweight pattern&lt;/strong&gt;과 유사한 방법)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;반복되는 요청에 같은 객체를 반환하는 경우 정적 팩터리 방식의 클래스는 언제 어느 인스턴스를 살아 있게 할지 통제 할 수 있음&lt;/p&gt;
-&lt;p&gt;→ 인스턴스 통제(instance-cotrolled) 클래스라 함. 인스턴스를 통제를 하면 클래스를 싱글턴으로 만들 수도 있고, 인스턴스화 불가로 만들 수 있으며, 불변 값 클래스에서 동일한 인스턴스가 단 하나뿐임을 보장할 수 있음.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;3-반환-타입의-하위-타입-객체를-반환할-수-있다&#34;&gt;3. 반환 타입의 하위 타입 객체를 반환할 수 있다.&lt;/h4&gt;
-&lt;p&gt;예를 들어, java.util.Collection에는 emptyList()라는 정적 팩터리 메서드가 있음. 다음과 같은 특징을 가짐.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;emptyList()는 내부 클래스 EmptyList의 인스턴스를 반환 함. 내부 클래스 EmptyList는, public이 아니기 때문에 외부로 부터 감춰짐.&lt;/li&gt;
-&lt;li&gt;emptyList()의 반환 타입은 List 인터페이스임.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;그래서 Collection의 API는 매우 간결함. 프로그래머는 명시한 인터페이스대로 동작하는 객체를 얻을 것임을 알기에 굳이 알아보지 않아도 됨.
-그저 인터페이스의 사용 방법만 알아두면 됨.&lt;/p&gt;
-&lt;h4 id=&#34;4-입력-매개변수에-따라-매번-다른-클래스의-객체를-반환할-수-있다&#34;&gt;4. 입력 매개변수에 따라 매번 다른 클래스의 객체를 반환할 수 있다.&lt;/h4&gt;
-&lt;p&gt;반환 타입의 하위 타입이기만 하면 어떤 클래스의 객체를 반환하든 상관없음.&lt;/p&gt;
-&lt;h4 id=&#34;5-정적-팩터리-메서드를-작성하는-시점에는-반환할-객체의-클래스가-존재하지-않아도-된다rarr-반환-서브타입은-런타임에-정해져도-ok&#34;&gt;5. 정적 팩터리 메서드를 작성하는 시점에는 반환할 객체의 클래스가 존재하지 않아도 된다.(→ 반환 서브타입은 런타임에 정해져도 OK!)&lt;/h4&gt;
-&lt;p&gt;예를 들어, JDBC의 DriverManager.getConnection()의 경우 해당.
-결과적으로 API로서의 유연성이 향상 됨.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;단점&#34;&gt;단점&lt;/h3&gt;
-&lt;h4 id=&#34;1-상속하려면-public이나-protected-생성자가-필요하니-정적-팩터리-메서드만-제공하면-하위-클래스를-만들-수-없다&#34;&gt;1. 상속하려면 public이나 protected 생성자가 필요하니 정적 팩터리 메서드만 제공하면 하위 클래스를 만들 수 없다.&lt;/h4&gt;
-&lt;p&gt;→ Collection 프레임워크의 유틸리티 구현 클래스들을 상속할 수 없음.
-예를 들어, java.util.Collections의 emtpyList()는 EmptyList를 반환되는데 private이기 때문에 EmptyList의 서브 클래스를 만들 수 없음.&lt;/p&gt;
-&lt;h4 id=&#34;2-정적-팩터리-메서드는-프로그래머가-찾기-어렵다&#34;&gt;2. 정적 팩터리 메서드는 프로그래머가 찾기 어렵다.&lt;/h4&gt;
-&lt;p&gt;→ 생성자처럼 API 설명에 명확히 드러나지 않아 정적 팩터리 메서드 방식 클래스를 인스턴스화할 방법을 알아내야 함. 아래와 같은 정적 팩터리 메서드에 사용하는 명명 방식을 이용하여 해당 문제를 완화해줘야 함.&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;명명 패턴&lt;/th&gt;
-&lt;th&gt;예&lt;/th&gt;
-&lt;th&gt;의미&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;from&lt;/td&gt;
-&lt;td&gt;Date d = Date.from(instant);&lt;/td&gt;
-&lt;td&gt;형변환&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;of&lt;/td&gt;
-&lt;td&gt;Set&lt;Rank&gt; faceCards = EnumSet.of(JACK, QUEEN, KING);&lt;/td&gt;
-&lt;td&gt;적합 타입 반환하는 집계 메서드&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;valueOf&lt;/td&gt;
-&lt;td&gt;BigInteger prime = BigInteger.valueOf(Integer.MAX_VALUE);&lt;/td&gt;
-&lt;td&gt;from과 of의 더 자세한 버전&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;instnace / getInstacne&lt;/td&gt;
-&lt;td&gt;StackWalker luke = StackWalker.getInstance(options);&lt;/td&gt;
-&lt;td&gt;매개변수로 명시한 인스턴스 반환(같은 인스턴스임을 보장하지 않음)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;create / newInstance&lt;/td&gt;
-&lt;td&gt;Object newArray = Array.newInstance(classObject, arrayLen);&lt;/td&gt;
-&lt;td&gt;새로운 인스턴스 반환&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;get&lt;em&gt;Type&lt;/em&gt;&lt;/td&gt;
-&lt;td&gt;FileStore fs = Files.getFileStore(path);&lt;/td&gt;
-&lt;td&gt;getInstance와 동일하나 생성할 클래스가 아닌 다른 클래스에 팩터리 메서드를 정의할 떄 씀&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;new&lt;em&gt;Type&lt;/em&gt;&lt;/td&gt;
-&lt;td&gt;BufferedReader br = Files.newBufferedReader(path);&lt;/td&gt;
-&lt;td&gt;newInstance와 동일하나 생성할 클래스가 아닌 다른 클래스에 팩터리 메서드를 정의할 떄 씀&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;em&gt;type&lt;/em&gt;&lt;/td&gt;
-&lt;td&gt;List&lt;Complaint&gt; litany = Collections.list(legacyLitany);&lt;/td&gt;
-&lt;td&gt;get&lt;em&gt;Type&lt;/em&gt;, new&lt;em&gt;Type&lt;/em&gt; 심플 버전&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174&#34;
-     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
-
-&lt;ins class=&#34;adsbygoogle&#34;
-     style=&#34;display:block&#34;
-     data-ad-client=&#34;ca-pub-8842908287515174&#34;
-     data-ad-slot=&#34;6261283644&#34;
-     data-ad-format=&#34;auto&#34;
-     data-full-width-responsive=&#34;true&#34;&gt;&lt;/ins&gt;
-&lt;script&gt;
-     (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
-
-      </description>
-    </item>
     
     <item>
       <title>Programming: Item2: 생성자에 매개변수가 많다면 빌더를 고려하라</title>

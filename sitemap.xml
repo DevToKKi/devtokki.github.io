@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
+    <loc>https://www.devtokki.com/programming/java/creating-and-destroying-objects/item1/</loc>
+    <lastmod>2022-09-14T04:14:19+09:00</lastmod>
+  </url>
+
+  <url>
     <loc>https://www.devtokki.com/data-platform/apache-spark/tips/dataframe-column-present-check/</loc>
     <lastmod>2022-06-24T13:21:05+09:00</lastmod>
   </url>
@@ -15,6 +20,11 @@
   <url>
     <loc>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/basic/</loc>
     <lastmod>2022-06-21T16:09:03+09:00</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.devtokki.com/programming/java/creating-and-destroying-objects/item2/</loc>
+    <lastmod>2022-09-14T04:14:42+09:00</lastmod>
   </url>
 
   <url>
@@ -40,11 +50,6 @@
   <url>
     <loc>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/</loc>
     <lastmod>2022-06-21T15:53:50+09:00</lastmod>
-  </url>
-
-  <url>
-    <loc>https://www.devtokki.com/programming/java/creating-and-destroying-objects/item1/</loc>
-    <lastmod>2022-09-06T03:29:24+09:00</lastmod>
   </url>
 
   <url>
