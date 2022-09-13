@@ -1,0 +1,62 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DevToKKi – architecture</title>
+    <link>https://www.devtokki.com/tags/architecture/</link>
+    <description>Recent content in architecture on DevToKKi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 16 Jun 2022 01:14:14 +0900</lastBuildDate>
+    
+	  <atom:link href="https://www.devtokki.com/tags/architecture/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Architecture: 반응형 시스템(Reactive system) 조건</title>
+      <link>https://www.devtokki.com/architecture/reactive-system/</link>
+      <pubDate>Thu, 16 Jun 2022 01:14:14 +0900</pubDate>
+      
+      <guid>https://www.devtokki.com/architecture/reactive-system/</guid>
+      <description>
+        
+        
+        &lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block&#34;
+     data-ad-client=&#34;ca-pub-8842908287515174&#34;
+     data-ad-slot=&#34;6261283644&#34;
+     data-ad-format=&#34;auto&#34;
+     data-full-width-responsive=&#34;true&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;회복력 (resilient)&lt;/strong&gt; : 스스로 회복할 수 있는 앱은 장애를 복구할 수 있으며, 오류나 예외 같은 장애가 발생하더라도 항상 응답함을 뜻함.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;탄력성 (elastic)&lt;/strong&gt; : 작업 부하가 크든 작든 규모에 상관없이 응답하는 시스템을 말한다. 즉, 트래픽이 증가하든 감소하든 할당된 자원을 조절해 부하를 서비스할 수 있게 항상 응답성을 유지하는 시스템이다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;메시지 기반 (message driven)&lt;/strong&gt; : 시스템의 구성 요소가 서로 느슨하게 결합돼 있으며 비동기 메시지 전달을 사용해 통신하고, 행동을 취함으로써 메시지에 반응한다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;응답성 (responsive)&lt;/strong&gt; : 위 세 속성을 만족하는 시스템을 응답성이 있는 시스템이라 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;위 네 가지 속성을 모두 만족하는 시스템을 반응형(reactive) 시스템이라 함.
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block&#34;
+     data-ad-client=&#34;ca-pub-8842908287515174&#34;
+     data-ad-slot=&#34;6261283644&#34;
+     data-ad-format=&#34;auto&#34;
+     data-full-width-responsive=&#34;true&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
