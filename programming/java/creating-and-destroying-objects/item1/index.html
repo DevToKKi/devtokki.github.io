@@ -27,12 +27,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.devtokki.com/programming/java/creating-and-destroying-objects/item1/" /><meta property="article:section" content="programming" />
 <meta property="article:published_time" content="2022-09-06T01:17:44+09:00" />
-<meta property="article:modified_time" content="2022-09-14T04:14:19+09:00" /><meta property="og:site_name" content="DevToKKi" />
+<meta property="article:modified_time" content="2022-09-14T05:11:24+09:00" /><meta property="og:site_name" content="DevToKKi" />
 
 <meta itemprop="name" content="Item1: 생성자 대신 정적 팩터리 메서드를 고려하라">
 <meta itemprop="description" content="일반적인 클래스의 인스턴스를 생성하는 방법은 public 생성자를 호출하는 방법이다.  하지만 생성자와 별도로 정적 팩터리 메서드(static factory method)를 제공할 수 있다. 해당 클래스의 인스턴스를 반환하는 단순한 정적 메서드에 대해 알아본다.
 "><meta itemprop="datePublished" content="2022-09-06T01:17:44+09:00" />
-<meta itemprop="dateModified" content="2022-09-14T04:14:19+09:00" />
+<meta itemprop="dateModified" content="2022-09-14T05:11:24+09:00" />
 <meta itemprop="wordCount" content="513">
 <meta itemprop="keywords" content="programming,effective,java,constructor,static factory,pattern," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Item1: 생성자 대신 정적 팩터리 메서드를 고려하라"/>
@@ -186,21 +186,57 @@
       
       <ul class="taxonomy-terms">
         
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/basic/" data-taxonomy-term="basic"><span class="taxonomy-label">basic</span><span class="taxonomy-count">2</span></a></li>
+        
           <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/builder/" data-taxonomy-term="builder"><span class="taxonomy-label">builder</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/column/" data-taxonomy-term="column"><span class="taxonomy-label">column</span><span class="taxonomy-count">2</span></a></li>
         
           <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/constructor/" data-taxonomy-term="constructor"><span class="taxonomy-label">constructor</span><span class="taxonomy-count">2</span></a></li>
         
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/consumer/" data-taxonomy-term="consumer"><span class="taxonomy-label">consumer</span><span class="taxonomy-count">2</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/consumer-group/" data-taxonomy-term="consumer-group"><span class="taxonomy-label">consumer group</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/data-platform/" data-taxonomy-term="data-platform"><span class="taxonomy-label">data platform</span><span class="taxonomy-count">10</span></a></li>
+        
           <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/effective/" data-taxonomy-term="effective"><span class="taxonomy-label">effective</span><span class="taxonomy-count">2</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/extract/" data-taxonomy-term="extract"><span class="taxonomy-label">extract</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/group/" data-taxonomy-term="group"><span class="taxonomy-label">group</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/internals/" data-taxonomy-term="internals"><span class="taxonomy-label">internals</span><span class="taxonomy-count">1</span></a></li>
         
           <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/java/" data-taxonomy-term="java"><span class="taxonomy-label">java</span><span class="taxonomy-count">2</span></a></li>
         
           <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/javabeans/" data-taxonomy-term="javabeans"><span class="taxonomy-label">javabeans</span><span class="taxonomy-count">1</span></a></li>
         
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/kafka/" data-taxonomy-term="kafka"><span class="taxonomy-label">kafka</span><span class="taxonomy-count">9</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/option/" data-taxonomy-term="option"><span class="taxonomy-label">option</span><span class="taxonomy-count">2</span></a></li>
+        
           <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/pattern/" data-taxonomy-term="pattern"><span class="taxonomy-label">pattern</span><span class="taxonomy-count">2</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/producer/" data-taxonomy-term="producer"><span class="taxonomy-label">producer</span><span class="taxonomy-count">1</span></a></li>
         
           <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/programming/" data-taxonomy-term="programming"><span class="taxonomy-label">programming</span><span class="taxonomy-count">2</span></a></li>
         
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/replication/" data-taxonomy-term="replication"><span class="taxonomy-label">replication</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/row/" data-taxonomy-term="row"><span class="taxonomy-label">row</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/schema/" data-taxonomy-term="schema"><span class="taxonomy-label">schema</span><span class="taxonomy-count">2</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/spark/" data-taxonomy-term="spark"><span class="taxonomy-label">spark</span><span class="taxonomy-count">4</span></a></li>
+        
           <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/static-factory/" data-taxonomy-term="static-factory"><span class="taxonomy-label">static factory</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/structure/" data-taxonomy-term="structure"><span class="taxonomy-label">structure</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/tips/" data-taxonomy-term="tips"><span class="taxonomy-label">tips</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/type/" data-taxonomy-term="type"><span class="taxonomy-label">type</span><span class="taxonomy-count">2</span></a></li>
         
       </ul>
     </div>

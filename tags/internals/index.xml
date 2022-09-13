@@ -1,0 +1,31 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DevToKKi – internals</title>
+    <link>https://www.devtokki.com/tags/internals/</link>
+    <description>Recent content in internals on DevToKKi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 22 Apr 2022 15:30:43 +0900</lastBuildDate>
+    
+	  <atom:link href="https://www.devtokki.com/tags/internals/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Data-Platform: 카프카 내부 동작 원리</title>
+      <link>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/</link>
+      <pubDate>Fri, 22 Apr 2022 15:30:43 +0900</pubDate>
+      
+      <guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

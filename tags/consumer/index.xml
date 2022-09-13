@@ -1,0 +1,181 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DevToKKi – consumer</title>
+    <link>https://www.devtokki.com/tags/consumer/</link>
+    <description>Recent content in consumer on DevToKKi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 22 Apr 2022 14:44:07 +0900</lastBuildDate>
+    
+	  <atom:link href="https://www.devtokki.com/tags/consumer/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Data-Platform: 컨슈머 기본 동작 및 주요 옵션</title>
+      <link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-overview/</link>
+      <pubDate>Fri, 22 Apr 2022 13:45:54 +0900</pubDate>
+      
+      <guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-overview/</guid>
+      <description>
+        
+        
+        &lt;p&gt;&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block&#34;
+     data-ad-client=&#34;ca-pub-8842908287515174&#34;
+     data-ad-slot=&#34;6261283644&#34;
+     data-ad-format=&#34;auto&#34;
+     data-full-width-responsive=&#34;true&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+컨슈머는 카프카의 토픽에 저장되어 있는 메시지를 가져오는 역할을 담당. 단순하게 메시지만 가져오는 기능만 하는 것이 아니라 내부적으로는 컨슈머 그룹, 리밸런싱 등 여러 동작을 수행 함.&lt;/p&gt;
+&lt;h3 id=&#34;기본-동작&#34;&gt;기본 동작&lt;/h3&gt;
+&lt;p&gt;프로듀서가 카프카의 토픽으로 메시지를 전송하면 해당 메시지들은 브로커들의 로컬 디스크에 저장되며 컨슈머를 이용해 토픽에 저장된 메시지를 가져올 수 있음.&lt;/p&gt;
+&lt;p&gt;컨슈머 그룹은 하나 이상의 컨슈머들이 모여 있는 그룹을 의미하고, 컨슈머는 반드시 컨슈머 그룹에 속하게 됨. 그리고 컨슈머 그룹은 각 파티션의 리더에게 카프카 토픽에 저장된 메시지를 가져오기 위한 요청을 보냄.&lt;/p&gt;
+&lt;p&gt;이때 파티션 수와 컨슈머 수(하나의 컨슈머 그룹 안에 있는 컨슈머 수)는 1:1로 매핑되는 것이 이상적 임.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;i class=&#34;fa fa-exclamation-triangle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt; 주의:&lt;/strong&gt; 파티션 수와 컨슈머 수의 비율을 반드시 1:1로 매핑해야 하는 것은 아니지만, 파티션 수보다 더 많다고 해서 &lt;strong&gt;더 빠르게 토픽의 메시지를 가져오거나 처리량이 높아지는 것이 아니라 더 많은 수의 컨슈머들이 대기 상태로 존재&lt;/strong&gt;하기 때문.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;컨슈머-주요-옵션&#34;&gt;컨슈머 주요 옵션&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Consumer Option&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;bootstrap.servers&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;프로듀서와 동일하게 브로커의 정보를 입력.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;fetch.min.bytes&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;한 번에 가져올 수 있는 최소 데이터 크기. 지정한 크기보다 작은 경우, 요청에 응답하지 않고 데이터가 누적될 때까지 대기.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;group.id&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;컨슈머가 속한 컨슈머 그룹을 식별하는 식별자. 동일한 그룹 내의 컨슈머 정보는 모두 공유 됨.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;heartbeat.interval.ms&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;하트 비트가 있다는 것은 컨슈머의 상태가 active임을 의미. &lt;em&gt;session.timeout.ms&lt;/em&gt;와 밀접한 관계가 있으며, &lt;em&gt;session.timeout.ms&lt;/em&gt;보다 낮은 값으로 설정해야 함. 일반적으로 &lt;em&gt;session.timeout.ms&lt;/em&gt;의 1/3로 설정.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;max.partition.fetch.bytes&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;파티션 당 가져올 수 있는 최대 크기&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;session.timeout.ms&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;이 옵션을 이용해, 컨슈머가 종료된 것인지를 판단. 컨슈머는 주기적으로 하트 비트를 보내야 하고, 만약 이 시간 전까지 하트 비트를 보내지 않았다면 해당 컨슈머는 종료된 것으로 간주하고 컨슈머 그룹에서 제외 후, 리밸런싱을 시작 함.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;enable.auto.commit&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;백그라운드로 주기적으로 오프셋을 커밋&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;auto.offset.reset&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;카프카에서 초기 오프셋이 없거나 현재 오프셋이 더 이상 존재하지 않는 경우에 다음 옵션으로 reset 함. &lt;ul&gt;&lt;li&gt;earliest: 가장 초기의 오프셋값으로 설정&lt;/li&gt;&lt;li&gt;latest: 가장 마지막 오프셋값으로 설정&lt;/li&gt;&lt;li&gt;none: 이전 오프셋값을 찾지 못하면 에러를 나타냄.&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;fetch.max.bytes&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;한 번의 가져오기 요청으로 가져올 수 있는 최대 크기&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;group.instance.id&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;컨슈머의 고유 식별자. 만약 설정한다면 static 멤버로 간주되어, 불필요한 리밸런싱을 하지 않음.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;isolation.level&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;트랜잭션 컨슈머에서 사용되는 옵션. &lt;ul&gt;&lt;li&gt;read_uncommited(Default) : 모든 메시지를 읽음&lt;/li&gt;&lt;li&gt;read_committed : 트랜잭션이 완료된 메시지만 읽음&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;max.poll.records&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;한 번의 poll() 요청으로 가져오는 최대 메시지 수.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;partition.assignment.strategy&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;파티션 할당 전략.(Default : range)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;fetch.max.wait.ms&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;em&gt;fetch.min.bytes&lt;/em&gt;에 의해 설정된 데이터보다 적은 경우 요청에 대한 응답을 기다리는 최대 시간.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block&#34;
+     data-ad-client=&#34;ca-pub-8842908287515174&#34;
+     data-ad-slot=&#34;6261283644&#34;
+     data-ad-format=&#34;auto&#34;
+     data-full-width-responsive=&#34;true&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Data-Platform: 컨슈머 그룹</title>
+      <link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/</link>
+      <pubDate>Fri, 22 Apr 2022 14:44:07 +0900</pubDate>
+      
+      <guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/</guid>
+      <description>
+        
+        
+        &lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block&#34;
+     data-ad-client=&#34;ca-pub-8842908287515174&#34;
+     data-ad-slot=&#34;6261283644&#34;
+     data-ad-format=&#34;auto&#34;
+     data-full-width-responsive=&#34;true&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;figure&gt;
+  &lt;p align=&#34;center&#34;&gt;
+    &lt;img src=&#34;https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/consumer-group.png&#34;/&gt;
+  &lt;/p&gt;
+  &lt;figcaption align=&#34;center&#34;&gt;컨슈머 그룹과 컨슈머&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;커슈머는 컨슈머 그룹안에 속한 것이 일반적인 구조로, 하나의 컨슈머 그룹 안에 여러 개의 컨슈머가 구성될 수 있음.
+위 그림과 같이 토픽의 파티션과 일대일로 매핑되어 메시지를 가져오게 됨.&lt;/p&gt;
+&lt;p&gt;왼쪽에 peter-01이라는 토픽과 3개의 파티션으로 구성되어 있고, 오른쪽에는 consumer group 01이라는 컨슈머 그룹 아이디를 가진 컨슈머 그룹이 있으며, peter-01 토픽의 파티션 수와 동일한 3개의 컨슈머가 속해 있음.&lt;/p&gt;
+&lt;p&gt;컨슈머들은 하나의 컨슈머 그룹 안에 속해 있으며, 그룹 내의 컨슈머들은 서로의 정보를 공유 함.&lt;/p&gt;
+&lt;p&gt;예를 들어 Consumer01이 문제가 생겨 종료됐다면, Consumer02 또는 Consumer03은 Consumer01이 하던 일을 대신해 peter-01 토픽의 partition0을 컨슘하기 시작 함.
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block&#34;
+     data-ad-client=&#34;ca-pub-8842908287515174&#34;
+     data-ad-slot=&#34;6261283644&#34;
+     data-ad-format=&#34;auto&#34;
+     data-full-width-responsive=&#34;true&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
