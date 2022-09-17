@@ -232,7 +232,7 @@
 </li>
 </ul>
 <h4 id="3-반환-타입의-하위-타입-객체를-반환할-수-있다">3. 반환 타입의 하위 타입 객체를 반환할 수 있다.</h4>
-<p>예를 들어, java.util.Collection에는 emptyList()라는 정적 팩터리 메서드가 있음. 다음과 같은 특징을 가짐.</p>
+<p>예를 들어, <code>java.util.Collection</code>에는 <code>emptyList()</code>라는 정적 팩터리 메서드가 있음. 다음과 같은 특징을 가짐.</p>
 <ul>
 <li>emptyList()는 내부 클래스 EmptyList의 인스턴스를 반환 함. 내부 클래스 EmptyList는, public이 아니기 때문에 외부로 부터 감춰짐.</li>
 <li>emptyList()의 반환 타입은 List 인터페이스임.</li>
@@ -248,7 +248,7 @@
 <h3 id="단점">단점</h3>
 <h4 id="1-상속하려면-public이나-protected-생성자가-필요하니-정적-팩터리-메서드만-제공하면-하위-클래스를-만들-수-없다">1. 상속하려면 public이나 protected 생성자가 필요하니 정적 팩터리 메서드만 제공하면 하위 클래스를 만들 수 없다.</h4>
 <p>→ Collection 프레임워크의 유틸리티 구현 클래스들을 상속할 수 없음.
-예를 들어, java.util.Collections의 emtpyList()는 EmptyList를 반환되는데 private이기 때문에 EmptyList의 서브 클래스를 만들 수 없음.</p>
+예를 들어, <code>java.util.Collections</code>의 <code>emtpyList()</code>는 EmptyList를 반환되는데 private이기 때문에 EmptyList의 서브 클래스를 만들 수 없음.</p>
 <h4 id="2-정적-팩터리-메서드는-프로그래머가-찾기-어렵다">2. 정적 팩터리 메서드는 프로그래머가 찾기 어렵다.</h4>
 <p>→ 생성자처럼 API 설명에 명확히 드러나지 않아 정적 팩터리 메서드 방식 클래스를 인스턴스화할 방법을 알아내야 함. 아래와 같은 정적 팩터리 메서드에 사용하는 명명 방식을 이용하여 해당 문제를 완화해줘야 함.</p>
 <table>
