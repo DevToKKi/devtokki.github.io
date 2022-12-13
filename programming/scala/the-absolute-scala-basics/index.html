@@ -4,9 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="generator" content="Hugo 0.96.0" />
-<link rel="canonical" type="text/html" href="https://www.devtokki.com/programming/scala/">
-<link rel="alternate" type="application/rss&#43;xml" href="https://www.devtokki.com/programming/scala/index.xml">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 
 
 <link rel="shortcut icon" href="/favicons/favicon.ico" >
@@ -20,24 +18,26 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Scala | DevToKKi</title>
-<meta name="description" content="
-
-
-본 페이지는 Scala 에 대해 공부한 내용을 제공합니다.
-
-
-
+<title>The Absolute Scala Basics | DevToKKi</title>
+<meta name="description" content="Scala에서의 변수 선언 및 주요 기본 문법에 대해 정리합니다.
 ">
-<meta property="og:title" content="Scala" />
-<meta property="og:description" content="DevToKKi Blog" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.devtokki.com/programming/scala/" /><meta property="og:site_name" content="DevToKKi" />
+<meta property="og:title" content="The Absolute Scala Basics" />
+<meta property="og:description" content="Scala에서의 변수 선언 및 주요 기본 문법에 대해 정리합니다.
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.devtokki.com/programming/scala/the-absolute-scala-basics/" /><meta property="article:section" content="programming" />
+<meta property="article:published_time" content="2022-12-12T17:12:41+09:00" />
+<meta property="article:modified_time" content="2022-12-12T17:12:41+09:00" /><meta property="og:site_name" content="DevToKKi" />
 
-<meta itemprop="name" content="Scala">
-<meta itemprop="description" content="DevToKKi Blog"><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Scala"/>
-<meta name="twitter:description" content="DevToKKi Blog"/>
+<meta itemprop="name" content="The Absolute Scala Basics">
+<meta itemprop="description" content="Scala에서의 변수 선언 및 주요 기본 문법에 대해 정리합니다.
+"><meta itemprop="datePublished" content="2022-12-12T17:12:41+09:00" />
+<meta itemprop="dateModified" content="2022-12-12T17:12:41+09:00" />
+<meta itemprop="wordCount" content="1500">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="The Absolute Scala Basics"/>
+<meta name="twitter:description" content="Scala에서의 변수 선언 및 주요 기본 문법에 대해 정리합니다.
+"/>
 
 
 
@@ -51,7 +51,7 @@
   crossorigin="anonymous"></script>
 
   </head>
-  <body class="td-section">
+  <body class="td-page">
     <header>
       
 <nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" style="background-color:#1b251c">
@@ -110,62 +110,209 @@
     <div class="container-fluid td-outer">
       <div class="td-main">
         <div class="row flex-xl-nowrap">
-          <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
+          <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+            
+<div id="td-sidebar-menu" class="td-sidebar__inner">
+  <form class="td-sidebar__search d-flex align-items-center">
+    <input type="search" class="form-control td-search-input" placeholder="&#xf002; 사이트에서 검색…" aria-label="사이트에서 검색…" autocomplete="off">
+
+    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    </button>
+  </form>
+  <nav class="collapse td-sidebar-nav" id="td-section-nav">
+    <ul class="td-sidebar-nav__section pr-md-3 ul-0">
+      <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-programming-li">
+  <a href="/programming/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-programming"><span class="">Programming</span></a>
+  <ul class="ul-1">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-programmingjava-li">
+  <a href="/programming/java/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-programmingjava"><span class="">Java</span></a>
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-programmingjavacreating-and-destroying-objects-li">
+  <a href="/programming/java/creating-and-destroying-objects/" title="Creating and Destroying Objects" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-programmingjavacreating-and-destroying-objects"><span class="">객체 생성과 파괴</span></a>
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-programmingjavacreating-and-destroying-objectsitem1-li">
+  <a href="/programming/java/creating-and-destroying-objects/item1/" title="Item1: 생성자 대신 정적 팩터리 메서드를 고려하라" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-programmingjavacreating-and-destroying-objectsitem1"><span class="">Item1</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-programmingjavacreating-and-destroying-objectsitem2-li">
+  <a href="/programming/java/creating-and-destroying-objects/item2/" title="Item2: 생성자에 매개변수가 많다면 빌더를 고려하라" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-programmingjavacreating-and-destroying-objectsitem2"><span class="">Item2</span></a>
+</li>
+  </ul>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-programmingscala-li">
+  <a href="/programming/scala/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-programmingscala"><span class="">Scala</span></a>
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-programmingscalathe-absolute-scala-basics-li">
+  <a href="/programming/scala/the-absolute-scala-basics/" title="The Absolute Scala Basics" class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id="m-programmingscalathe-absolute-scala-basics"><span class="td-sidebar-nav-active-item">Basic</span></a>
+</li>
+  </ul>
+</li>
+  </ul>
+</li>
+    </ul>
+  </nav>
+</div>
+
+          </aside>
+          <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+            
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+<a id="print" href="https://www.devtokki.com/programming/scala/printview/"><i class="fa fa-print fa-fw"></i> 전체 섹션 프린트</a>
+
+</div>
+
             
 
 
+<div class="td-toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-values-variables-and-types">1. Values, Variables and Types</a>
+      <ul>
+        <li><a href="#takeaway">Takeaway</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-expressions">2. Expressions</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#3-functions">3. Functions</a></li>
+    <li><a href="#4-type-inference">4. Type inference</a></li>
+    <li><a href="#5-stack--tail-recursion">5. Stack &amp; Tail Recursion</a></li>
+    <li><a href="#6-call-by-name-and-call-by-value">6. Call-by-Name and Call-by-Value</a>
+      <ul>
+        <li><a href="#takeaways">Takeaways</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-default-and-named-arguments">7. Default and Named Arguments</a>
+      <ul>
+        <li><a href="#takeaways-1">Takeaways</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-smart-operations-on-strings">8. Smart Operations on Strings</a>
+      <ul>
+        <li><a href="#문자열-처리">문자열 처리</a></li>
+        <li><a href="#string-interpolation">String interpolation</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
 
 
+
+            
+
+	
+		
+			
+
+
+
+  
+  
+    <div class="taxonomy taxonomy-terms-cloud taxo-tags">
+      
+        <h5 class="taxonomy-title">Tags</h5>
+      
+      <ul class="taxonomy-terms">
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/architecture/" data-taxonomy-term="architecture"><span class="taxonomy-label">architecture</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/basic/" data-taxonomy-term="basic"><span class="taxonomy-label">basic</span><span class="taxonomy-count">2</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/builder/" data-taxonomy-term="builder"><span class="taxonomy-label">builder</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/column/" data-taxonomy-term="column"><span class="taxonomy-label">column</span><span class="taxonomy-count">2</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/constructor/" data-taxonomy-term="constructor"><span class="taxonomy-label">constructor</span><span class="taxonomy-count">2</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/consumer/" data-taxonomy-term="consumer"><span class="taxonomy-label">consumer</span><span class="taxonomy-count">2</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/consumer-group/" data-taxonomy-term="consumer-group"><span class="taxonomy-label">consumer group</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/data-platform/" data-taxonomy-term="data-platform"><span class="taxonomy-label">data platform</span><span class="taxonomy-count">10</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/effective/" data-taxonomy-term="effective"><span class="taxonomy-label">effective</span><span class="taxonomy-count">2</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/extract/" data-taxonomy-term="extract"><span class="taxonomy-label">extract</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/group/" data-taxonomy-term="group"><span class="taxonomy-label">group</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/internals/" data-taxonomy-term="internals"><span class="taxonomy-label">internals</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/java/" data-taxonomy-term="java"><span class="taxonomy-label">java</span><span class="taxonomy-count">2</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/javabeans/" data-taxonomy-term="javabeans"><span class="taxonomy-label">javabeans</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/kafka/" data-taxonomy-term="kafka"><span class="taxonomy-label">kafka</span><span class="taxonomy-count">9</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/option/" data-taxonomy-term="option"><span class="taxonomy-label">option</span><span class="taxonomy-count">2</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/pattern/" data-taxonomy-term="pattern"><span class="taxonomy-label">pattern</span><span class="taxonomy-count">2</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/producer/" data-taxonomy-term="producer"><span class="taxonomy-label">producer</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/programming/" data-taxonomy-term="programming"><span class="taxonomy-label">programming</span><span class="taxonomy-count">2</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/reactive/" data-taxonomy-term="reactive"><span class="taxonomy-label">reactive</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/replication/" data-taxonomy-term="replication"><span class="taxonomy-label">replication</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/row/" data-taxonomy-term="row"><span class="taxonomy-label">row</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/schema/" data-taxonomy-term="schema"><span class="taxonomy-label">schema</span><span class="taxonomy-count">2</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/spark/" data-taxonomy-term="spark"><span class="taxonomy-label">spark</span><span class="taxonomy-count">4</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/static-factory/" data-taxonomy-term="static-factory"><span class="taxonomy-label">static factory</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/structure/" data-taxonomy-term="structure"><span class="taxonomy-label">structure</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/tips/" data-taxonomy-term="tips"><span class="taxonomy-label">tips</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="https://www.devtokki.com/tags/type/" data-taxonomy-term="type"><span class="taxonomy-label">type</span><span class="taxonomy-count">2</span></a></li>
+        
+      </ul>
+    </div>
+  
+
+		
+	
+
+          </aside>
+          <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
+            
+  
+
+            <nav aria-label="breadcrumb" class="td-breadcrumbs">
+  <ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="https://www.devtokki.com/programming/">Programming</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="https://www.devtokki.com/programming/scala/">Scala</a>
+  </li>
+  <li class="breadcrumb-item active" aria-current="page">
+    <a href="https://www.devtokki.com/programming/scala/the-absolute-scala-basics/">Basic</a>
+  </li>
+  </ol>
+</nav>
+            
 <div class="td-content">
-<div class="pageinfo pageinfo-primary d-print-none">
-<p>
-이 섹션의 다중 페이지 출력 화면임.
-<a href="#" onclick="print();return false;">여기를 클릭하여 프린트</a>.
-</p><p>
-<a href="/programming/scala/">이 페이지의 일반 화면으로 돌아가기</a>.
-</p>
-</div>
+	<h1>The Absolute Scala Basics</h1>
+	<div class="lead">Scala에서의 변수 선언 및 주요 기본 문법에 대해 정리합니다.</div>
+	<header class="article-meta">
+		
 
-
-
-<h1 class="title">Scala</h1>
-
-
-
-
-
-
-<div class="content">
+  
+    
       
 
-<div class="pageinfo pageinfo-primary">
-<p>본 페이지는 Scala 에 대해 공부한 내용을 제공합니다.</p>
 
-</div>
-
-
-</div>
-</div>
-
-
-  
-  
-  
-  
-
-  
-  
-
-  
     
-    
-	
-    
+  
 
-<div class="td-content" style="">
-    
-	<h1 id="pg-f68d887825dc3f31bd3de983e3c38db8">1 - The Absolute Scala Basics</h1>
-    <div class="lead">Scala에서의 변수 선언 및 주요 기본 문법에 대해 정리합니다.</div>
+		
+	</header>    
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
      crossorigin="anonymous"></script>
 
@@ -465,14 +612,10 @@
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 
-</div>
-
-
-
-    
 	
-  
-
+	
+	
+</div>
 
 
           </main>
