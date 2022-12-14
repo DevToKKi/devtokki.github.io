@@ -188,7 +188,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">y</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span>
 </span></span><span style="display:flex;"><span><span style="color:#000">y</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#0000cf;font-weight:bold">1</span>
 </span></span></code></pre></div><p>Scala에서는 var 변수보단 val 변수를 선호한다. 그 이유는 함수형 프로그래밍에서 side effect를 최소화 하기 위해서 임.</p>
-<h3 id="takeaway">Takeaway</h3>
+<h4 id="takeaway">Takeaway</h4>
 <hr>
 <ul>
 <li>vars 보단 vals 선호</li>
@@ -329,7 +329,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">printFirst</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">34</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">infinite</span><span style="color:#ce5c00;font-weight:bold">())</span>
 </span></span></code></pre></div><p>첫 번째의 printFirst 호출의 경우 첫번째 인자가 Int 타입으로 infinite() 함수의 리턴 타입이 Int이어서 컴파일을 성공하지만 CBV 이기 때문에 먼저 infinite 함수의 호출 계산이 이뤄지는데 이때 무한재귀 호출로 에러가 발생한다.</p>
 <p>두 번째 printFirst 호출의 경우는 두 번째 인자에 CBN으로 인자를 받고 있다. 하지만 함수 본문에서는 해당 인자의 참조를 하고 있지 않기 때문에 정상적으로 첫번째 인자의 값을 출력하고 정상 종료한다.</p>
-<h3 id="takeaways">Takeaways</h3>
+<h4 id="takeaways">Takeaways</h4>
 <hr>
 <ul>
 <li>
@@ -381,7 +381,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">    2. name the arguments
 </span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">*/</span>
 </span></span></code></pre></div><p>위 코드를 보면 savePicture()라고 호출하면 세 파라미터가 모두 디폴트값이 된다. 이름 붙인 인자를 이용해 호출하면, 이름 붙이지 않은 인자에 대해 디폴트값으로 유지한 채 어떤 값이라도 명시 할 수 있다.</p>
-<h3 id="takeaways-1">Takeaways</h3>
+<h4 id="takeaways-1">Takeaways</h4>
 <hr>
 <p>When 99% of time we call a function with the same params:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">factorial</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">x</span><span style="color:#204a87;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">Int</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">acc</span><span style="color:#204a87;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">Int</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#ce5c00;font-weight:bold">)</span><span style="color:#204a87;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">Int</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">{</span>
@@ -397,7 +397,7 @@
 </span></span></code></pre></div><h2 id="8-smart-operations-on-strings">8. Smart Operations on Strings</h2>
 <hr>
 <p>scala에서 문자열 처리 방법과 Scala 2.10에 추가된 String interpolation 기능을 알아본다.</p>
-<h3 id="문자열-처리">문자열 처리</h3>
+<h4 id="문자열-처리">문자열 처리</h4>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Scala" data-lang="Scala"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">val</span> <span style="color:#000">str</span><span style="color:#204a87;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">String</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;hello, I am learning Scala&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#000">println</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">str</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">charAt</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#ce5c00;font-weight:bold">))</span>          <span style="color:#8f5902;font-style:italic">// 1
@@ -413,7 +413,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#000">println</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#39;a&#39;</span> <span style="color:#ce5c00;font-weight:bold">+:</span> <span style="color:#000">aNumberString</span> <span style="color:#204a87;font-weight:bold">:</span><span style="color:#204a87;font-weight:bold">+</span> <span style="color:#a40000">&#39;</span><span style="color:#204a87;font-weight:bold">z</span><span style="color:#a40000">&#39;</span><span style="color:#ce5c00;font-weight:bold">)</span>   <span style="color:#8f5902;font-style:italic">// a2z
 </span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">println</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">str</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">reverse</span><span style="color:#ce5c00;font-weight:bold">)</span>                   <span style="color:#8f5902;font-style:italic">// alacS gninrael ma I ,olleH
 </span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">println</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">str</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">take</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#ce5c00;font-weight:bold">))</span>                   <span style="color:#8f5902;font-style:italic">// He
-</span></span></span></code></pre></div><h3 id="string-interpolation">String interpolation</h3>
+</span></span></span></code></pre></div><h4 id="string-interpolation">String interpolation</h4>
 <ul>
 <li>데이터를 기반으로 문자열을 더 쉽게 만들수 있는 기능</li>
 <li>즉, 문자열을 출력하거나 선언할 때 중간에 다른 변수를 끼워넣는 구문</li>
