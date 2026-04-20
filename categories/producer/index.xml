@@ -1,6 +1,4 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – Producer</title><link>https://www.devtokki.com/categories/producer/</link><description>Recent content in Producer on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Fri, 22 Apr 2022 08:23:39 +0900</lastBuildDate><atom:link href="https://www.devtokki.com/categories/producer/index.xml" rel="self" type="application/rss+xml"/><item><title>Data-Platform: 프로듀서 기본 동작 및 주요 옵션</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/</link><pubDate>Fri, 22 Apr 2022 08:23:39 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/</guid><description>
-&lt;script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
-crossorigin="anonymous"&gt;&lt;/script&gt;
 &lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"
@@ -80,9 +78,7 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;td style="text-align: left"&gt;&amp;lsquo;정확히 한 번 전송&amp;rsquo;을 위해 사용하는 옵션. 동일한 TransactionalId에 한해 정확히 한 번을 보장. 옵션을 사용하기 전 &lt;em&gt;enable.idempotence&lt;/em&gt;를 true로 설정해야 함.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="text-align: left"&gt;&lt;script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
-crossorigin="anonymous"&gt;&lt;/script&gt;
-&lt;ins class="adsbygoogle"
+&lt;td style="text-align: left"&gt;&lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"
 data-ad-slot="6261283644"
@@ -90,7 +86,8 @@ data-ad-format="auto"
 data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/td&gt;
+&lt;/script&gt;
+&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;

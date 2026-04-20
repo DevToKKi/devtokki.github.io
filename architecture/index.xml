@@ -1,6 +1,4 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – Architecture</title><link>https://www.devtokki.com/architecture/</link><description>Recent content in Architecture on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><atom:link href="https://www.devtokki.com/architecture/index.xml" rel="self" type="application/rss+xml"/><item><title>Architecture: 반응형 시스템(Reactive system) 조건</title><link>https://www.devtokki.com/architecture/reactive-system/</link><pubDate>Thu, 16 Jun 2022 01:14:14 +0900</pubDate><guid>https://www.devtokki.com/architecture/reactive-system/</guid><description>
-&lt;script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
-crossorigin="anonymous"&gt;&lt;/script&gt;
 &lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"
@@ -17,8 +15,6 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;li&gt;&lt;strong&gt;응답성 (responsive)&lt;/strong&gt; : 위 세 속성을 만족하는 시스템을 응답성이 있는 시스템이라 한다.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;위 네 가지 속성을 모두 만족하는 시스템을 반응형(reactive) 시스템이라 함.
-&lt;script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
-crossorigin="anonymous"&gt;&lt;/script&gt;
 &lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"
@@ -27,4 +23,5 @@ data-ad-format="auto"
 data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/p&gt;</description></item></channel></rss>
+&lt;/script&gt;
+&lt;/p&gt;</description></item></channel></rss>

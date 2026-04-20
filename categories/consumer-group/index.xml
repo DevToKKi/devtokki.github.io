@@ -1,6 +1,4 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – Consumer Group</title><link>https://www.devtokki.com/categories/consumer-group/</link><description>Recent content in Consumer Group on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Fri, 22 Apr 2022 14:44:07 +0900</lastBuildDate><atom:link href="https://www.devtokki.com/categories/consumer-group/index.xml" rel="self" type="application/rss+xml"/><item><title>Data-Platform: 컨슈머 그룹</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/</link><pubDate>Fri, 22 Apr 2022 14:44:07 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/</guid><description>
-&lt;script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
-crossorigin="anonymous"&gt;&lt;/script&gt;
 &lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"
@@ -21,8 +19,6 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;p&gt;왼쪽에 peter-01이라는 토픽과 3개의 파티션으로 구성되어 있고, 오른쪽에는 consumer group 01이라는 컨슈머 그룹 아이디를 가진 컨슈머 그룹이 있으며, peter-01 토픽의 파티션 수와 동일한 3개의 컨슈머가 속해 있음.&lt;/p&gt;
 &lt;p&gt;컨슈머들은 하나의 컨슈머 그룹 안에 속해 있으며, 그룹 내의 컨슈머들은 서로의 정보를 공유 함.&lt;/p&gt;
 &lt;p&gt;예를 들어 Consumer01이 문제가 생겨 종료됐다면, Consumer02 또는 Consumer03은 Consumer01이 하던 일을 대신해 peter-01 토픽의 partition0을 컨슘하기 시작 함.
-&lt;script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
-crossorigin="anonymous"&gt;&lt;/script&gt;
 &lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"
@@ -31,4 +27,5 @@ data-ad-format="auto"
 data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;&lt;/p&gt;</description></item></channel></rss>
+&lt;/script&gt;
+&lt;/p&gt;</description></item></channel></rss>

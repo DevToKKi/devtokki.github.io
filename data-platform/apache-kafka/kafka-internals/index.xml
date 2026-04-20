@@ -1,7 +1,5 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – 카프카 내부 동작 원리</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/</link><description>Recent content in 카프카 내부 동작 원리 on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Fri, 22 Apr 2022 15:30:43 +0900</lastBuildDate><atom:link href="https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/index.xml" rel="self" type="application/rss+xml"/><item><title>Data-Platform: 카프카 리플리케이션(Replication)</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/kafka-replication/</link><pubDate>Wed, 22 Jun 2022 00:54:46 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/kafka-replication/</guid><description>
-&lt;p&gt;&lt;script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
-crossorigin="anonymous"&gt;&lt;/script&gt;
-&lt;ins class="adsbygoogle"
+&lt;p&gt;&lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"
 data-ad-slot="6261283644"
@@ -41,8 +39,6 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;blockquote&gt;
 &lt;p&gt;🛠 만약 특정 토픽 또는 파티션에 복제가 되지 않거나 문제가 있다고 판단되는 경우, ‘&lt;em&gt;replication-offset-checkpoint’&lt;/em&gt; 라는 파일의 내용을 확인하고 리플리케이션되고 있는 다른 브로커들과 비교해 살펴보면, 어떤 브로커, 토픽, 파티션에 문제가 있는지 파악 할 수 있음.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
-crossorigin="anonymous"&gt;&lt;/script&gt;
 &lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"

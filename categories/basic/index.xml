@@ -1,6 +1,4 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – Basic</title><link>https://www.devtokki.com/categories/basic/</link><description>Recent content in Basic on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Thu, 21 Apr 2022 11:05:08 +0900</lastBuildDate><atom:link href="https://www.devtokki.com/categories/basic/index.xml" rel="self" type="application/rss+xml"/><item><title>Data-Platform: 카프카 기초 다지기</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/basic/</link><pubDate>Tue, 19 Apr 2022 08:34:14 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/basic/</guid><description>
-&lt;script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
-crossorigin="anonymous"&gt;&lt;/script&gt;
 &lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"
@@ -84,8 +82,6 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 - 프로듀서는 카프카의 Peter-overview01 토픽으로 메시지 전송
 - peter-overview01 토픽은 파티션이 하나뿐이므로, 프로듀서로부터 받은 메시지를 파티션0의 세그먼트 로그 파일에 저장
 - 브로커의 세그먼트 로그 파일에 저장된 메시지는 컨슈머에서 가져 감
-&lt;script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
-crossorigin="anonymous"&gt;&lt;/script&gt;
 &lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"
@@ -95,8 +91,6 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;</description></item><item><title>Data-Platform: 카프카의 핵심 개념</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/</link><pubDate>Thu, 21 Apr 2022 11:05:08 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/</guid><description>
-&lt;script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
-crossorigin="anonymous"&gt;&lt;/script&gt;
 &lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"
@@ -177,8 +171,6 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;p&gt;KRaft is in early access and should be used in development only. It is not suitable for production.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://developer.confluent.io/learn/kraft/"&gt;https://developer.confluent.io/learn/kraft/&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8842908287515174"
-crossorigin="anonymous"&gt;&lt;/script&gt;
 &lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"
