@@ -8,11 +8,8 @@
 &lt;li&gt;&lt;strong&gt;메시지 기반 (message driven)&lt;/strong&gt; : 시스템의 구성 요소가 서로 느슨하게 결합돼 있으며 비동기 메시지 전달을 사용해 통신하고, 행동을 취함으로써 메시지에 반응한다.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;응답성 (responsive)&lt;/strong&gt; : 위 세 속성을 만족하는 시스템을 응답성이 있는 시스템이라 한다.&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;이 네 가지 속성은 각각 독립된 체크리스트라기보다 서로 연결된 성질로 보는 편이 자연스럽습니다. 예를 들어 메시지 기반 구조는 느슨한 결합을 가능하게 하고, 이런 구조는 장애 격리와 확장성 확보에 유리해 회복력과 탄력성을 뒷받침합니다. 결국 응답성은 나머지 세 속성이 실제 시스템 동작에서 함께 유지될 때 얻어지는 결과에 가깝습니다.&lt;/p&gt;
+&lt;p&gt;실무에서 반응형 시스템을 오해하기 쉬운 지점은 &amp;ldquo;비동기 처리만 쓰면 반응형&amp;quot;이라고 생각하는 부분입니다. 하지만 단순히 메시지를 비동기로 주고받는다고 해서 장애 대응, 확장 전략, 응답 시간 보장이 자동으로 따라오지는 않습니다. 따라서 반응형 시스템을 설계할 때는 통신 방식뿐 아니라 장애 복구 전략, 부하 변화 대응, 서비스 수준 목표를 함께 정의해야 합니다.&lt;/p&gt;
+&lt;p&gt;또한 반응형 시스템은 기술 스택 하나로 완성되는 특성이 아니라 운영 방식까지 포함한 시스템 특성입니다. 애플리케이션 구조는 메시지 기반으로 설계했더라도, 배포 단위가 지나치게 강결합되어 있거나 장애 감지와 복구가 수동이라면 실제 운영에서는 응답성을 유지하기 어렵습니다. 이런 이유로 반응형 시스템은 설계 원칙과 운영 원칙을 함께 가져가야 합니다.&lt;/p&gt;
 &lt;h2 id="정리"&gt;정리&lt;/h2&gt;
-&lt;p&gt;위 네 가지 속성을 함께 만족하는 시스템을 반응형 시스템이라고 볼 수 있습니다. 결국 핵심은 장애 상황과 부하 변화 속에서도 사용자 관점의 응답성을 유지하도록 시스템을 설계하는 데 있습니다.&lt;/p&gt;</description></item><item><title>Programming: 데이터 시스템 기초</title><link>https://www.devtokki.com/programming/architecture/ddddomain-driven-design/data-system-basic/</link><pubDate>Mon, 13 Jun 2022 03:28:39 +0900</pubDate><guid>https://www.devtokki.com/programming/architecture/ddddomain-driven-design/data-system-basic/</guid><description>
-&lt;h2 id="개요"&gt;개요&lt;/h2&gt;
-&lt;p&gt;데이터 시스템 관점에서 알아야 할 핵심 개념을 정리하기 위한 문서입니다. 현재는 문서 골격만 먼저 준비되어 있으며, 이후 저장소, 처리 흐름, 일관성, 확장성과 같은 주제를 중심으로 보강할 예정입니다.&lt;/p&gt;
-&lt;h2 id="핵심-내용"&gt;핵심 내용&lt;/h2&gt;
-&lt;p&gt;작성 예정&lt;/p&gt;
-&lt;h2 id="정리"&gt;정리&lt;/h2&gt;
-&lt;p&gt;데이터 시스템 기초 문서는 추후 내용을 채우면서 본 저장소의 문서 규칙에 맞게 확장합니다.&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;위 네 가지 속성을 함께 만족하는 시스템을 반응형 시스템이라고 볼 수 있습니다. 결국 핵심은 장애 상황과 부하 변화 속에서도 사용자 관점의 응답성을 유지하도록 시스템을 설계하는 데 있습니다.&lt;/p&gt;</description></item></channel></rss>
