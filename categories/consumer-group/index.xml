@@ -1,12 +1,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – Consumer Group</title><link>https://www.devtokki.com/categories/consumer-group/</link><description>Recent content in Consumer Group on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Fri, 22 Apr 2022 14:44:07 +0900</lastBuildDate><atom:link href="https://www.devtokki.com/categories/consumer-group/index.xml" rel="self" type="application/rss+xml"/><item><title>Data-Platform: 컨슈머 그룹</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/</link><pubDate>Fri, 22 Apr 2022 14:44:07 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/</guid><description>
+&lt;h2 id="개요"&gt;개요&lt;/h2&gt;
+&lt;p&gt;컨슈머 그룹은 여러 컨슈머가 하나의 토픽 파티션 집합을 분담해 처리할 수 있도록 묶어 주는 기본 단위입니다. 이 개념을 이해하면 컨슈머 수와 파티션 수의 관계, 장애 발생 시 재할당 흐름을 함께 이해할 수 있습니다.&lt;/p&gt;
+&lt;h2 id="핵심-내용"&gt;핵심 내용&lt;/h2&gt;
 &lt;figure&gt;
 &lt;p align="center"&gt;
 &lt;img src="https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/consumer-group.png"/&gt;
 &lt;/p&gt;
 &lt;figcaption align="center"&gt;컨슈머 그룹과 컨슈머&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;커슈머는 컨슈머 그룹안에 속한 것이 일반적인 구조로, 하나의 컨슈머 그룹 안에 여러 개의 컨슈머가 구성될 수 있음.
+&lt;p&gt;컨슈머는 컨슈머 그룹 안에 속한 것이 일반적인 구조로, 하나의 컨슈머 그룹 안에 여러 개의 컨슈머가 구성될 수 있음.
 위 그림과 같이 토픽의 파티션과 일대일로 매핑되어 메시지를 가져오게 됨.&lt;/p&gt;
 &lt;p&gt;왼쪽에 peter-01이라는 토픽과 3개의 파티션으로 구성되어 있고, 오른쪽에는 consumer group 01이라는 컨슈머 그룹 아이디를 가진 컨슈머 그룹이 있으며, peter-01 토픽의 파티션 수와 동일한 3개의 컨슈머가 속해 있음.&lt;/p&gt;
 &lt;p&gt;컨슈머들은 하나의 컨슈머 그룹 안에 속해 있으며, 그룹 내의 컨슈머들은 서로의 정보를 공유 함.&lt;/p&gt;
-&lt;p&gt;예를 들어 Consumer01이 문제가 생겨 종료됐다면, Consumer02 또는 Consumer03은 Consumer01이 하던 일을 대신해 peter-01 토픽의 partition0을 컨슘하기 시작 함.&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;예를 들어 Consumer01이 문제가 생겨 종료됐다면, Consumer02 또는 Consumer03은 Consumer01이 하던 일을 대신해 peter-01 토픽의 partition0을 컨슘하기 시작 함.&lt;/p&gt;
+&lt;h2 id="정리"&gt;정리&lt;/h2&gt;
+&lt;p&gt;컨슈머 그룹은 카프카의 병렬 처리와 장애 대응을 동시에 가능하게 만드는 핵심 개념입니다. 결국 파티션 수와 컨슈머 수의 관계를 적절히 설계하고, 장애 시 어떤 리밸런싱이 일어나는지 이해하는 것이 실무 운영의 기본입니다.&lt;/p&gt;</description></item></channel></rss>

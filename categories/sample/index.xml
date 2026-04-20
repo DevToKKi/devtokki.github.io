@@ -1,4 +1,7 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – Test</title><link>https://www.devtokki.com/categories/test/</link><description>Recent content in Test on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Sat, 06 Oct 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://www.devtokki.com/categories/test/index.xml" rel="self" type="application/rss+xml"/><item><title>Programming: Markdown test</title><link>https://www.devtokki.com/programming/scala/second-post/</link><pubDate>Sat, 06 Oct 2018 00:00:00 +0000</pubDate><guid>https://www.devtokki.com/programming/scala/second-post/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – Sample</title><link>https://www.devtokki.com/categories/sample/</link><description>Recent content in Sample on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Sat, 06 Oct 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://www.devtokki.com/categories/sample/index.xml" rel="self" type="application/rss+xml"/><item><title>Programming: Markdown test</title><link>https://www.devtokki.com/programming/scala/second-post/</link><pubDate>Sat, 06 Oct 2018 00:00:00 +0000</pubDate><guid>https://www.devtokki.com/programming/scala/second-post/</guid><description>
+&lt;h2 id="개요"&gt;개요&lt;/h2&gt;
+&lt;p&gt;이 문서는 본문 스타일, 표, 코드 블록, 이미지, 알림 박스 등 마크다운과 Docsy 컴포넌트가 어떻게 렌더링되는지 확인하기 위한 샘플 페이지입니다.&lt;/p&gt;
+&lt;h2 id="핵심-내용"&gt;핵심 내용&lt;/h2&gt;
 &lt;p&gt;Text can be &lt;strong&gt;bold&lt;/strong&gt;, &lt;em&gt;italic&lt;/em&gt;, or &lt;del&gt;strikethrough&lt;/del&gt;. &lt;a href="https://github.com"&gt;Links&lt;/a&gt; should be blue with no underlines (unless hovered over).&lt;/p&gt;
 &lt;p&gt;There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs.&lt;/p&gt;
 &lt;p&gt;There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs.&lt;/p&gt;
@@ -265,4 +268,5 @@ This is a warning with a title!
 &lt;h3 id="used-ram"&gt;Used RAM&lt;/h3&gt;
 &lt;p&gt;Bacon ipsum dolor sit amet t-bone doner shank drumstick, pork belly porchetta chuck sausage brisket ham hock rump pig. Chuck kielbasa leberkas, pork bresaola ham hock filet mignon cow shoulder short ribs biltong.&lt;/p&gt;
 &lt;pre tabindex="0"&gt;&lt;code&gt;This is the final element on the page and there should be no margin below this.
-&lt;/code&gt;&lt;/pre&gt;</description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="정리"&gt;정리&lt;/h2&gt;
+&lt;p&gt;샘플 문서는 실제 기술 콘텐츠라기보다 마크다운 렌더링과 스타일 확인을 위한 용도로 유지합니다. 새 운영 문서는 이 페이지가 아니라 기본 archetype과 문서 규칙을 기준으로 작성합니다.&lt;/p&gt;</description></item></channel></rss>

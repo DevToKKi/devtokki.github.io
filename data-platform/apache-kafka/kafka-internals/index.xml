@@ -1,5 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – 카프카 내부 동작 원리</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/</link><description>Recent content in 카프카 내부 동작 원리 on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Fri, 22 Apr 2022 15:30:43 +0900</lastBuildDate><atom:link href="https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/index.xml" rel="self" type="application/rss+xml"/><item><title>Data-Platform: 카프카 리플리케이션(Replication)</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/kafka-replication/</link><pubDate>Wed, 22 Jun 2022 00:54:46 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/kafka-replication/</guid><description>
+&lt;h2 id="개요"&gt;개요&lt;/h2&gt;
 &lt;p&gt;고가용성 분산 스트리밍 플랫폼인 카프카는 많은 데이터 파이프라인의 정중앙에 위치하는 메인 허브 역할을 하는데 만약 하드웨어의 문제나 점검 등으로 인해 정상적으로 동작하지 못해 전체 데이터 파이프라인에 영향을 미친다면 매우 큰 문제이다. 이러한 장애가 발생하더라도 중앙 데이터 허브로서 안정적인 서비스가 운영될 수 있도록 카프카 내부에서는 리플리케이션이라는 동작을 수행한다.&lt;/p&gt;
+&lt;h2 id="핵심-내용"&gt;핵심 내용&lt;/h2&gt;
 &lt;h3 id="리플리케이션-동작-개요"&gt;리플리케이션 동작 개요&lt;/h3&gt;
 &lt;p&gt;카프카는 브로커의 장애에도 불구하고 연속적으로 안정적인 서비스 제공함으로써 데이터 유실을 방지하며 유연성을 제공한다. 카프카의 리플리케이션 동작을 위해 토픽 생성 시 필숫값으로 &lt;em&gt;&lt;strong&gt;replication factor&lt;/strong&gt;&lt;/em&gt;라는 옵션을 설정해야 함.&lt;/p&gt;
 &lt;p&gt;카프카는 해당 옵션을 이용해 관리자가 지정한 수만큼의 리플리케이션을 가질 수 있기 때문에 N개의 리플리케이션이 있는 경우 N - 1까지의 브로커 장애가 발생해도 메시지 손실 없이 안정적으로 메시지를 주고받을 수 있음.&lt;/p&gt;
@@ -30,6 +32,8 @@
 &lt;blockquote&gt;
 &lt;p&gt;🛠 만약 특정 토픽 또는 파티션에 복제가 되지 않거나 문제가 있다고 판단되는 경우, ‘&lt;em&gt;replication-offset-checkpoint’&lt;/em&gt; 라는 파일의 내용을 확인하고 리플리케이션되고 있는 다른 브로커들과 비교해 살펴보면, 어떤 브로커, 토픽, 파티션에 문제가 있는지 파악 할 수 있음.&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;h2 id="정리"&gt;정리&lt;/h2&gt;
+&lt;p&gt;리플리케이션은 단순 복제가 아니라 장애 상황에서도 읽기/쓰기 일관성을 유지하기 위한 설계입니다. 따라서 운영 관점에서는 &lt;code&gt;replication factor&lt;/code&gt;, ISR 상태, 하이워터마크, 커밋 여부를 함께 보면서 브로커 상태를 해석해야 합니다.&lt;/p&gt;
 &lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"

@@ -1,0 +1,7 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – Ddd</title><link>https://www.devtokki.com/categories/ddd/</link><description>Recent content in Ddd on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Mon, 13 Jun 2022 03:28:39 +0900</lastBuildDate><atom:link href="https://www.devtokki.com/categories/ddd/index.xml" rel="self" type="application/rss+xml"/><item><title>Programming: 데이터 시스템 기초</title><link>https://www.devtokki.com/programming/architecture/ddddomain-driven-design/data-system-basic/</link><pubDate>Mon, 13 Jun 2022 03:28:39 +0900</pubDate><guid>https://www.devtokki.com/programming/architecture/ddddomain-driven-design/data-system-basic/</guid><description>
+&lt;h2 id="개요"&gt;개요&lt;/h2&gt;
+&lt;p&gt;데이터 시스템 관점에서 알아야 할 핵심 개념을 정리하기 위한 문서입니다. 현재는 문서 골격만 먼저 준비되어 있으며, 이후 저장소, 처리 흐름, 일관성, 확장성과 같은 주제를 중심으로 보강할 예정입니다.&lt;/p&gt;
+&lt;h2 id="핵심-내용"&gt;핵심 내용&lt;/h2&gt;
+&lt;p&gt;작성 예정&lt;/p&gt;
+&lt;h2 id="정리"&gt;정리&lt;/h2&gt;
+&lt;p&gt;데이터 시스템 기초 문서는 추후 내용을 채우면서 본 저장소의 문서 규칙에 맞게 확장합니다.&lt;/p&gt;</description></item></channel></rss>

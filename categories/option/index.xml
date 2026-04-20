@@ -1,4 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – Option</title><link>https://www.devtokki.com/categories/option/</link><description>Recent content in Option on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Fri, 22 Apr 2022 13:45:54 +0900</lastBuildDate><atom:link href="https://www.devtokki.com/categories/option/index.xml" rel="self" type="application/rss+xml"/><item><title>Data-Platform: 프로듀서 기본 동작 및 주요 옵션</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/</link><pubDate>Fri, 22 Apr 2022 08:23:39 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/</guid><description>
+&lt;h2 id="개요"&gt;개요&lt;/h2&gt;
+&lt;p&gt;프로듀서는 애플리케이션에서 생성한 레코드를 카프카 브로커로 전송하는 역할을 담당합니다. 이 문서는 프로듀서가 메시지를 어떤 흐름으로 전송하는지와 운영 시 자주 조정하는 주요 옵션을 함께 정리합니다.&lt;/p&gt;
+&lt;h2 id="핵심-내용"&gt;핵심 내용&lt;/h2&gt;
 &lt;figure&gt;
 &lt;p&gt;
 &lt;img src="https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/producer.png"&gt;
@@ -88,8 +91,11 @@ end&lt;/pre&gt;
 &lt;td style="text-align: left"&gt;transactional.id&lt;/td&gt;
 &lt;td style="text-align: left"&gt;&amp;lsquo;정확히 한 번 전송&amp;rsquo;을 위해 사용하는 옵션. 동일한 TransactionalId에 한해 정확히 한 번을 보장. 옵션을 사용하기 전 &lt;em&gt;enable.idempotence&lt;/em&gt;를 true로 설정해야 함.&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left"&gt;&lt;ins class="adsbygoogle"
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="정리"&gt;정리&lt;/h2&gt;
+&lt;p&gt;프로듀서를 이해할 때는 &lt;code&gt;직렬화 -&amp;gt; 파티션 결정 -&amp;gt; 배치 적재 -&amp;gt; 브로커 전송&lt;/code&gt; 흐름을 먼저 잡는 것이 중요합니다. 이후에는 &lt;code&gt;acks&lt;/code&gt;, &lt;code&gt;retries&lt;/code&gt;, &lt;code&gt;batch.size&lt;/code&gt;, &lt;code&gt;linger.ms&lt;/code&gt;, &lt;code&gt;enable.idempotence&lt;/code&gt; 같은 옵션을 조정하면서 성능과 안정성 사이의 균형을 맞추면 됩니다.&lt;/p&gt;
+&lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"
 data-ad-slot="6261283644"
@@ -97,13 +103,10 @@ data-ad-format="auto"
 data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
-&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</description></item><item><title>Data-Platform: 컨슈머 기본 동작 및 주요 옵션</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-overview/</link><pubDate>Fri, 22 Apr 2022 13:45:54 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-overview/</guid><description>
-&lt;p&gt;컨슈머는 카프카의 토픽에 저장되어 있는 메시지를 가져오는 역할을 담당. 단순하게 메시지만 가져오는 기능만 하는 것이 아니라 내부적으로는 컨슈머 그룹, 리밸런싱 등 여러 동작을 수행 함.&lt;/p&gt;
+&lt;/script&gt;</description></item><item><title>Data-Platform: 컨슈머 기본 동작 및 주요 옵션</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-overview/</link><pubDate>Fri, 22 Apr 2022 13:45:54 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-overview/</guid><description>
+&lt;h2 id="개요"&gt;개요&lt;/h2&gt;
+&lt;p&gt;컨슈머는 카프카 토픽에 저장된 메시지를 읽어가는 역할을 담당합니다. 단순히 데이터를 가져오는 것에 그치지 않고, 내부적으로는 컨슈머 그룹 구성, 파티션 할당, 리밸런싱 같은 동작을 함께 수행합니다.&lt;/p&gt;
+&lt;h2 id="핵심-내용"&gt;핵심 내용&lt;/h2&gt;
 &lt;h3 id="기본-동작"&gt;기본 동작&lt;/h3&gt;
 &lt;p&gt;프로듀서가 카프카의 토픽으로 메시지를 전송하면 해당 메시지들은 브로커들의 로컬 디스크에 저장되며 컨슈머를 이용해 토픽에 저장된 메시지를 가져올 수 있음.&lt;/p&gt;
 &lt;p&gt;컨슈머 그룹은 하나 이상의 컨슈머들이 모여 있는 그룹을 의미하고, 컨슈머는 반드시 컨슈머 그룹에 속하게 됨. 그리고 컨슈머 그룹은 각 파티션의 리더에게 카프카 토픽에 저장된 메시지를 가져오기 위한 요청을 보냄.&lt;/p&gt;
@@ -176,8 +179,11 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;td style="text-align: left"&gt;fetch.max.wait.ms&lt;/td&gt;
 &lt;td style="text-align: left"&gt;&lt;em&gt;fetch.min.bytes&lt;/em&gt;에 의해 설정된 데이터보다 적은 경우 요청에 대한 응답을 기다리는 최대 시간.&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left"&gt;&lt;ins class="adsbygoogle"
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="정리"&gt;정리&lt;/h2&gt;
+&lt;p&gt;컨슈머는 단순 조회 클라이언트가 아니라 컨슈머 그룹과 파티션 할당 전략 위에서 동작하는 구성 요소입니다. 따라서 운영 시에는 &lt;code&gt;group.id&lt;/code&gt;, &lt;code&gt;session.timeout.ms&lt;/code&gt;, &lt;code&gt;heartbeat.interval.ms&lt;/code&gt;, &lt;code&gt;auto.offset.reset&lt;/code&gt; 같은 옵션을 함께 보며 처리량과 안정성을 조정하는 접근이 필요합니다.&lt;/p&gt;
+&lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"
 data-ad-slot="6261283644"
@@ -185,9 +191,4 @@ data-ad-format="auto"
 data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
-&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</description></item></channel></rss>
+&lt;/script&gt;</description></item></channel></rss>

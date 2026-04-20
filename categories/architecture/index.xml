@@ -1,8 +1,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – Architecture</title><link>https://www.devtokki.com/categories/architecture/</link><description>Recent content in Architecture on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Thu, 16 Jun 2022 01:14:14 +0900</lastBuildDate><atom:link href="https://www.devtokki.com/categories/architecture/index.xml" rel="self" type="application/rss+xml"/><item><title>Architecture: 반응형 시스템(Reactive system) 조건</title><link>https://www.devtokki.com/architecture/reactive-system/</link><pubDate>Thu, 16 Jun 2022 01:14:14 +0900</pubDate><guid>https://www.devtokki.com/architecture/reactive-system/</guid><description>
+&lt;h2 id="개요"&gt;개요&lt;/h2&gt;
+&lt;p&gt;반응형 시스템은 단순히 비동기 처리를 사용하는 시스템이 아니라, 장애와 부하 변화에도 일관된 응답성을 유지하도록 설계된 시스템을 의미합니다. 이 문서는 반응형 시스템을 구성하는 핵심 조건을 간단히 정리합니다.&lt;/p&gt;
+&lt;h2 id="핵심-내용"&gt;핵심 내용&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;회복력 (resilient)&lt;/strong&gt; : 스스로 회복할 수 있는 앱은 장애를 복구할 수 있으며, 오류나 예외 같은 장애가 발생하더라도 항상 응답함을 뜻함.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;탄력성 (elastic)&lt;/strong&gt; : 작업 부하가 크든 작든 규모에 상관없이 응답하는 시스템을 말한다. 즉, 트래픽이 증가하든 감소하든 할당된 자원을 조절해 부하를 서비스할 수 있게 항상 응답성을 유지하는 시스템이다.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;메시지 기반 (message driven)&lt;/strong&gt; : 시스템의 구성 요소가 서로 느슨하게 결합돼 있으며 비동기 메시지 전달을 사용해 통신하고, 행동을 취함으로써 메시지에 반응한다.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;응답성 (responsive)&lt;/strong&gt; : 위 세 속성을 만족하는 시스템을 응답성이 있는 시스템이라 한다.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;위 네 가지 속성을 모두 만족하는 시스템을 반응형(reactive) 시스템이라 함.&lt;/p&gt;</description></item></channel></rss>
+&lt;h2 id="정리"&gt;정리&lt;/h2&gt;
+&lt;p&gt;위 네 가지 속성을 함께 만족하는 시스템을 반응형 시스템이라고 볼 수 있습니다. 결국 핵심은 장애 상황과 부하 변화 속에서도 사용자 관점의 응답성을 유지하도록 시스템을 설계하는 데 있습니다.&lt;/p&gt;</description></item><item><title>Programming: 데이터 시스템 기초</title><link>https://www.devtokki.com/programming/architecture/ddddomain-driven-design/data-system-basic/</link><pubDate>Mon, 13 Jun 2022 03:28:39 +0900</pubDate><guid>https://www.devtokki.com/programming/architecture/ddddomain-driven-design/data-system-basic/</guid><description>
+&lt;h2 id="개요"&gt;개요&lt;/h2&gt;
+&lt;p&gt;데이터 시스템 관점에서 알아야 할 핵심 개념을 정리하기 위한 문서입니다. 현재는 문서 골격만 먼저 준비되어 있으며, 이후 저장소, 처리 흐름, 일관성, 확장성과 같은 주제를 중심으로 보강할 예정입니다.&lt;/p&gt;
+&lt;h2 id="핵심-내용"&gt;핵심 내용&lt;/h2&gt;
+&lt;p&gt;작성 예정&lt;/p&gt;
+&lt;h2 id="정리"&gt;정리&lt;/h2&gt;
+&lt;p&gt;데이터 시스템 기초 문서는 추후 내용을 채우면서 본 저장소의 문서 규칙에 맞게 확장합니다.&lt;/p&gt;</description></item></channel></rss>

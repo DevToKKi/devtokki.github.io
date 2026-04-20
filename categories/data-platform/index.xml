@@ -2,6 +2,9 @@
 &lt;div class="pageinfo pageinfo-primary"&gt;
 &lt;p&gt;본 페이지는 Apache Spark 관련 Tip에 대해 정리한 내용을 제공합니다.&lt;/p&gt;
 &lt;/div&gt;</description></item><item><title>Data-Platform: 카프카 기초 다지기</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/basic/</link><pubDate>Tue, 19 Apr 2022 08:34:14 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/basic/</guid><description>
+&lt;h2 id="개요"&gt;개요&lt;/h2&gt;
+&lt;p&gt;카프카를 처음 이해할 때는 브로커, 토픽, 파티션, 세그먼트 같은 기본 용어와 함께 데이터가 어떻게 저장되고 복제되는지 흐름을 같이 보는 것이 중요합니다. 이 문서는 카프카를 구성하는 주요 요소와 저장 구조를 한 번에 정리하기 위한 입문 자료입니다.&lt;/p&gt;
+&lt;h2 id="핵심-내용"&gt;핵심 내용&lt;/h2&gt;
 &lt;h3 id="카프카를-구성하는-주요-요소"&gt;카프카를 구성하는 주요 요소&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;주키퍼(Zookeeper) : 아파치 프로젝트 애플리케이션 이름으로 &lt;U&gt;&lt;strong&gt;카프카의 메타데이터(metadata) 관리 및 브로커의 정상 상태 점검(health check)을 담당&lt;/strong&gt;&lt;/U&gt;&lt;/li&gt;
@@ -76,6 +79,8 @@
 - 프로듀서는 카프카의 Peter-overview01 토픽으로 메시지 전송
 - peter-overview01 토픽은 파티션이 하나뿐이므로, 프로듀서로부터 받은 메시지를 파티션0의 세그먼트 로그 파일에 저장
 - 브로커의 세그먼트 로그 파일에 저장된 메시지는 컨슈머에서 가져 감
+&lt;h2 id="정리"&gt;정리&lt;/h2&gt;
+&lt;p&gt;카프카를 이해할 때는 토픽을 논리적 단위로, 파티션을 병렬 처리 단위로, 세그먼트를 실제 저장 파일 단위로 구분해서 보는 것이 좋습니다. 여기에 리플리케이션 개념까지 함께 보면 카프카가 처리량과 안정성을 어떻게 동시에 확보하는지 훨씬 쉽게 이해할 수 있습니다.&lt;/p&gt;
 &lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"
@@ -91,6 +96,9 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;div class="pageinfo pageinfo-primary"&gt;
 &lt;p&gt;본 페이지는 Apache Spark에 대해 공부한 내용을 제공합니다.&lt;/p&gt;
 &lt;/div&gt;</description></item><item><title>Data-Platform: 카프카 내부 동작 원리</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/</link><pubDate>Fri, 22 Apr 2022 15:30:43 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/</guid><description/></item><item><title>Data-Platform: 카프카의 핵심 개념</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/</link><pubDate>Thu, 21 Apr 2022 11:05:08 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/</guid><description>
+&lt;h2 id="개요"&gt;개요&lt;/h2&gt;
+&lt;p&gt;카프카는 단순한 메시지 큐가 아니라 높은 처리량과 안정성을 함께 확보하도록 설계된 분산 이벤트 스트리밍 플랫폼입니다. 이 문서는 카프카의 핵심 개념을 성능과 안정성 관점에서 정리합니다.&lt;/p&gt;
+&lt;h2 id="핵심-내용"&gt;핵심 내용&lt;/h2&gt;
 &lt;h3 id="주요-특징"&gt;주요 특징&lt;/h3&gt;
 &lt;h4 id="1-분산-시스템"&gt;1. 분산 시스템&lt;/h4&gt;
 &lt;p&gt;카프카도 분산 시스템으로 유연한 리소스 확장 가능&lt;/p&gt;
@@ -162,6 +170,8 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;p&gt;KRaft is in early access and should be used in development only. It is not suitable for production.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://developer.confluent.io/learn/kraft/"&gt;https://developer.confluent.io/learn/kraft/&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;h2 id="정리"&gt;정리&lt;/h2&gt;
+&lt;p&gt;카프카의 핵심은 분산 구조, 배치 처리, 압축 전송, 파티션 기반 저장 구조, 리플리케이션을 조합해 높은 처리량과 안정성을 동시에 확보하는 데 있습니다. 개별 옵션보다 이런 설계 배경을 먼저 이해하면 이후 프로듀서, 컨슈머, 운영 옵션을 훨씬 쉽게 받아들일 수 있습니다.&lt;/p&gt;
 &lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"
@@ -171,6 +181,9 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;</description></item><item><title>Data-Platform: 프로듀서 기본 동작 및 주요 옵션</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/</link><pubDate>Fri, 22 Apr 2022 08:23:39 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/</guid><description>
+&lt;h2 id="개요"&gt;개요&lt;/h2&gt;
+&lt;p&gt;프로듀서는 애플리케이션에서 생성한 레코드를 카프카 브로커로 전송하는 역할을 담당합니다. 이 문서는 프로듀서가 메시지를 어떤 흐름으로 전송하는지와 운영 시 자주 조정하는 주요 옵션을 함께 정리합니다.&lt;/p&gt;
+&lt;h2 id="핵심-내용"&gt;핵심 내용&lt;/h2&gt;
 &lt;figure&gt;
 &lt;p&gt;
 &lt;img src="https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/producer.png"&gt;
@@ -260,8 +273,11 @@ end&lt;/pre&gt;
 &lt;td style="text-align: left"&gt;transactional.id&lt;/td&gt;
 &lt;td style="text-align: left"&gt;&amp;lsquo;정확히 한 번 전송&amp;rsquo;을 위해 사용하는 옵션. 동일한 TransactionalId에 한해 정확히 한 번을 보장. 옵션을 사용하기 전 &lt;em&gt;enable.idempotence&lt;/em&gt;를 true로 설정해야 함.&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left"&gt;&lt;ins class="adsbygoogle"
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="정리"&gt;정리&lt;/h2&gt;
+&lt;p&gt;프로듀서를 이해할 때는 &lt;code&gt;직렬화 -&amp;gt; 파티션 결정 -&amp;gt; 배치 적재 -&amp;gt; 브로커 전송&lt;/code&gt; 흐름을 먼저 잡는 것이 중요합니다. 이후에는 &lt;code&gt;acks&lt;/code&gt;, &lt;code&gt;retries&lt;/code&gt;, &lt;code&gt;batch.size&lt;/code&gt;, &lt;code&gt;linger.ms&lt;/code&gt;, &lt;code&gt;enable.idempotence&lt;/code&gt; 같은 옵션을 조정하면서 성능과 안정성 사이의 균형을 맞추면 됩니다.&lt;/p&gt;
+&lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"
 data-ad-slot="6261283644"
@@ -269,13 +285,10 @@ data-ad-format="auto"
 data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
-&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</description></item><item><title>Data-Platform: 컨슈머 기본 동작 및 주요 옵션</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-overview/</link><pubDate>Fri, 22 Apr 2022 13:45:54 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-overview/</guid><description>
-&lt;p&gt;컨슈머는 카프카의 토픽에 저장되어 있는 메시지를 가져오는 역할을 담당. 단순하게 메시지만 가져오는 기능만 하는 것이 아니라 내부적으로는 컨슈머 그룹, 리밸런싱 등 여러 동작을 수행 함.&lt;/p&gt;
+&lt;/script&gt;</description></item><item><title>Data-Platform: 컨슈머 기본 동작 및 주요 옵션</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-overview/</link><pubDate>Fri, 22 Apr 2022 13:45:54 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-overview/</guid><description>
+&lt;h2 id="개요"&gt;개요&lt;/h2&gt;
+&lt;p&gt;컨슈머는 카프카 토픽에 저장된 메시지를 읽어가는 역할을 담당합니다. 단순히 데이터를 가져오는 것에 그치지 않고, 내부적으로는 컨슈머 그룹 구성, 파티션 할당, 리밸런싱 같은 동작을 함께 수행합니다.&lt;/p&gt;
+&lt;h2 id="핵심-내용"&gt;핵심 내용&lt;/h2&gt;
 &lt;h3 id="기본-동작"&gt;기본 동작&lt;/h3&gt;
 &lt;p&gt;프로듀서가 카프카의 토픽으로 메시지를 전송하면 해당 메시지들은 브로커들의 로컬 디스크에 저장되며 컨슈머를 이용해 토픽에 저장된 메시지를 가져올 수 있음.&lt;/p&gt;
 &lt;p&gt;컨슈머 그룹은 하나 이상의 컨슈머들이 모여 있는 그룹을 의미하고, 컨슈머는 반드시 컨슈머 그룹에 속하게 됨. 그리고 컨슈머 그룹은 각 파티션의 리더에게 카프카 토픽에 저장된 메시지를 가져오기 위한 요청을 보냄.&lt;/p&gt;
@@ -348,8 +361,11 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;td style="text-align: left"&gt;fetch.max.wait.ms&lt;/td&gt;
 &lt;td style="text-align: left"&gt;&lt;em&gt;fetch.min.bytes&lt;/em&gt;에 의해 설정된 데이터보다 적은 경우 요청에 대한 응답을 기다리는 최대 시간.&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left"&gt;&lt;ins class="adsbygoogle"
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="정리"&gt;정리&lt;/h2&gt;
+&lt;p&gt;컨슈머는 단순 조회 클라이언트가 아니라 컨슈머 그룹과 파티션 할당 전략 위에서 동작하는 구성 요소입니다. 따라서 운영 시에는 &lt;code&gt;group.id&lt;/code&gt;, &lt;code&gt;session.timeout.ms&lt;/code&gt;, &lt;code&gt;heartbeat.interval.ms&lt;/code&gt;, &lt;code&gt;auto.offset.reset&lt;/code&gt; 같은 옵션을 함께 보며 처리량과 안정성을 조정하는 접근이 필요합니다.&lt;/p&gt;
+&lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"
 data-ad-slot="6261283644"
@@ -357,20 +373,64 @@ data-ad-format="auto"
 data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
-&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</description></item><item><title>Data-Platform: 컨슈머 그룹</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/</link><pubDate>Fri, 22 Apr 2022 14:44:07 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/</guid><description>
+&lt;/script&gt;</description></item><item><title>Data-Platform: 컨슈머 그룹</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/</link><pubDate>Fri, 22 Apr 2022 14:44:07 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/</guid><description>
+&lt;h2 id="개요"&gt;개요&lt;/h2&gt;
+&lt;p&gt;컨슈머 그룹은 여러 컨슈머가 하나의 토픽 파티션 집합을 분담해 처리할 수 있도록 묶어 주는 기본 단위입니다. 이 개념을 이해하면 컨슈머 수와 파티션 수의 관계, 장애 발생 시 재할당 흐름을 함께 이해할 수 있습니다.&lt;/p&gt;
+&lt;h2 id="핵심-내용"&gt;핵심 내용&lt;/h2&gt;
 &lt;figure&gt;
 &lt;p align="center"&gt;
 &lt;img src="https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/consumer-group.png"/&gt;
 &lt;/p&gt;
 &lt;figcaption align="center"&gt;컨슈머 그룹과 컨슈머&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;커슈머는 컨슈머 그룹안에 속한 것이 일반적인 구조로, 하나의 컨슈머 그룹 안에 여러 개의 컨슈머가 구성될 수 있음.
+&lt;p&gt;컨슈머는 컨슈머 그룹 안에 속한 것이 일반적인 구조로, 하나의 컨슈머 그룹 안에 여러 개의 컨슈머가 구성될 수 있음.
 위 그림과 같이 토픽의 파티션과 일대일로 매핑되어 메시지를 가져오게 됨.&lt;/p&gt;
 &lt;p&gt;왼쪽에 peter-01이라는 토픽과 3개의 파티션으로 구성되어 있고, 오른쪽에는 consumer group 01이라는 컨슈머 그룹 아이디를 가진 컨슈머 그룹이 있으며, peter-01 토픽의 파티션 수와 동일한 3개의 컨슈머가 속해 있음.&lt;/p&gt;
 &lt;p&gt;컨슈머들은 하나의 컨슈머 그룹 안에 속해 있으며, 그룹 내의 컨슈머들은 서로의 정보를 공유 함.&lt;/p&gt;
-&lt;p&gt;예를 들어 Consumer01이 문제가 생겨 종료됐다면, Consumer02 또는 Consumer03은 Consumer01이 하던 일을 대신해 peter-01 토픽의 partition0을 컨슘하기 시작 함.&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;예를 들어 Consumer01이 문제가 생겨 종료됐다면, Consumer02 또는 Consumer03은 Consumer01이 하던 일을 대신해 peter-01 토픽의 partition0을 컨슘하기 시작 함.&lt;/p&gt;
+&lt;h2 id="정리"&gt;정리&lt;/h2&gt;
+&lt;p&gt;컨슈머 그룹은 카프카의 병렬 처리와 장애 대응을 동시에 가능하게 만드는 핵심 개념입니다. 결국 파티션 수와 컨슈머 수의 관계를 적절히 설계하고, 장애 시 어떤 리밸런싱이 일어나는지 이해하는 것이 실무 운영의 기본입니다.&lt;/p&gt;</description></item><item><title>Data-Platform: 카프카 리플리케이션(Replication)</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/kafka-replication/</link><pubDate>Wed, 22 Jun 2022 00:54:46 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/kafka-replication/</guid><description>
+&lt;h2 id="개요"&gt;개요&lt;/h2&gt;
+&lt;p&gt;고가용성 분산 스트리밍 플랫폼인 카프카는 많은 데이터 파이프라인의 정중앙에 위치하는 메인 허브 역할을 하는데 만약 하드웨어의 문제나 점검 등으로 인해 정상적으로 동작하지 못해 전체 데이터 파이프라인에 영향을 미친다면 매우 큰 문제이다. 이러한 장애가 발생하더라도 중앙 데이터 허브로서 안정적인 서비스가 운영될 수 있도록 카프카 내부에서는 리플리케이션이라는 동작을 수행한다.&lt;/p&gt;
+&lt;h2 id="핵심-내용"&gt;핵심 내용&lt;/h2&gt;
+&lt;h3 id="리플리케이션-동작-개요"&gt;리플리케이션 동작 개요&lt;/h3&gt;
+&lt;p&gt;카프카는 브로커의 장애에도 불구하고 연속적으로 안정적인 서비스 제공함으로써 데이터 유실을 방지하며 유연성을 제공한다. 카프카의 리플리케이션 동작을 위해 토픽 생성 시 필숫값으로 &lt;em&gt;&lt;strong&gt;replication factor&lt;/strong&gt;&lt;/em&gt;라는 옵션을 설정해야 함.&lt;/p&gt;
+&lt;p&gt;카프카는 해당 옵션을 이용해 관리자가 지정한 수만큼의 리플리케이션을 가질 수 있기 때문에 N개의 리플리케이션이 있는 경우 N - 1까지의 브로커 장애가 발생해도 메시지 손실 없이 안정적으로 메시지를 주고받을 수 있음.&lt;/p&gt;
+&lt;h3 id="리더와-팔로워"&gt;리더와 팔로워&lt;/h3&gt;
+&lt;p&gt;카프카는 내부적으로 모두 동일한 리플리케이션들을 리더와 팔로워로 구분하고, 각자의 역할을 분담시킨다.&lt;/p&gt;
+&lt;p&gt;리더는 리플리케이션 중 하나가 선정되며, 모든 읽기와 쓰기는 그 리더를 통해서만 가능하다. 프로듀서는 모든 리플리케이션에 메시지를 보내는 것이 아니라 리더에게만 메시지를 전송한다. 또한 컨슈머도 오직 리더로부터 메시지를 가져온다.&lt;/p&gt;
+&lt;figure&gt;
+&lt;p align="center"&gt;
+&lt;img src ="/data/data-platform/apache-kafka/kafka-internals/leader-follower.png"&gt;
+&lt;/p&gt;
+&lt;figcaption align="center"&gt;리더와 팔로워 관계&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;위 그림에서 peter-test01 토픽의 파티션 수는 1이고, 리플리케이션 팩터 수는 3을 나타낸다. 그림에서 처럼 토픽의 파티션 번호를 함께 표시하는데, peter-test01-0은 peter-test01 토픽의 0번 파티션이라는 뜻 임.&lt;/p&gt;
+&lt;p&gt;프로듀서는 peter-test01 토픽으로 메시지를 전송하는데, 파티션의 리더만 읽고 쓰기가 가능하므로 0번 파티션의 리더로 메시지를 보내며 컨슈머 동작에서도 역시 0번 파티션의 리더로부터 메시지를 가져온다.&lt;/p&gt;
+&lt;p&gt;리더만 읽고 쓰기 동작을 하므로 나머지 팔로워들은 리더에 문제가 발생하거나 이슈가 있을 경우를 대비해 언제든지 새로운 리더가 될 준비를 함. 따라서 컨슈머가 토픽의 메시지를 꺼내 가는 것과 비슷한 동작으로 지속적으로 파티션의 리더가 새로운 메시지를 받았는지 확인하고, 새로운 메시지가 있다면 해당 메시지를 리더로부터 복제를 수행.&lt;/p&gt;
+&lt;h3 id="복제-유지와-커밋"&gt;복제 유지와 커밋&lt;/h3&gt;
+&lt;p&gt;리더와 팔로워는 &lt;strong&gt;ISR(InSyncReplica)라는 논리적 그룹&lt;/strong&gt;으로 묶여 있음. 이렇게 리더와 팔로워를 별도의 그룹으로 나누는 이유는 기본적으로 해당 그룹 안에 속한 팔로워들만이 새로운 리더의 자격을 가질 수 있기 때문. 즉, &lt;strong&gt;ISR 그룹에 속하지 못한 팔로워는 새로운 리더의 자격을 가질 수 없음.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ISR내의 팔로워들은 리더와의 데이터 일치를 유지하기 위해 지속적으로 리더의 테이터를 따라게가 되고, 리더는 ISR 내 모든 팔로워가 메시지를 받을 때까지 기다림. 하지만 팔로워가 네트워크 오류, 브로커 장애 등 이유로 리더로부터 리플리케이션하지 못하는 경우도 발생할 수 있음. 뒤처진 팔로워는 이미 리더와의 데이터가 불일치한 상태에 놓여 있기 때문에 만약 이 팔로워에게 새로운 리더를 넘겨준다면 데이터의 정합성이나 메시지 손실 등의 문제가 발생할 수 있음. 따라서 파티션의 리더는 팔로워들이 뒤처지지 않고 리플리케이션 동작을 잘하고 있는지 감사. 즉 리더에 뒤처지지 않고 잘 따라잡고 있는 팔로워들만이 ISR 그룹에 속하게 되며, 리더에 장애가 발생할 경우 새로운 리더의 자격을 얻을 수 있는 것임.&lt;/p&gt;
+&lt;p&gt;리더는 읽고 쓰는 동작은 물론, 팔로워가 리플리케이션 동작을 잘 수행하고 있는지도 판단 함. 만약 팔로워가 특정 주기의 시간만큼 복제 요청을 하지 않는다면, 리더는 해당 팔로워가 리플리케이션 동작에 문제가 발생했다고 판단해 ISR 그룹에서 추방 함.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;카프카 클러스터 운영 중 특정 토픽의 상태가 의심되거나 문제가 있다고 판단되면, 토픽 상세보기 명령을 통해 현재 ISR 상태를 점검해 봄으로써, 현재 토픽의 상태가 양호한지 불량한지 육안으로 확인 할 수 있음.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;ISR 내에서 모든 팔로워의 복제가 완료되면, 리더는 내부적으로 커밋되었다는 표시를 하기 됨. 마지막 커밋 오프셋 위치는 **하이워터마크(high water mark)**라고 부름.&lt;/p&gt;
+&lt;p&gt;즉, 커밋되었다는 것은 리플리케이션 팩터 수의 모든 리플리케이션이 전부 메시지를 저장했음을 의미하며 &lt;strong&gt;커밋된 메시지만 컨슈머가 읽어갈 수 있음&lt;/strong&gt;. 카프카에서 커밋되지 않은 메시지를 컨슈머가 읽을 수 없게 하는 이유는 바로 &lt;strong&gt;메시지의 일관성을 유지하기 위함&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;모든 브로커는 재시작될 때, 커밋된 메시지를 유지하기 위해 로컬 디스크의 **‘replication-offset-checkpoint’**라는 파일에 마지막 커밋 오프셋 위치를 저장.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;‘replication-offset-checkpoint’&lt;/strong&gt; 파일은 브로커 설정 파일에서 설정한 로그 디렉토리 경로에 있으며, 브로커 설정 파일의 로그 디렉토리는 /data/kafka-logs로 설정되어 있으므로, 해당 디렉토리 하위에 위치.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;🛠 만약 특정 토픽 또는 파티션에 복제가 되지 않거나 문제가 있다고 판단되는 경우, ‘&lt;em&gt;replication-offset-checkpoint’&lt;/em&gt; 라는 파일의 내용을 확인하고 리플리케이션되고 있는 다른 브로커들과 비교해 살펴보면, 어떤 브로커, 토픽, 파티션에 문제가 있는지 파악 할 수 있음.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="정리"&gt;정리&lt;/h2&gt;
+&lt;p&gt;리플리케이션은 단순 복제가 아니라 장애 상황에서도 읽기/쓰기 일관성을 유지하기 위한 설계입니다. 따라서 운영 관점에서는 &lt;code&gt;replication factor&lt;/code&gt;, ISR 상태, 하이워터마크, 커밋 여부를 함께 보면서 브로커 상태를 해석해야 합니다.&lt;/p&gt;
+&lt;ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-8842908287515174"
+data-ad-slot="6261283644"
+data-ad-format="auto"
+data-full-width-responsive="true"&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;</description></item></channel></rss>

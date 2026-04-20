@@ -1,4 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – Basic</title><link>https://www.devtokki.com/categories/basic/</link><description>Recent content in Basic on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Thu, 21 Apr 2022 11:05:08 +0900</lastBuildDate><atom:link href="https://www.devtokki.com/categories/basic/index.xml" rel="self" type="application/rss+xml"/><item><title>Data-Platform: 카프카 기초 다지기</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/basic/</link><pubDate>Tue, 19 Apr 2022 08:34:14 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/basic/</guid><description>
+&lt;h2 id="개요"&gt;개요&lt;/h2&gt;
+&lt;p&gt;카프카를 처음 이해할 때는 브로커, 토픽, 파티션, 세그먼트 같은 기본 용어와 함께 데이터가 어떻게 저장되고 복제되는지 흐름을 같이 보는 것이 중요합니다. 이 문서는 카프카를 구성하는 주요 요소와 저장 구조를 한 번에 정리하기 위한 입문 자료입니다.&lt;/p&gt;
+&lt;h2 id="핵심-내용"&gt;핵심 내용&lt;/h2&gt;
 &lt;h3 id="카프카를-구성하는-주요-요소"&gt;카프카를 구성하는 주요 요소&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;주키퍼(Zookeeper) : 아파치 프로젝트 애플리케이션 이름으로 &lt;U&gt;&lt;strong&gt;카프카의 메타데이터(metadata) 관리 및 브로커의 정상 상태 점검(health check)을 담당&lt;/strong&gt;&lt;/U&gt;&lt;/li&gt;
@@ -73,6 +76,8 @@
 - 프로듀서는 카프카의 Peter-overview01 토픽으로 메시지 전송
 - peter-overview01 토픽은 파티션이 하나뿐이므로, 프로듀서로부터 받은 메시지를 파티션0의 세그먼트 로그 파일에 저장
 - 브로커의 세그먼트 로그 파일에 저장된 메시지는 컨슈머에서 가져 감
+&lt;h2 id="정리"&gt;정리&lt;/h2&gt;
+&lt;p&gt;카프카를 이해할 때는 토픽을 논리적 단위로, 파티션을 병렬 처리 단위로, 세그먼트를 실제 저장 파일 단위로 구분해서 보는 것이 좋습니다. 여기에 리플리케이션 개념까지 함께 보면 카프카가 처리량과 안정성을 어떻게 동시에 확보하는지 훨씬 쉽게 이해할 수 있습니다.&lt;/p&gt;
 &lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"
@@ -82,6 +87,9 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;</description></item><item><title>Data-Platform: 카프카의 핵심 개념</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/</link><pubDate>Thu, 21 Apr 2022 11:05:08 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/</guid><description>
+&lt;h2 id="개요"&gt;개요&lt;/h2&gt;
+&lt;p&gt;카프카는 단순한 메시지 큐가 아니라 높은 처리량과 안정성을 함께 확보하도록 설계된 분산 이벤트 스트리밍 플랫폼입니다. 이 문서는 카프카의 핵심 개념을 성능과 안정성 관점에서 정리합니다.&lt;/p&gt;
+&lt;h2 id="핵심-내용"&gt;핵심 내용&lt;/h2&gt;
 &lt;h3 id="주요-특징"&gt;주요 특징&lt;/h3&gt;
 &lt;h4 id="1-분산-시스템"&gt;1. 분산 시스템&lt;/h4&gt;
 &lt;p&gt;카프카도 분산 시스템으로 유연한 리소스 확장 가능&lt;/p&gt;
@@ -153,6 +161,8 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;p&gt;KRaft is in early access and should be used in development only. It is not suitable for production.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://developer.confluent.io/learn/kraft/"&gt;https://developer.confluent.io/learn/kraft/&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;h2 id="정리"&gt;정리&lt;/h2&gt;
+&lt;p&gt;카프카의 핵심은 분산 구조, 배치 처리, 압축 전송, 파티션 기반 저장 구조, 리플리케이션을 조합해 높은 처리량과 안정성을 동시에 확보하는 데 있습니다. 개별 옵션보다 이런 설계 배경을 먼저 이해하면 이후 프로듀서, 컨슈머, 운영 옵션을 훨씬 쉽게 받아들일 수 있습니다.&lt;/p&gt;
 &lt;ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-8842908287515174"
