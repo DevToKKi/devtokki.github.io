@@ -178,6 +178,26 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;/ul&gt;
 &lt;p&gt;send() 메소드 동작 이후 &lt;strong&gt;레코드들을 파티션별로 잠시 모아 둠&lt;/strong&gt;. 모아두는 이유는 프로듀서가 카프카로 전송하기 전에 &lt;strong&gt;배치 전송&lt;/strong&gt;하기 위함.&lt;/p&gt;
 &lt;p&gt;전송이 실패하면 재시도 동작이 이뤄지고, 지정된 횟수만큼의 재시도가 실패하면 최종 실패가 전달됨. 전송이 성공하면 메타데이터를 리턴하게 됨.&lt;/p&gt;
+&lt;h3 id="프로듀서-전송-흐름"&gt;프로듀서 전송 흐름&lt;/h3&gt;
+&lt;pre class="mermaid"&gt;sequenceDiagram
+participant App as Application
+participant P as Producer
+participant Part as Partitioner
+participant B as Kafka Broker
+App-&amp;gt;&amp;gt;P: ProducerRecord 생성
+P-&amp;gt;&amp;gt;P: Serializer 처리
+P-&amp;gt;&amp;gt;Part: 파티션 결정 요청
+Part--&amp;gt;&amp;gt;P: 대상 파티션 반환
+P-&amp;gt;&amp;gt;P: 파티션별 배치 적재
+P-&amp;gt;&amp;gt;B: 리더 파티션에 전송
+alt 전송 성공
+B--&amp;gt;&amp;gt;P: Ack 반환
+P--&amp;gt;&amp;gt;App: 메타데이터 반환
+else 전송 실패
+B--&amp;gt;&amp;gt;P: 오류 응답
+P-&amp;gt;&amp;gt;P: Retry 여부 판단
+P-&amp;gt;&amp;gt;B: 재전송
+end&lt;/pre&gt;
 &lt;h3 id="프로듀서-주요-옵션"&gt;프로듀서 주요 옵션&lt;/h3&gt;
 &lt;table&gt;
 &lt;thead&gt;
