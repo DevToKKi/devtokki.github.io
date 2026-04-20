@@ -1,14 +1,5 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – Replication</title><link>https://www.devtokki.com/categories/replication/</link><description>Recent content in Replication on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Wed, 22 Jun 2022 00:54:46 +0900</lastBuildDate><atom:link href="https://www.devtokki.com/categories/replication/index.xml" rel="self" type="application/rss+xml"/><item><title>Data-Platform: 카프카 리플리케이션(Replication)</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/kafka-replication/</link><pubDate>Wed, 22 Jun 2022 00:54:46 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/kafka-replication/</guid><description>
-&lt;p&gt;&lt;ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-8842908287515174"
-data-ad-slot="6261283644"
-data-ad-format="auto"
-data-full-width-responsive="true"&gt;&lt;/ins&gt;
-&lt;script&gt;
-(adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
-고가용성 분산 스트리밍 플랫폼인 카프카는 많은 데이터 파이프라인의 정중앙에 위치하는 메인 허브 역할을 하는데 만약 하드웨어의 문제나 점검 등으로 인해 정상적으로 동작하지 못해 전체 데이터 파이프라인에 영향을 미친다면 매우 큰 문제이다. 이러한 장애가 발생하더라도 중앙 데이터 허브로서 안정적인 서비스가 운영될 수 있도록 카프카 내부에서는 리플리케이션이라는 동작을 수행한다.&lt;/p&gt;
+&lt;p&gt;고가용성 분산 스트리밍 플랫폼인 카프카는 많은 데이터 파이프라인의 정중앙에 위치하는 메인 허브 역할을 하는데 만약 하드웨어의 문제나 점검 등으로 인해 정상적으로 동작하지 못해 전체 데이터 파이프라인에 영향을 미친다면 매우 큰 문제이다. 이러한 장애가 발생하더라도 중앙 데이터 허브로서 안정적인 서비스가 운영될 수 있도록 카프카 내부에서는 리플리케이션이라는 동작을 수행한다.&lt;/p&gt;
 &lt;h3 id="리플리케이션-동작-개요"&gt;리플리케이션 동작 개요&lt;/h3&gt;
 &lt;p&gt;카프카는 브로커의 장애에도 불구하고 연속적으로 안정적인 서비스 제공함으로써 데이터 유실을 방지하며 유연성을 제공한다. 카프카의 리플리케이션 동작을 위해 토픽 생성 시 필숫값으로 &lt;em&gt;&lt;strong&gt;replication factor&lt;/strong&gt;&lt;/em&gt;라는 옵션을 설정해야 함.&lt;/p&gt;
 &lt;p&gt;카프카는 해당 옵션을 이용해 관리자가 지정한 수만큼의 리플리케이션을 가질 수 있기 때문에 N개의 리플리케이션이 있는 경우 N - 1까지의 브로커 장애가 발생해도 메시지 손실 없이 안정적으로 메시지를 주고받을 수 있음.&lt;/p&gt;

@@ -1,13 +1,4 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – Structure</title><link>https://www.devtokki.com/categories/structure/</link><description>Recent content in Structure on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Fri, 22 Apr 2022 08:23:39 +0900</lastBuildDate><atom:link href="https://www.devtokki.com/categories/structure/index.xml" rel="self" type="application/rss+xml"/><item><title>Data-Platform: 프로듀서 기본 동작 및 주요 옵션</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/</link><pubDate>Fri, 22 Apr 2022 08:23:39 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/</guid><description>
-&lt;ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-8842908287515174"
-data-ad-slot="6261283644"
-data-ad-format="auto"
-data-full-width-responsive="true"&gt;&lt;/ins&gt;
-&lt;script&gt;
-(adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
 &lt;figure&gt;
 &lt;p&gt;
 &lt;img src="https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/producer.png"&gt;

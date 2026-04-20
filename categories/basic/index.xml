@@ -1,13 +1,4 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – Basic</title><link>https://www.devtokki.com/categories/basic/</link><description>Recent content in Basic on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Thu, 21 Apr 2022 11:05:08 +0900</lastBuildDate><atom:link href="https://www.devtokki.com/categories/basic/index.xml" rel="self" type="application/rss+xml"/><item><title>Data-Platform: 카프카 기초 다지기</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/basic/</link><pubDate>Tue, 19 Apr 2022 08:34:14 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/basic/</guid><description>
-&lt;ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-8842908287515174"
-data-ad-slot="6261283644"
-data-ad-format="auto"
-data-full-width-responsive="true"&gt;&lt;/ins&gt;
-&lt;script&gt;
-(adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
 &lt;h3 id="카프카를-구성하는-주요-요소"&gt;카프카를 구성하는 주요 요소&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;주키퍼(Zookeeper) : 아파치 프로젝트 애플리케이션 이름으로 &lt;U&gt;&lt;strong&gt;카프카의 메타데이터(metadata) 관리 및 브로커의 정상 상태 점검(health check)을 담당&lt;/strong&gt;&lt;/U&gt;&lt;/li&gt;
@@ -91,15 +82,6 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;</description></item><item><title>Data-Platform: 카프카의 핵심 개념</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/</link><pubDate>Thu, 21 Apr 2022 11:05:08 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/</guid><description>
-&lt;ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-8842908287515174"
-data-ad-slot="6261283644"
-data-ad-format="auto"
-data-full-width-responsive="true"&gt;&lt;/ins&gt;
-&lt;script&gt;
-(adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
 &lt;h3 id="주요-특징"&gt;주요 특징&lt;/h3&gt;
 &lt;h4 id="1-분산-시스템"&gt;1. 분산 시스템&lt;/h4&gt;
 &lt;p&gt;카프카도 분산 시스템으로 유연한 리소스 확장 가능&lt;/p&gt;

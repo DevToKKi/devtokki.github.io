@@ -1,13 +1,4 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – Data Platform</title><link>https://www.devtokki.com/data-platform/</link><description>Recent content in Data Platform on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><atom:link href="https://www.devtokki.com/data-platform/index.xml" rel="self" type="application/rss+xml"/><item><title>Data-Platform: 카프카 기초 다지기</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/basic/</link><pubDate>Tue, 19 Apr 2022 08:34:14 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/basic/</guid><description>
-&lt;ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-8842908287515174"
-data-ad-slot="6261283644"
-data-ad-format="auto"
-data-full-width-responsive="true"&gt;&lt;/ins&gt;
-&lt;script&gt;
-(adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
 &lt;h3 id="카프카를-구성하는-주요-요소"&gt;카프카를 구성하는 주요 요소&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;주키퍼(Zookeeper) : 아파치 프로젝트 애플리케이션 이름으로 &lt;U&gt;&lt;strong&gt;카프카의 메타데이터(metadata) 관리 및 브로커의 정상 상태 점검(health check)을 담당&lt;/strong&gt;&lt;/U&gt;&lt;/li&gt;
@@ -91,15 +82,6 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;</description></item><item><title>Data-Platform: 카프카의 핵심 개념</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/</link><pubDate>Thu, 21 Apr 2022 11:05:08 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/</guid><description>
-&lt;ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-8842908287515174"
-data-ad-slot="6261283644"
-data-ad-format="auto"
-data-full-width-responsive="true"&gt;&lt;/ins&gt;
-&lt;script&gt;
-(adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
 &lt;h3 id="주요-특징"&gt;주요 특징&lt;/h3&gt;
 &lt;h4 id="1-분산-시스템"&gt;1. 분산 시스템&lt;/h4&gt;
 &lt;p&gt;카프카도 분산 시스템으로 유연한 리소스 확장 가능&lt;/p&gt;
@@ -180,15 +162,6 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;</description></item><item><title>Data-Platform: 프로듀서 기본 동작 및 주요 옵션</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/</link><pubDate>Fri, 22 Apr 2022 08:23:39 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/</guid><description>
-&lt;ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-8842908287515174"
-data-ad-slot="6261283644"
-data-ad-format="auto"
-data-full-width-responsive="true"&gt;&lt;/ins&gt;
-&lt;script&gt;
-(adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
 &lt;figure&gt;
 &lt;p&gt;
 &lt;img src="https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/producer.png"&gt;
@@ -273,16 +246,7 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;</description></item><item><title>Data-Platform: 컨슈머 기본 동작 및 주요 옵션</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-overview/</link><pubDate>Fri, 22 Apr 2022 13:45:54 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-overview/</guid><description>
-&lt;p&gt;&lt;ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-8842908287515174"
-data-ad-slot="6261283644"
-data-ad-format="auto"
-data-full-width-responsive="true"&gt;&lt;/ins&gt;
-&lt;script&gt;
-(adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
-컨슈머는 카프카의 토픽에 저장되어 있는 메시지를 가져오는 역할을 담당. 단순하게 메시지만 가져오는 기능만 하는 것이 아니라 내부적으로는 컨슈머 그룹, 리밸런싱 등 여러 동작을 수행 함.&lt;/p&gt;
+&lt;p&gt;컨슈머는 카프카의 토픽에 저장되어 있는 메시지를 가져오는 역할을 담당. 단순하게 메시지만 가져오는 기능만 하는 것이 아니라 내부적으로는 컨슈머 그룹, 리밸런싱 등 여러 동작을 수행 함.&lt;/p&gt;
 &lt;h3 id="기본-동작"&gt;기본 동작&lt;/h3&gt;
 &lt;p&gt;프로듀서가 카프카의 토픽으로 메시지를 전송하면 해당 메시지들은 브로커들의 로컬 디스크에 저장되며 컨슈머를 이용해 토픽에 저장된 메시지를 가져올 수 있음.&lt;/p&gt;
 &lt;p&gt;컨슈머 그룹은 하나 이상의 컨슈머들이 모여 있는 그룹을 의미하고, 컨슈머는 반드시 컨슈머 그룹에 속하게 됨. 그리고 컨슈머 그룹은 각 파티션의 리더에게 카프카 토픽에 저장된 메시지를 가져오기 위한 요청을 보냄.&lt;/p&gt;
@@ -370,15 +334,6 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;</description></item><item><title>Data-Platform: 컨슈머 그룹</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/</link><pubDate>Fri, 22 Apr 2022 14:44:07 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/</guid><description>
-&lt;ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-8842908287515174"
-data-ad-slot="6261283644"
-data-ad-format="auto"
-data-full-width-responsive="true"&gt;&lt;/ins&gt;
-&lt;script&gt;
-(adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
 &lt;figure&gt;
 &lt;p align="center"&gt;
 &lt;img src="https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/consumer-group.png"/&gt;
@@ -389,26 +344,7 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 위 그림과 같이 토픽의 파티션과 일대일로 매핑되어 메시지를 가져오게 됨.&lt;/p&gt;
 &lt;p&gt;왼쪽에 peter-01이라는 토픽과 3개의 파티션으로 구성되어 있고, 오른쪽에는 consumer group 01이라는 컨슈머 그룹 아이디를 가진 컨슈머 그룹이 있으며, peter-01 토픽의 파티션 수와 동일한 3개의 컨슈머가 속해 있음.&lt;/p&gt;
 &lt;p&gt;컨슈머들은 하나의 컨슈머 그룹 안에 속해 있으며, 그룹 내의 컨슈머들은 서로의 정보를 공유 함.&lt;/p&gt;
-&lt;p&gt;예를 들어 Consumer01이 문제가 생겨 종료됐다면, Consumer02 또는 Consumer03은 Consumer01이 하던 일을 대신해 peter-01 토픽의 partition0을 컨슘하기 시작 함.
-&lt;ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-8842908287515174"
-data-ad-slot="6261283644"
-data-ad-format="auto"
-data-full-width-responsive="true"&gt;&lt;/ins&gt;
-&lt;script&gt;
-(adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
-&lt;/p&gt;</description></item><item><title>Data-Platform: DataFrame에서 Column 체크</title><link>https://www.devtokki.com/data-platform/apache-spark/tips/dataframe-column-present-check/</link><pubDate>Wed, 22 Jun 2022 12:51:21 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-spark/tips/dataframe-column-present-check/</guid><description>
-&lt;ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-8842908287515174"
-data-ad-slot="6261283644"
-data-ad-format="auto"
-data-full-width-responsive="true"&gt;&lt;/ins&gt;
-&lt;script&gt;
-(adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
+&lt;p&gt;예를 들어 Consumer01이 문제가 생겨 종료됐다면, Consumer02 또는 Consumer03은 Consumer01이 하던 일을 대신해 peter-01 토픽의 partition0을 컨슘하기 시작 함.&lt;/p&gt;</description></item><item><title>Data-Platform: DataFrame에서 Column 체크</title><link>https://www.devtokki.com/data-platform/apache-spark/tips/dataframe-column-present-check/</link><pubDate>Wed, 22 Jun 2022 12:51:21 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-spark/tips/dataframe-column-present-check/</guid><description>
 &lt;h3 id="dafaframe에서-column-유무-검사"&gt;DafaFrame에서 Column 유무 검사&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-Scala" data-lang="Scala"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;// Example 1
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;val&lt;/span&gt; &lt;span style="color:#000"&gt;schema&lt;/span&gt; &lt;span style="color:#204a87;font-weight:bold"&gt;=&lt;/span&gt; &lt;span style="color:#000"&gt;StructType&lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;(&lt;/span&gt; &lt;span style="color:#000"&gt;Array&lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;(&lt;/span&gt;
@@ -574,16 +510,7 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;</description></item><item><title>Data-Platform: 카프카 리플리케이션(Replication)</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/kafka-replication/</link><pubDate>Wed, 22 Jun 2022 00:54:46 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-internals/kafka-replication/</guid><description>
-&lt;p&gt;&lt;ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-8842908287515174"
-data-ad-slot="6261283644"
-data-ad-format="auto"
-data-full-width-responsive="true"&gt;&lt;/ins&gt;
-&lt;script&gt;
-(adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
-고가용성 분산 스트리밍 플랫폼인 카프카는 많은 데이터 파이프라인의 정중앙에 위치하는 메인 허브 역할을 하는데 만약 하드웨어의 문제나 점검 등으로 인해 정상적으로 동작하지 못해 전체 데이터 파이프라인에 영향을 미친다면 매우 큰 문제이다. 이러한 장애가 발생하더라도 중앙 데이터 허브로서 안정적인 서비스가 운영될 수 있도록 카프카 내부에서는 리플리케이션이라는 동작을 수행한다.&lt;/p&gt;
+&lt;p&gt;고가용성 분산 스트리밍 플랫폼인 카프카는 많은 데이터 파이프라인의 정중앙에 위치하는 메인 허브 역할을 하는데 만약 하드웨어의 문제나 점검 등으로 인해 정상적으로 동작하지 못해 전체 데이터 파이프라인에 영향을 미친다면 매우 큰 문제이다. 이러한 장애가 발생하더라도 중앙 데이터 허브로서 안정적인 서비스가 운영될 수 있도록 카프카 내부에서는 리플리케이션이라는 동작을 수행한다.&lt;/p&gt;
 &lt;h3 id="리플리케이션-동작-개요"&gt;리플리케이션 동작 개요&lt;/h3&gt;
 &lt;p&gt;카프카는 브로커의 장애에도 불구하고 연속적으로 안정적인 서비스 제공함으로써 데이터 유실을 방지하며 유연성을 제공한다. 카프카의 리플리케이션 동작을 위해 토픽 생성 시 필숫값으로 &lt;em&gt;&lt;strong&gt;replication factor&lt;/strong&gt;&lt;/em&gt;라는 옵션을 설정해야 함.&lt;/p&gt;
 &lt;p&gt;카프카는 해당 옵션을 이용해 관리자가 지정한 수만큼의 리플리케이션을 가질 수 있기 때문에 N개의 리플리케이션이 있는 경우 N - 1까지의 브로커 장애가 발생해도 메시지 손실 없이 안정적으로 메시지를 주고받을 수 있음.&lt;/p&gt;

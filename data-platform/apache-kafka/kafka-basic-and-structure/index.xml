@@ -1,13 +1,4 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – 카프카 기본 개념과 구조</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/</link><description>Recent content in 카프카 기본 개념과 구조 on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Sun, 17 Apr 2022 22:59:37 +0900</lastBuildDate><atom:link href="https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/index.xml" rel="self" type="application/rss+xml"/><item><title>Data-Platform: 카프카 기초 다지기</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/basic/</link><pubDate>Tue, 19 Apr 2022 08:34:14 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/basic/</guid><description>
-&lt;ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-8842908287515174"
-data-ad-slot="6261283644"
-data-ad-format="auto"
-data-full-width-responsive="true"&gt;&lt;/ins&gt;
-&lt;script&gt;
-(adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
 &lt;h3 id="카프카를-구성하는-주요-요소"&gt;카프카를 구성하는 주요 요소&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;주키퍼(Zookeeper) : 아파치 프로젝트 애플리케이션 이름으로 &lt;U&gt;&lt;strong&gt;카프카의 메타데이터(metadata) 관리 및 브로커의 정상 상태 점검(health check)을 담당&lt;/strong&gt;&lt;/U&gt;&lt;/li&gt;
@@ -91,15 +82,6 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;</description></item><item><title>Data-Platform: 카프카의 핵심 개념</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/</link><pubDate>Thu, 21 Apr 2022 11:05:08 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/key-concept/</guid><description>
-&lt;ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-8842908287515174"
-data-ad-slot="6261283644"
-data-ad-format="auto"
-data-full-width-responsive="true"&gt;&lt;/ins&gt;
-&lt;script&gt;
-(adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
 &lt;h3 id="주요-특징"&gt;주요 특징&lt;/h3&gt;
 &lt;h4 id="1-분산-시스템"&gt;1. 분산 시스템&lt;/h4&gt;
 &lt;p&gt;카프카도 분산 시스템으로 유연한 리소스 확장 가능&lt;/p&gt;
@@ -180,15 +162,6 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;script&gt;
 (adsbygoogle = window.adsbygoogle || []).push({});
 &lt;/script&gt;</description></item><item><title>Data-Platform: 프로듀서 기본 동작 및 주요 옵션</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/</link><pubDate>Fri, 22 Apr 2022 08:23:39 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-producer-overview/</guid><description>
-&lt;ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-8842908287515174"
-data-ad-slot="6261283644"
-data-ad-format="auto"
-data-full-width-responsive="true"&gt;&lt;/ins&gt;
-&lt;script&gt;
-(adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
 &lt;figure&gt;
 &lt;p&gt;
 &lt;img src="https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/producer.png"&gt;
@@ -273,16 +246,7 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;</description></item><item><title>Data-Platform: 컨슈머 기본 동작 및 주요 옵션</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-overview/</link><pubDate>Fri, 22 Apr 2022 13:45:54 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-overview/</guid><description>
-&lt;p&gt;&lt;ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-8842908287515174"
-data-ad-slot="6261283644"
-data-ad-format="auto"
-data-full-width-responsive="true"&gt;&lt;/ins&gt;
-&lt;script&gt;
-(adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
-컨슈머는 카프카의 토픽에 저장되어 있는 메시지를 가져오는 역할을 담당. 단순하게 메시지만 가져오는 기능만 하는 것이 아니라 내부적으로는 컨슈머 그룹, 리밸런싱 등 여러 동작을 수행 함.&lt;/p&gt;
+&lt;p&gt;컨슈머는 카프카의 토픽에 저장되어 있는 메시지를 가져오는 역할을 담당. 단순하게 메시지만 가져오는 기능만 하는 것이 아니라 내부적으로는 컨슈머 그룹, 리밸런싱 등 여러 동작을 수행 함.&lt;/p&gt;
 &lt;h3 id="기본-동작"&gt;기본 동작&lt;/h3&gt;
 &lt;p&gt;프로듀서가 카프카의 토픽으로 메시지를 전송하면 해당 메시지들은 브로커들의 로컬 디스크에 저장되며 컨슈머를 이용해 토픽에 저장된 메시지를 가져올 수 있음.&lt;/p&gt;
 &lt;p&gt;컨슈머 그룹은 하나 이상의 컨슈머들이 모여 있는 그룹을 의미하고, 컨슈머는 반드시 컨슈머 그룹에 속하게 됨. 그리고 컨슈머 그룹은 각 파티션의 리더에게 카프카 토픽에 저장된 메시지를 가져오기 위한 요청을 보냄.&lt;/p&gt;
@@ -370,15 +334,6 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;</description></item><item><title>Data-Platform: 컨슈머 그룹</title><link>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/</link><pubDate>Fri, 22 Apr 2022 14:44:07 +0900</pubDate><guid>https://www.devtokki.com/data-platform/apache-kafka/kafka-basic-and-structure/kafka-consumer-group/</guid><description>
-&lt;ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-8842908287515174"
-data-ad-slot="6261283644"
-data-ad-format="auto"
-data-full-width-responsive="true"&gt;&lt;/ins&gt;
-&lt;script&gt;
-(adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
 &lt;figure&gt;
 &lt;p align="center"&gt;
 &lt;img src="https://www.devtokki.com/data/data-platform/apache-kafka/kafka-basic-and-structure/consumer-group.png"/&gt;
@@ -389,14 +344,4 @@ data-full-width-responsive="true"&gt;&lt;/ins&gt;
 위 그림과 같이 토픽의 파티션과 일대일로 매핑되어 메시지를 가져오게 됨.&lt;/p&gt;
 &lt;p&gt;왼쪽에 peter-01이라는 토픽과 3개의 파티션으로 구성되어 있고, 오른쪽에는 consumer group 01이라는 컨슈머 그룹 아이디를 가진 컨슈머 그룹이 있으며, peter-01 토픽의 파티션 수와 동일한 3개의 컨슈머가 속해 있음.&lt;/p&gt;
 &lt;p&gt;컨슈머들은 하나의 컨슈머 그룹 안에 속해 있으며, 그룹 내의 컨슈머들은 서로의 정보를 공유 함.&lt;/p&gt;
-&lt;p&gt;예를 들어 Consumer01이 문제가 생겨 종료됐다면, Consumer02 또는 Consumer03은 Consumer01이 하던 일을 대신해 peter-01 토픽의 partition0을 컨슘하기 시작 함.
-&lt;ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-8842908287515174"
-data-ad-slot="6261283644"
-data-ad-format="auto"
-data-full-width-responsive="true"&gt;&lt;/ins&gt;
-&lt;script&gt;
-(adsbygoogle = window.adsbygoogle || []).push({});
-&lt;/script&gt;
-&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;예를 들어 Consumer01이 문제가 생겨 종료됐다면, Consumer02 또는 Consumer03은 Consumer01이 하던 일을 대신해 peter-01 토픽의 partition0을 컨슘하기 시작 함.&lt;/p&gt;</description></item></channel></rss>
