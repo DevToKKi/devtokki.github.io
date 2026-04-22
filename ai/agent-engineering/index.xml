@@ -1,0 +1,14 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – Agent Engineering</title><link>https://www.devtokki.com/ai/agent-engineering/</link><description>Recent content in Agent Engineering on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Thu, 23 Apr 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://www.devtokki.com/ai/agent-engineering/index.xml" rel="self" type="application/rss+xml"/><item><title>Ai: 구조가 헷갈릴 때: sub-agent, skill, harness를 구분하게 된 과정</title><link>https://www.devtokki.com/ai/agent-engineering/untangling-agent-structure/</link><pubDate>Thu, 23 Apr 2026 00:00:00 +0900</pubDate><guid>https://www.devtokki.com/ai/agent-engineering/untangling-agent-structure/</guid><description>
+&lt;p&gt;이 글들은 멀티 프로젝트 환경에서 에이전트 구조를 어떻게 나눠야 할지 고민하던 질문에서 시작한다. 프로젝트별 계층형 구조를 먼저 떠올렸지만, 대화를 거치면서 &lt;code&gt;sub-agent&lt;/code&gt;, &lt;code&gt;skill&lt;/code&gt;, &lt;code&gt;harness&lt;/code&gt;를 따로 봐야 한다는 결론에 도달했다.&lt;/p&gt;
+&lt;p&gt;읽는 순서는 그대로 따라가는 편이 좋다. 1부에서는 왜 계층형 구조를 먼저 상상했는지 출발점을 정리하고, 2부와 3부에서 실행자, 기준서, 검증 구조를 나눈다. 마지막 4부에서는 이 구분을 실제 변경 흐름과 릴리즈 관점으로 연결한다.&lt;/p&gt;
+&lt;h2 id="구성"&gt;구성&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://www.devtokki.com/ai/agent-engineering/untangling-agent-structure/01-why-i-imagined-hierarchical-sub-agents/"&gt;왜 나는 프로젝트별 계층형 sub-agent를 떠올렸을까&lt;/a&gt;
+프로젝트별 리드와 기술 담당 agent를 계층으로 두고 싶었던 첫 문제의식을 정리한다.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.devtokki.com/ai/agent-engineering/untangling-agent-structure/02-sub-agent-vs-skill/"&gt;sub-agent와 skill은 무엇이 달랐을까&lt;/a&gt;
+실행자와 실행 기준서를 섞으면 왜 구조가 더 복잡해지는지 구분 기준을 잡는다.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.devtokki.com/ai/agent-engineering/untangling-agent-structure/03-why-harness-engineering-is-separate/"&gt;왜 harness engineering은 따로 봐야 했을까&lt;/a&gt;
+역할 구분만으로는 부족하고, 반복 실행과 비교 검증 구조가 왜 따로 필요한지 설명한다.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.devtokki.com/ai/agent-engineering/untangling-agent-structure/04-why-release-chain-matters-more-than-org-chart/"&gt;왜 프로젝트 조직도보다 릴리즈 체인이 더 중요했을까&lt;/a&gt;
+프로젝트 트리보다 실제 변경이 흘러가는 릴리즈 체인을 기준으로 운영 단위를 다시 본다.&lt;/li&gt;
+&lt;/ol&gt;</description></item></channel></rss>
