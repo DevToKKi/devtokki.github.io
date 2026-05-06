@@ -1,0 +1,418 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevToKKi – Data-Engineering</title><link>https://www.devtokki.com/categories/data-engineering/</link><description>Recent content in Data-Engineering on DevToKKi</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Wed, 06 May 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://www.devtokki.com/categories/data-engineering/index.xml" rel="self" type="application/rss+xml"/><item><title>Data-Engineering: 왜 단순한 script 실행만으로는 부족했을까</title><link>https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/01-why-script-execution-was-not-enough/</link><pubDate>Wed, 06 May 2026 00:00:00 +0900</pubDate><guid>https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/01-why-script-execution-was-not-enough/</guid><description>
+&lt;p&gt;이 글의 출발점은 &lt;code&gt;FSM&lt;/code&gt;이라는 용어가 아니었다. 훨씬 먼저 떠오른 건 실무적인 질문이었다. 데이터 동기화 작업을 애플리케이션에서 관리하려고 할 때, 어디까지 script에 맡기고 어디부터 애플리케이션이 책임져야 하는지가 먼저 헷갈렸다.&lt;/p&gt;
+&lt;p&gt;처음에는 꽤 단순하게 생각했다. 정해진 시간에 동기화 script를 실행하고, 그 뒤에 검증, 정리, 메타데이터 수집 같은 후속 작업을 이어가면 될 것 같았다.&lt;/p&gt;
+&lt;p&gt;겉으로 보기에는 이 구조가 충분해 보인다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cron
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; sync script
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; verify
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; retention
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; harvest
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;하지만 운영 관점으로 조금만 들어가면 바로 질문이 생긴다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;지금 이 대상은 실행 중인가&lt;/li&gt;
+&lt;li&gt;같은 대상 작업이 동시에 다시 시작되면 어떻게 되는가&lt;/li&gt;
+&lt;li&gt;script가 중간에 죽으면 어디까지 성공한 것인가&lt;/li&gt;
+&lt;li&gt;취소 요청이 들어오면 무엇을 멈춰야 하는가&lt;/li&gt;
+&lt;li&gt;다음 실행은 이전 실패를 어떻게 해석해야 하는가&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;이 질문들이 중요했던 이유는, 데이터 작업이 단순한 함수 호출이 아니기 때문이다. 요청 하나가 들어오고 응답 하나가 돌아오면 끝나는 작업이 아니라, 오래 실행되고, 외부 명령을 호출하고, 파일 시스템이나 외부 저장소를 바꾸고, 중간 결과를 남긴다.&lt;/p&gt;
+&lt;p&gt;그래서 &lt;code&gt;실행했다&lt;/code&gt;와 &lt;code&gt;끝났다&lt;/code&gt; 사이에 생각보다 많은 상태가 생긴다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;아직 대기 중
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;누군가 가져감
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;실제로 실행 중
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;성공함
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;실패함
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;취소됨
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;죽은 것 같음
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;처음에는 이 상태들을 굳이 모델링하지 않아도 된다고 생각하기 쉽다. 로그를 보면 되고, lock file을 두면 되고, 실패하면 다시 실행하면 된다고 생각할 수 있다.&lt;/p&gt;
+&lt;p&gt;하지만 같은 대상을 동시에 건드리면 상태가 꼬일 수 있고, 실패한 작업을 무작정 다시 실행하면 이미 처리된 파일이나 레코드를 다시 훑게 된다. 특히 retention처럼 오래된 object를 정리하는 작업은 매번 전체를 스캔하기 시작하면 시간이 계속 늘어난다.&lt;/p&gt;
+&lt;p&gt;이쯤 되면 문제는 더 이상 &lt;code&gt;script를 어떻게 실행할 것인가&lt;/code&gt;가 아니게 된다. 진짜 질문은 다음에 가깝다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;이 작업이 지금 어떤 상태인지 시스템이 알고 있는가&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;이 질문이 생기고 나면 자연스럽게 실행 구조도 바뀐다. script가 모든 흐름을 끌고 가는 대신, 애플리케이션이 작업을 등록하고, 실행할 차례가 된 작업을 골라 실제 실행을 시작하며, 마지막 결과까지 기록하는 쪽으로 생각이 옮겨 간다.&lt;/p&gt;
+&lt;p&gt;그런데 애플리케이션이 작업을 관리한다고 해서 scheduler가 직접 작업을 끝까지 실행하는 것은 아니다. scheduler의 역할은 “언제 실행해야 하는가”를 판단하는 쪽에 가깝고, 실제로 오래 걸리는 작업을 붙잡고 실행하는 역할은 따로 분리하는 편이 자연스럽다.&lt;/p&gt;
+&lt;p&gt;그래야 schedule 판단과 작업 실행이 서로 묶이지 않는다. 동기화 작업 하나가 오래 걸린다고 해서 다음 schedule 확인이 막히면 곤란하고, 나중에 동시에 여러 대상을 처리하려면 실행 역할을 여러 개로 늘릴 수도 있어야 한다.&lt;/p&gt;
+&lt;p&gt;그래서 애플리케이션 안에는 대기 중인 작업을 가져와 실제로 실행하는 주체가 필요해진다. 이 주체를 &lt;code&gt;worker&lt;/code&gt;라고 부른다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;요청
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; 작업 등록
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; worker가 작업을 가져감
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; 실행
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; 결과 기록
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;여기서 worker가 갑자기 튀어나온 것처럼 보일 수 있지만, 실제로는 cron이 직접 script를 실행하던 구조를 애플리케이션 안으로 옮기는 순간 생기는 실행 역할이다. scheduler가 작업을 만들고, worker가 작업을 실행한다. 이 둘을 나누면 나중에 worker 수를 조절해 병렬 처리량을 제한하거나 늘릴 수 있다.&lt;/p&gt;
+&lt;p&gt;이때부터 작업은 단순한 명령 실행이 아니라 상태를 가진 대상이 된다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;QUEUED
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; RUNNING
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; SUCCEEDED / FAILED / CANCELLED / STALE
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;여기까지 오면 &lt;code&gt;FSM&lt;/code&gt;이라는 말이 뒤늦게 붙는다. 처음부터 상태 기계를 만들고 싶었던 것이 아니라, 운영 중 애매해지는 지점을 하나씩 정리하다 보니 상태 전이가 필요해진 것이다.&lt;/p&gt;
+&lt;p&gt;이 구분이 중요하다. 상태 모델은 멋진 구조를 만들기 위한 장식이 아니다. 오래 걸리는 데이터 작업에서 중복 실행, 실패 복구, 취소, 결과 추적을 명확히 하기 위해 생긴다.&lt;/p&gt;
+&lt;p&gt;정리하고 나니 다음 질문이 바로 따라왔다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;작업이 상태를 가져야 한다면, worker는 그 작업을 어떻게 안전하게 가져가야 하는가&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="이어서-읽기"&gt;이어서 읽기&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/"&gt;시리즈 목록으로 돌아가기&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/02-why-queue-lease-lock-appear-together/"&gt;2부. queue, lease, lock은 왜 같이 등장했을까&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-8842908287515174"
+data-ad-slot="6261283644"
+data-ad-format="auto"
+data-full-width-responsive="true"&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;</description></item><item><title>Data-Engineering: queue, lease, lock은 왜 같이 등장했을까</title><link>https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/02-why-queue-lease-lock-appear-together/</link><pubDate>Wed, 06 May 2026 00:00:00 +0900</pubDate><guid>https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/02-why-queue-lease-lock-appear-together/</guid><description>
+&lt;p&gt;앞 글에서는 왜 단순한 script 실행만으로는 부족해졌는지 정리했다. 핵심은 작업이 오래 걸리고, 실패하고, 중복 실행되면 위험하기 때문에 시스템이 &lt;code&gt;지금 어떤 상태인지&lt;/code&gt; 알아야 한다는 점이었다.&lt;/p&gt;
+&lt;p&gt;이번 글의 질문은 조금 더 좁다. 여러 worker가 있을 때, 어떤 보장만은 반드시 있어야 작업이 꼬이지 않을까.&lt;/p&gt;
+&lt;p&gt;그 다음에 생긴 질문은 worker였다. 작업을 상태로 관리한다고 해도, 여러 worker가 동시에 떠 있다면 누가 어떤 작업을 가져갈지 정해야 한다.&lt;/p&gt;
+&lt;p&gt;처음 떠올릴 수 있는 구조는 단순하다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;작업 테이블에서 아직 실행 안 된 것 하나 조회
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; worker가 실행
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;하지만 이 구조는 바로 깨진다. worker 두 개가 거의 동시에 같은 row를 읽으면 둘 다 같은 작업을 실행할 수 있기 때문이다.&lt;/p&gt;
+&lt;p&gt;그래서 queue가 필요해진다. 여기서 queue는 별도의 메시지 브로커일 수도 있지만, 작은 시스템에서는 DB table 하나로도 충분할 수 있다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;jobs
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;- id
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;- target_id
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;- status
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;- due_at
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;작업은 먼저 대기 상태로 들어간다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;QUEUED
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;worker는 이 작업을 바로 실행하지 않고, 먼저 자신이 가져갔다고 표시한다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;QUEUED -&amp;gt; LEASED
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;여기서 &lt;code&gt;lease&lt;/code&gt;는 어렵게 말하면 임시 소유권이고, 쉽게 말하면 “내가 이 작업을 잠깐 맡겠다”는 표시다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;worker-1이 이 작업을 30분 동안 맡음
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;왜 바로 &lt;code&gt;RUNNING&lt;/code&gt;으로 가지 않고 &lt;code&gt;LEASED&lt;/code&gt;가 필요할까. worker가 작업을 가져간 직후 죽을 수 있기 때문이다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;worker가 작업을 가져감
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; 아직 실행 시작 전
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; process가 죽음
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이때 lease 만료 시간이 있으면 시스템이 의심할 근거가 생긴다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;LEASED 상태인데 시간이 지남
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; 실행 시작 전이라고 보장되는 구간이면 다시 QUEUED
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;여기서 조심할 점이 있다. lease 만료는 worker가 반드시 죽었다는 증명이 아니다. 장시간 실행 작업이라면 정상 worker도 최초 lease 시간을 넘길 수 있다. 그래서 실제 운영에서는 lease를 주기적으로 연장하는 heartbeat나 renewal 정책이 필요할 수 있다.&lt;/p&gt;
+&lt;p&gt;또 &lt;code&gt;LEASED -&amp;gt; QUEUED&lt;/code&gt; 복구는 “아직 외부 side effect가 시작되지 않았다”는 경계가 분명할 때 안전하다. 외부 process를 띄운 뒤 상태 기록 전에 죽을 수 있다면, 단순 재큐잉은 중복 실행을 만들 수 있다. 그래서 claim과 start 기록은 가능한 한 원자적으로 다뤄야 한다.&lt;/p&gt;
+&lt;p&gt;이제 worker가 실제 실행을 시작할 준비가 되면 상태를 바꾼다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;LEASED -&amp;gt; RUNNING
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;다만 &lt;code&gt;RUNNING&lt;/code&gt;은 job 실행 상태를 뜻할 뿐, 같은 대상을 건드릴 권한까지 자동으로 보장하지는 않는다. 동일 대상의 동시 변경을 막으려면 별도의 resource lock이 필요하다.&lt;/p&gt;
+&lt;p&gt;여기까지는 작업 하나를 안전하게 가져가는 문제다. 그런데 데이터 작업에는 또 다른 축이 있다. 같은 dataset, 같은 저장소, 같은 partition처럼 동일한 대상을 동시에 처리하면 안 되는 경우다.&lt;/p&gt;
+&lt;p&gt;예를 들어 target A를 동기화하고 있는데, 같은 target A에 대한 다음 동기화가 또 시작되면 파일이나 데이터 상태가 꼬일 수 있다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;worker-1 -&amp;gt; target A sync
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;worker-2 -&amp;gt; target A sync
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;worker가 여러 개 있어도 같은 대상은 하나만 실행되어야 한다. 그래서 &lt;code&gt;resource lock&lt;/code&gt;이 필요해진다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;resource lock 획득
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; 작업 실행
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; lock 해제
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;다른 대상은 동시에 실행할 수 있다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;worker-1 -&amp;gt; target A
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;worker-2 -&amp;gt; target B
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;worker-3 -&amp;gt; target C
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;하지만 같은 대상은 막는다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;worker-1 -&amp;gt; target A 실행 중
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;worker-2 -&amp;gt; target A 시도
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; lock 경합
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; 실행하지 않음
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이때 경합난 작업을 바로 실패로 닫을지, lease를 반납하고 다시 대기시킬지, 잠시 기다리며 lease를 연장할지는 별도의 운영 정책이다. 여기서 중요한 건 그 정책이 무엇이든 같은 대상을 동시에 변경하지 않는다는 원칙이다.&lt;/p&gt;
+&lt;p&gt;결국 queue, lease, resource lock은 서로 다른 문제를 푼다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;queue는 실행할 작업 목록을 관리한다&lt;/li&gt;
+&lt;li&gt;lease는 worker가 작업을 가져간 뒤 죽었을 때 복구할 근거를 만든다&lt;/li&gt;
+&lt;li&gt;resource lock은 같은 대상을 동시에 건드리지 못하게 한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;표로 보면 구분이 더 선명하다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;장치&lt;/th&gt;
+&lt;th&gt;막으려는 문제&lt;/th&gt;
+&lt;th&gt;없으면 생기는 일&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;queue&lt;/td&gt;
+&lt;td&gt;실행할 작업의 보관과 순서&lt;/td&gt;
+&lt;td&gt;작업이 흩어지고 추적이 어려워진다&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lease&lt;/td&gt;
+&lt;td&gt;worker가 가져간 작업의 임시 소유권&lt;/td&gt;
+&lt;td&gt;가져간 뒤 죽은 작업이 애매하게 남는다&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;resource lock&lt;/td&gt;
+&lt;td&gt;같은 대상의 동시 변경&lt;/td&gt;
+&lt;td&gt;파일이나 데이터 상태가 꼬일 수 있다&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;이 셋을 합치면 구조는 이렇게 된다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;QUEUED
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; worker가 lease 획득
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; LEASED
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; resource lock 획득
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; 실행 시작
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; RUNNING
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; pipeline 실행
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; terminal 상태 기록
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;여기서 &lt;code&gt;RUNNING&lt;/code&gt;을 언제 기록할지는 시스템마다 다를 수 있다. 중요한 기준은 실제 side effect가 시작되기 전에 같은 대상에 대한 resource lock이 잡혀 있어야 한다는 점이다. lease는 job 소유권이고, resource lock은 대상 변경 권한이다. 둘은 비슷해 보이지만 서로 다른 안전장치다.&lt;/p&gt;
+&lt;p&gt;이때 중요한 점은 worker 수가 곧 전체 병렬 처리 상한이라는 것이다. worker가 4개면 동시에 최대 4개 작업을 처리할 수 있다. 다만 같은 대상 작업이 몰려 있으면 lock 때문에 실제 실행은 1개만 가능할 수 있다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;worker 수 = 전체 동시 처리 상한
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;resource lock = 같은 대상 중복 실행 차단
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;처음에는 이게 과한 구조처럼 보일 수 있다. 하지만 worker가 죽고, 같은 대상이 중복 실행되고, 취소 요청이 들어오는 상황을 하나씩 생각하면 결국 필요한 이름들이 된다.&lt;/p&gt;
+&lt;p&gt;정리하고 나니 다음 질문은 실행 순서로 넘어갔다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;작업을 안전하게 가져왔다면, 그 안의 여러 단계는 어떻게 이어야 하는가&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="이어서-읽기"&gt;이어서 읽기&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/01-why-script-execution-was-not-enough/"&gt;1부. 왜 단순한 script 실행만으로는 부족했을까&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/"&gt;시리즈 목록으로 돌아가기&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/03-pipeline-cancel-recovery-as-state/"&gt;3부. pipeline과 cancel, recovery를 상태로 다루기&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-8842908287515174"
+data-ad-slot="6261283644"
+data-ad-format="auto"
+data-full-width-responsive="true"&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;</description></item><item><title>Data-Engineering: pipeline과 cancel, recovery를 상태로 다루기</title><link>https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/03-pipeline-cancel-recovery-as-state/</link><pubDate>Wed, 06 May 2026 00:00:00 +0900</pubDate><guid>https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/03-pipeline-cancel-recovery-as-state/</guid><description>
+&lt;p&gt;앞 글에서는 queue, lease, lock이 왜 같이 등장하는지 정리했다. 작업을 안전하게 가져오고, worker가 죽었을 때 복구할 수 있게 하고, 같은 대상의 중복 실행을 막기 위한 장치였다.&lt;/p&gt;
+&lt;p&gt;이번 글의 질문은 실패와 취소의 판단 경계를 어디에 둘 것인가다.&lt;/p&gt;
+&lt;p&gt;그 다음에 남는 문제는 작업 내부의 흐름이다. 데이터 작업은 보통 하나의 명령으로 끝나지 않는다.&lt;/p&gt;
+&lt;p&gt;예를 들어 외부 API에서 주문 데이터를 가져와 내부 분석 테이블로 적재하는 작업이라면 이런 흐름이 자연스럽다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;fetch
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; validate
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; load
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; aggregate
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;여기서 중요한 전제는 job의 입력 경계가 고정되어 있어야 한다는 점이다. 예를 들어 “상점 A의 2026-05-06 00:00~01:00 주문 데이터”처럼 대상과 시간 구간이 정해져 있거나, “cursor snapshot X부터 Y까지”처럼 다시 실행해도 같은 입력 집합을 읽는 기준이 있어야 한다.&lt;/p&gt;
+&lt;p&gt;이 경계가 없으면 recovery 이야기가 흐려진다. worker가 죽은 뒤 다시 실행했을 때 읽는 주문 집합이 달라진다면, 같은 job을 재시도하는 것인지 새로운 데이터를 처리하는 것인지 구분하기 어렵다.&lt;/p&gt;
+&lt;p&gt;처음에는 이 순서를 script 안에 넣어도 될 것 같았다. script가 API를 호출하고, 성공하면 스키마를 검증하고, 그 다음 warehouse에 적재하고, 마지막으로 집계 테이블을 갱신하는 식이다.&lt;/p&gt;
+&lt;p&gt;하지만 그렇게 하면 애플리케이션은 전체 흐름을 알기 어렵다. 어디까지 성공했는지, 어떤 단계에서 멈췄는지, 취소 요청을 어디서 반영해야 하는지가 다시 애매해진다.&lt;/p&gt;
+&lt;p&gt;그래서 실행 순서를 애플리케이션 쪽의 pipeline으로 끌어올린다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;plan = [FETCH, VALIDATE, LOAD, AGGREGATE]
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;for step in plan:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; if cancel_requested():
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; mark_cancel_requested()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; break
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; result = run(step)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; if result.failed:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; mark_failed()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; break
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이 슈도 코드는 단순하지만 중요한 기준을 담고 있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;순서는 script 내부가 아니라 controller가 안다&lt;/li&gt;
+&lt;li&gt;실패하면 다음 단계를 실행하지 않는다&lt;/li&gt;
+&lt;li&gt;취소는 step 경계에서 확인한다&lt;/li&gt;
+&lt;li&gt;마지막 결과는 job 또는 execution 상태로 영속 저장한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;여기까지 정리하면 pipeline은 단순한 함수 호출 목록이 아니다. 어떤 단계까지 진행됐고, 어디서 멈췄고, 다음 단계로 넘어가도 되는지를 남기는 실행 기록에 가깝다.&lt;/p&gt;
+&lt;p&gt;여기서 &lt;code&gt;cancel&lt;/code&gt;은 생각보다 미묘하다. 실행 중인 process를 즉시 죽일 수도 있고, 다음 step을 시작하지 않는 수준에서 멈출 수도 있다.&lt;/p&gt;
+&lt;p&gt;처음부터 모든 걸 처리하려고 하면 구조가 커진다. 그래서 단계적으로 볼 수 있다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Phase A: step 시작 전 cancel 확인
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Phase B: 실행 중 process interrupt
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Phase C: timeout, retry, cleanup 정책
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이렇게 나누면 현재 단계에서 무엇을 보장하는지 선명해진다. 예를 들어 step 경계 cancel만 지원한다면, 이미 실행 중인 fetch process는 즉시 죽이지 않는다. 대신 다음 validate를 시작하기 전에 취소를 확인한다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;FETCH 실행 중 cancel 요청
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; FETCH 종료
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; VALIDATE 시작 전 cancel 확인
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; CANCELLED
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이 모델은 완벽한 즉시 중단은 아니지만, 상태 기록은 명확하게 만든다. 다만 &lt;code&gt;cancel 요청이 들어왔다&lt;/code&gt;와 &lt;code&gt;완전히 안전하게 취소됐다&lt;/code&gt;는 같은 말이 아니다. 이미 &lt;code&gt;FETCH&lt;/code&gt;가 일부 진행됐다면 임시 파일이나 staging row 같은 중간 결과가 남아 있을 수 있다. 그래서 실제 시스템에서는 cancel reason, 마지막 완료 step, cleanup 필요 여부 같은 보조 정보가 함께 필요해질 수 있다.&lt;/p&gt;
+&lt;p&gt;복구도 비슷하다. worker가 죽었을 때 모든 상태를 같은 방식으로 처리하면 안 된다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;QUEUED
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 아직 아무도 가져가지 않음
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;LEASED
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; worker가 가져갔지만 실행 시작 전일 수 있음
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;RUNNING
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 실제 실행 중이었음
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;STALE
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 실행 중이었지만 lease나 heartbeat 기준으로 더 이상 정상 진행을 믿기 어려움
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;그래서 recovery 규칙도 상태별로 달라진다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;LEASED + lease 만료 + cancel 없음
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; QUEUED
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;LEASED + lease 만료 + cancel 있음
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; CANCELLED
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;RUNNING + lease 만료
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-&amp;gt; STALE
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이 규칙이 필요한 이유는, &lt;code&gt;가져갔지만 시작 못 한 작업&lt;/code&gt;과 &lt;code&gt;실행 중 죽은 작업&lt;/code&gt;은 의미가 다르기 때문이다. 전자는 다시 대기열에 넣어도 되지만, 후자는 외부 side effect가 있었을 수 있다.&lt;/p&gt;
+&lt;p&gt;다만 여기에도 전제가 있다. &lt;code&gt;LEASED -&amp;gt; QUEUED&lt;/code&gt;는 실행이 실제로 시작되지 않았다는 경계가 분명할 때 안전하다. 장시간 &lt;code&gt;RUNNING&lt;/code&gt; 작업은 lease가 만료되기 전에 heartbeat나 lease renewal로 “아직 살아 있다”는 신호를 갱신해야 한다. 그렇지 않으면 정상 실행 중인 작업을 죽은 작업으로 오해할 수 있다.&lt;/p&gt;
+&lt;p&gt;예를 들어 load 중간에 process가 죽었다면 staging table 일부가 이미 바뀌었을 수 있다. 이런 작업을 조용히 다시 &lt;code&gt;QUEUED&lt;/code&gt;로 돌리면 더 위험할 수 있다. 특히 입력 경계가 고정되어 있지 않다면 재실행 시 읽는 주문 집합까지 달라질 수 있다. 그래서 &lt;code&gt;STALE&lt;/code&gt;처럼 운영자가 볼 수 있는 상태로 남기는 편이 낫다.&lt;/p&gt;
+&lt;p&gt;여기서 상태 모델의 역할이 분명해진다. 상태 모델은 모든 문제를 자동으로 해결하지 않는다. 대신 위험한 애매함을 드러낸다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;이 작업은 다시 실행해도 되는가
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;아니면 사람이 확인해야 하는가
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;취소된 것인가
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;실패한 것인가
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;실행 중 죽은 것인가
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이 질문에 답하려면 상태 이름이 필요하다.&lt;/p&gt;
+&lt;p&gt;그래서 이 구조는 단순한 FSM 놀이가 아니다. 데이터 작업이 남기는 side effect와 운영자가 판단해야 할 경계를 분리하기 위한 장치다.&lt;/p&gt;
+&lt;p&gt;정리하고 나면 다음 질문이 남는다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;그렇다면 이런 상태 모델은 모든 데이터 작업에 넣어야 하는가&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="이어서-읽기"&gt;이어서 읽기&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/02-why-queue-lease-lock-appear-together/"&gt;2부. queue, lease, lock은 왜 같이 등장했을까&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/"&gt;시리즈 목록으로 돌아가기&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/04-when-stateful-job-model-is-worth-it/"&gt;4부. 이 상태 모델은 언제 쓸 만하고 언제 과할까&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-8842908287515174"
+data-ad-slot="6261283644"
+data-ad-format="auto"
+data-full-width-responsive="true"&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;</description></item><item><title>Data-Engineering: 이 상태 모델은 언제 쓸 만하고 언제 과할까</title><link>https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/04-when-stateful-job-model-is-worth-it/</link><pubDate>Wed, 06 May 2026 00:00:00 +0900</pubDate><guid>https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/04-when-stateful-job-model-is-worth-it/</guid><description>
+&lt;p&gt;앞 글까지 정리하고 나면 상태 모델이 꽤 그럴듯해 보인다. queue가 있고, lease가 있고, 대상 단위 lock이 있고, pipeline 단계마다 성공과 실패를 기록한다.&lt;/p&gt;
+&lt;p&gt;이번 글의 질문은 도입 기준이다. 어디까지 만들면 충분하고, 어디부터는 과한가.&lt;/p&gt;
+&lt;p&gt;하지만 여기서 바로 경계해야 할 질문이 있다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;이걸 모든 데이터 작업에 넣어야 할까&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;답은 아니다. 단순한 cron job이라면 과하다. 매일 한 번 실행하고, 실패하면 로그를 보고 사람이 다시 돌려도 되는 작업이라면 queue와 lease, 상태 전이까지 넣는 것이 오히려 운영 부담이 될 수 있다.&lt;/p&gt;
+&lt;p&gt;예를 들어 이런 작업은 단순한 구조로 충분할 수 있다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;매일 새벽 report 하나 생성
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;실패해도 다음 날 다시 생성 가능
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;중복 실행돼도 큰 문제 없음
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;실행 시간이 짧음
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이 경우에는 cron과 script, 간단한 로그만으로도 충분하다.&lt;/p&gt;
+&lt;p&gt;반대로 다음 조건이 붙기 시작하면 상태 모델의 가치가 커진다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;실행 시간이 길다&lt;/li&gt;
+&lt;li&gt;중복 실행되면 데이터나 파일이 깨질 수 있다&lt;/li&gt;
+&lt;li&gt;실패 후 어디까지 진행됐는지 알아야 한다&lt;/li&gt;
+&lt;li&gt;취소, 재시도, 복구가 필요하다&lt;/li&gt;
+&lt;li&gt;여러 worker가 병렬로 작업을 처리한다&lt;/li&gt;
+&lt;li&gt;외부 시스템 또는 파일 시스템에 side effect를 남긴다&lt;/li&gt;
+&lt;li&gt;작업 결과를 운영 화면이나 API로 조회해야 한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;이 조건들은 데이터 엔지니어링에서 자주 나온다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ETL
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ELT
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;CDC ingestion
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;파일 수집
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;외부 API sync
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;retention
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;compaction
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;data quality check
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;feature pipeline
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;backfill
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이런 작업들은 대부분 단순한 함수 호출이 아니다. 오래 걸리고, 실패하고, 다시 실행되고, 중간 결과가 남는다. 그래서 상태를 명시하지 않으면 운영자가 결국 로그와 감으로 상태를 추측하게 된다.&lt;/p&gt;
+&lt;p&gt;상태 모델을 도입하면 이런 질문에 답할 수 있다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;지금 대기 중인 작업은 무엇인가
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;어떤 worker가 가져갔는가
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;실행 중인 작업은 무엇인가
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;같은 dataset을 동시에 처리하고 있지는 않은가
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;취소 요청이 반영됐는가
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;죽은 worker의 작업은 어떻게 복구됐는가
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;이 실패는 재시도 가능한가
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;여기서 중요한 건 &lt;code&gt;FSM&lt;/code&gt;이라는 이름이 아니다. 이름보다 중요한 건 상태 전이를 명시적으로 제한하는 것이다.&lt;/p&gt;
+&lt;p&gt;예를 들어 이런 전이는 허용하지 않아야 한다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;QUEUED -&amp;gt; SUCCEEDED # 실행 기록 없이 성공 처리하면 안 된다
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;FAILED -&amp;gt; RUNNING # 같은 attempt를 되살리면 실패 이력이 흐려진다
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;SUCCEEDED -&amp;gt; FAILED # terminal 결과를 뒤집으면 감사가 어려워진다
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;RUNNING -&amp;gt; QUEUED # side effect가 있었을 수 있어 단순 대기로 돌리기 어렵다
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;반대로 이런 전이는 상황에 따라 허용할 수 있다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;QUEUED -&amp;gt; LEASED
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;LEASED -&amp;gt; RUNNING
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;RUNNING -&amp;gt; SUCCEEDED
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;RUNNING -&amp;gt; FAILED
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;RUNNING -&amp;gt; CANCELLED
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;LEASED -&amp;gt; QUEUED
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;RUNNING -&amp;gt; STALE
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;여기서도 예외는 있다. 예를 들어 실패한 작업을 재시도하지 말라는 뜻은 아니다. 보통은 기존 attempt를 &lt;code&gt;FAILED&lt;/code&gt;로 남기고 새 attempt나 새 job을 만든다. 또는 &lt;code&gt;RETRYING&lt;/code&gt;, &lt;code&gt;REQUEUED&lt;/code&gt; 같은 별도 상태를 둔다. 중요한 건 terminal 상태를 조용히 덮어써서 과거 실행을 지우지 않는 것이다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;LEASED -&amp;gt; QUEUED&lt;/code&gt; 역시 실행 전이라는 경계가 보장될 때 안전하다. 장시간 실행 작업이라면 heartbeat나 lease renewal 없이 단순히 시간이 지났다는 이유만으로 죽었다고 판단하면 안 된다.&lt;/p&gt;
+&lt;p&gt;이 전이를 DB update 조건으로 막으면 여러 worker가 동시에 떠 있어도 상태가 덜 꼬인다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;update&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;jobs&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;set&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;status&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#4e9a06"&gt;&amp;#39;RUNNING&amp;#39;&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;where&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;id&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;?&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;and&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;status&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#4e9a06"&gt;&amp;#39;LEASED&amp;#39;&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;and&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;lease_token&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;?&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이런 식의 조건부 전이는 단순해 보이지만, 운영에서는 꽤 강력하다. 상태를 바꿀 자격이 있는 worker만 성공하고, 나머지는 실패한다.&lt;/p&gt;
+&lt;p&gt;여기까지 남는 기준은 하나다. 상태 전이는 정답표가 아니라, 이 시스템에서 어떤 애매함을 허용하지 않을지 정하는 운영 규칙이다.&lt;/p&gt;
+&lt;p&gt;그렇다고 이 구조가 공짜는 아니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;상태 이름을 설계해야 한다&lt;/li&gt;
+&lt;li&gt;timeout과 lease 시간을 정해야 한다&lt;/li&gt;
+&lt;li&gt;heartbeat가 필요한지 판단해야 한다&lt;/li&gt;
+&lt;li&gt;retry와 stale 처리 기준을 정해야 한다&lt;/li&gt;
+&lt;li&gt;terminal 상태를 다시 바꿀 수 없게 해야 한다&lt;/li&gt;
+&lt;li&gt;운영자가 이해할 수 있는 메시지를 남겨야 한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;그래서 도입 기준은 단순하다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;실패, 중복 실행, 복구를 명시적으로 다뤄야 하면 상태 모델이 필요하다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;반대로 말하면, 실패해도 그냥 다시 실행하면 되고 중복 실행도 크게 위험하지 않다면 굳이 크게 만들 필요가 없다.&lt;/p&gt;
+&lt;p&gt;이번 고민에서 얻은 결론은 이것이다.&lt;/p&gt;
+&lt;p&gt;상태 모델은 데이터 엔지니어링에서 필수 알고리즘이라기보다, 오래 걸리고 실패할 수 있는 작업을 운영 가능한 단위로 바꾸는 설계 패턴이다.&lt;/p&gt;
+&lt;p&gt;처음부터 거창한 FSM 라이브러리를 도입할 필요는 없다. 오히려 작은 DB table과 명시적인 상태 전이부터 시작하는 편이 현실적인 경우가 많다.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;job table
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;worker pool
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;lease
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;resource lock
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pipeline step
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;recovery rule
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이 정도만 있어도 많은 데이터 작업은 훨씬 설명 가능해진다.&lt;/p&gt;
+&lt;p&gt;결국 핵심은 하나다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;데이터 작업이 오래 걸리고, 외부 side effect를 남기며, 중복 실행이나 복구 판단이 위험하다면 실행 명령보다 먼저 상태를 설계해야 한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;이 관점이 생기면 cron과 script를 버릴지 유지할지도 더 차분하게 판단할 수 있다. script는 계속 쓸 수 있다. 다만 전체 흐름을 script가 암묵적으로 끌고 가게 둘지, controller가 상태를 보고 관리하게 할지는 별개의 문제다.&lt;/p&gt;
+&lt;p&gt;반대로 오래 걸리더라도 입력이 명확하고, 재실행이 idempotent하며, scheduler retry만으로 충분하다면 상태 모델은 과할 수 있다. 길고 실패할 수 있다는 사실만으로는 충분하지 않다. 같은 입력을 다시 읽을 수 있는지, 중복 실행이 위험한지, 사람이 개입하지 않아도 복구 판단을 해야 하는지가 함께 중요하다.&lt;/p&gt;
+&lt;p&gt;이 차이를 구분하는 순간, 데이터 작업은 단순 실행에서 운영 가능한 시스템으로 넘어가기 시작한다.&lt;/p&gt;
+&lt;p&gt;그래서 이 시리즈의 결론은 거창한 FSM 도입론이 아니다. 오히려 반대에 가깝다. 상태 모델은 작업을 더 복잡하게 만들기 위한 구조가 아니라, 이미 복잡해진 운영 현실을 더 이상 로그와 감으로만 다루지 않기 위한 최소한의 언어다.&lt;/p&gt;
+&lt;p&gt;마지막 판단은 결국 현실적인 질문으로 돌아온다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;이 작업은 정말 상태 모델을 둘 만큼 위험한가&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;이 질문에 &lt;code&gt;아니다&lt;/code&gt;라고 답할 수 있다면 단순한 script와 cron을 유지하는 편이 낫다. 하지만 &lt;code&gt;실패 지점&lt;/code&gt;, &lt;code&gt;중복 실행&lt;/code&gt;, &lt;code&gt;동일 입력 재시도&lt;/code&gt;, &lt;code&gt;복구 기준&lt;/code&gt;, &lt;code&gt;취소 의미&lt;/code&gt;를 매번 사람이 추측하고 있다면, 그때는 이미 상태 모델이 필요한 신호가 나온 것이다.&lt;/p&gt;
+&lt;p&gt;그 순간부터 중요한 것은 어떤 라이브러리를 쓸지가 아니다. 먼저 이 작업이 가질 수 있는 상태를 적고, 어떤 전이를 허용하지 않을지 정하고, worker가 죽었을 때 무엇을 다시 실행해도 되는지 구분하는 일이다.&lt;/p&gt;
+&lt;p&gt;그 정도의 작은 상태 설계만으로도 데이터 작업은 훨씬 설명 가능해진다. 그리고 설명 가능한 작업만이 운영 가능한 작업이 된다.&lt;/p&gt;
+&lt;h2 id="이어서-읽기"&gt;이어서 읽기&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/03-pipeline-cancel-recovery-as-state/"&gt;3부. pipeline과 cancel, recovery를 상태로 다루기&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/"&gt;시리즈 목록으로 돌아가기&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-8842908287515174"
+data-ad-slot="6261283644"
+data-ad-format="auto"
+data-full-width-responsive="true"&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;</description></item><item><title>Data-Engineering: Treating Data Jobs as State</title><link>https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/</link><pubDate>Wed, 06 May 2026 00:00:00 +0900</pubDate><guid>https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/</guid><description>
+&lt;p&gt;이 글들은 데이터 작업을 어떻게 실행하고 복구할 것인지 고민하던 질문에서 시작한다. 처음에는 단순했다. 정해진 시간에 script를 실행하고, script가 외부 데이터를 가져온 뒤 후속 작업을 이어가면 되는 줄 알았다.&lt;/p&gt;
+&lt;p&gt;하지만 실행 시간이 길어지고, 같은 대상의 중복 실행을 막아야 하고, 취소와 복구를 생각하기 시작하니 단순한 script 실행만으로는 설명되지 않는 상태들이 보이기 시작했다.&lt;/p&gt;
+&lt;p&gt;읽는 순서는 그대로 따라가는 편이 좋다. 1부에서는 왜 단순한 실행 흐름이 부족해졌는지 출발점을 정리한다. 2부에서는 queue, lease, lock이 왜 함께 등장했는지 설명한다. 3부에서는 pipeline, cancel, recovery를 상태 전이로 다루는 과정을 본다. 마지막 4부에서는 이 모델이 데이터 엔지니어링에서 언제 유용하고 언제 과한지 정리한다.&lt;/p&gt;
+&lt;h2 id="구성"&gt;구성&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/01-why-script-execution-was-not-enough/"&gt;왜 단순한 script 실행만으로는 부족했을까&lt;/a&gt;
+문제 유형은 오래 걸리는 script 실행의 불투명성이고, 적용 패턴은 작업 상태 기록이며, 판단 기준은 “시스템이 지금 상태를 설명할 수 있는가”다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/02-why-queue-lease-lock-appear-together/"&gt;queue, lease, lock은 왜 같이 등장했을까&lt;/a&gt;
+문제 유형은 여러 worker의 동시 실행 충돌이고, 적용 패턴은 queue, lease, resource lock이며, 판단 기준은 “누가 작업을 맡았고 누가 대상을 건드릴 수 있는가”다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/03-pipeline-cancel-recovery-as-state/"&gt;pipeline과 cancel, recovery를 상태로 다루기&lt;/a&gt;
+문제 유형은 단계 실행 중 실패와 취소의 애매함이고, 적용 패턴은 pipeline과 recovery rule이며, 판단 기준은 “다시 실행해도 되는 상태인가”다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.devtokki.com/data-engineering/treating-data-jobs-as-state/04-when-stateful-job-model-is-worth-it/"&gt;이 상태 모델은 언제 쓸 만하고 언제 과할까&lt;/a&gt;
+문제 유형은 상태 모델의 과잉 도입이고, 적용 패턴은 도입 기준 분리이며, 판단 기준은 “실패와 중복 실행을 명시적으로 다뤄야 하는가”다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description></item></channel></rss>
